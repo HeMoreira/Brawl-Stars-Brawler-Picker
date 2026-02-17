@@ -3,7 +3,6 @@ from proficiency.models import Proficiency
 
 # Create your models here.
 class Brawler(models.Model):
-    brawler_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=25, verbose_name="Brawler Name")
     primary_class = models.CharField(max_length=2, choices=[('D', 'Damage Dealer'), ('T', 'Tank'), ('AS', 'Assasin'), ('S', 'Support'), ('C', 'Controler'), ('M', 'Marksman'), ('AT', 'Artillery')], verbose_name="Primary Class")
     secondary_class = models.CharField(max_length=2, choices=[('D', 'Damage Dealer'), ('T', 'Tank'), ('AS', 'Assasin'), ('S', 'Support'), ('C', 'Controler'), ('M', 'Marksman'), ('AT', 'Artillery')], verbose_name="Secondary Class")

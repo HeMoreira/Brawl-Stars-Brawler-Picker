@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Proficiency(models.Model):
-    proficiency_id = models.IntegerField(primary_key=True)
 
     # Ataques: Dano e resistência
     durability = models.SmallIntegerField(verbose_name="Durability", help_text="capacidade de resistir a muitos ataques")
@@ -75,3 +74,7 @@ class Proficiency(models.Model):
     counter_block_attacks = models.SmallIntegerField(verbose_name="Counter Block-Attacks", help_text="capacidade de reduzir eficácia de anulação de ataques ou inimigos")
     forced_stopped_time = models.SmallIntegerField(verbose_name="Forced-Stopped-Time", help_text="capacidade de dar um tempo antes de atacar ou executar uma ação poderosa, comum em ataques fortes")
     counter_forced_stopped_time = models.SmallIntegerField(verbose_name="Counter Forced-Stopped-Time", help_text="capacidade de cancelar ataques que demoram para acontecer")
+
+    class Meta:
+        verbose_name = "Proficiency"
+        verbose_name_plural = "Proficiencies"
