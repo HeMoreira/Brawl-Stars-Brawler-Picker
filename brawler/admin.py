@@ -11,9 +11,9 @@ class BrawlerAdmin(admin.ModelAdmin):
         ('Basic Information', {
             'fields': ('name', 'primary_class', 'secondary_class')
         }),
-        # ('Gadgets, Star Powers and Hipercharges', {
-        #     'fields':('first_gadget', 'second_gadget', 'first_star_power', 'second_star_power', 'hipercharge')
-        # }),
+        ('Gadgets, Star Powers and Hipercharges', {
+            'fields':('first_gadget', 'second_gadget', 'first_starpower', 'second_starpower', 'hipercharge')
+        }),
         ('Base Proficiency', {
             'fields':('base_proficiency',)
         }),
