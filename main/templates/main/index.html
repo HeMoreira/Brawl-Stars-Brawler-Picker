@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Brawler Picker{% endblock %}
+
+{% block main %}
+<main>
+    <a href="{% url 'brawler_picker' %}" class="link-button">Brawler Picker</a>
+    <a href="{% url 'supporters' %}" class="link-button">Supporters</a>
+</main>
+{% endblock %}
