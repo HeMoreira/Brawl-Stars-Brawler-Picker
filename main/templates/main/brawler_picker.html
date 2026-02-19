@@ -4,72 +4,147 @@
 
 {% block main %}
 <main>
-    <details>
+    <div class="map-select-wrapper">
+        <select class="map-select">
+            <option value="" disabled>Escolha um Mapa</option>
+            <option value="drible_triplo">Drible Triplo</option>
+            <option value="arco_duplo">Arco Duplo</option>
+            <option value="campo_de_tiro">Campo de Tiro</option>
+        </select>
+    </div>
+
+    <details class="your-team-details">
         <summary>
             <span>YOUR TEAM STRONG SKILLS</span>
-            <span>+X</span>
+            <span>+3</span>
         </summary>
         <div>
-            <div>aaaaaa</div>
-            <div>aaaaaa</div>
-            <div>aaaaaa</div>
+            <div>Damage</div>
+            <div>Control</div>
+            <div>Speed</div>
+            <div>Uou</div>
         </div>
         <div>
-            Seu time...
+            Seu time tem vantagens significativas em dano e velocidade. Aproveite para fazer ataques rápidos e coordenados. (texto genérico de IA XD)
         </div>
     </details>
-    <article>
-        <select class="brawl-select">
-            <option value="" disabled selected>Escolha seu Brawler...</option>
-            <option value="shelly">Shelly</option>
-            <option value="colt">Colt</option>
-            <option value="el_primo">El Primo</option>
-        </select>
-        <select class="brawl-select">
-            <option value="" disabled selected>Escolha seu Brawler...</option>
-            <option value="shelly">Shelly</option>
-            <option value="colt">Colt</option>
-            <option value="el_primo">El Primo</option>
-        </select>
-        <select class="brawl-select">
-            <option value="" disabled selected>Escolha seu Brawler...</option>
-            <option value="shelly">Shelly</option>
-            <option value="colt">Colt</option>
-            <option value="el_primo">El Primo</option>
-        </select>
+
+    <article class="brawlers-container">
+        <section class="brawl-card">
+            <div class="brawler-image">🔫</div>
+            <select class="brawler-select">
+                <option value="" selected>Escolha seu Brawler</option>
+                <option value="shelly">Shelly</option>
+                <option value="colt">Colt</option>
+                <option value="el_primo">El Primo</option>
+            </select>
+            <select class="complement-select">
+                <option value="" selected>Escolhas Adicionais</option>
+                <option value="gad1-star1">Gadget 1, Star Power 1</option>
+                <option value="gad1-star2">Gadget 1, Star Power 2</option>
+                <option value="gad2-star1">Gadget 2, Star Power 1</option>
+                <option value="gad2-star2">Gadget 2, Star Power 2</option>
+            </select>
+            <div class="brawler-status">Good</div>
+        </section>
+        <section class="brawl-card">
+            <div class="brawler-image">⚔️</div>
+            <select class="brawler-select">
+                <option value="" selected>Escolha seu Brawler</option>
+                <option value="shelly">Shelly</option>
+                <option value="colt">Colt</option>
+                <option value="el_primo">El Primo</option>
+            </select>
+            <select class="complement-select">
+                <option value="" selected>Escolhas Adicionais</option>
+                <option value="gad1-star1">Gadget 1, Star Power 1</option>
+                <option value="gad1-star2">Gadget 1, Star Power 2</option>
+                <option value="gad2-star1">Gadget 2, Star Power 1</option>
+                <option value="gad2-star2">Gadget 2, Star Power 2</option>
+            </select>
+            <div class="brawler-status">OK</div>
+        </section>
+        <section class="brawl-card">
+            <div class="brawler-image">💪</div>
+            <select class="brawler-select">
+                <option value="" selected>Escolha seu Brawler</option>
+                <option value="shelly">Shelly</option>
+                <option value="colt">Colt</option>
+                <option value="el_primo">El Primo</option>
+            </select>
+            <select class="complement-select">
+                <option value="" selected>Escolhas Adicionais</option>
+                <option value="gad1-star1">Gadget 1, Star Power 1</option>
+                <option value="gad1-star2">Gadget 1, Star Power 2</option>
+                <option value="gad2-star1">Gadget 2, Star Power 1</option>
+                <option value="gad2-star2">Gadget 2, Star Power 2</option>
+            </select>
+            <div class="brawler-status">Great</div>
+        </section>
+        <section class="brawl-card">
+            <div class="brawler-image">🎯</div>
+            <select class="brawler-select">
+                <option value="" selected>Escolha seu Brawler</option>
+                <option value="shelly">Shelly</option>
+                <option value="colt">Colt</option>
+                <option value="el_primo">El Primo</option>
+            </select>
+            <select class="complement-select">
+                <option value="" selected>Escolhas Adicionais</option>
+                <option value="gad1-star1">Gadget 1, Star Power 1</option>
+                <option value="gad1-star2">Gadget 1, Star Power 2</option>
+                <option value="gad2-star1">Gadget 2, Star Power 1</option>
+                <option value="gad2-star2">Gadget 2, Star Power 2</option>
+            </select>
+            <div class="brawler-status">Bad</div>
+        </section>
+        <section class="brawl-card">
+            <div class="brawler-image">🌟</div>
+            <select class="brawler-select">
+                <option value="" selected>Escolha seu Brawler</option>
+                <option value="shelly">Shelly</option>
+                <option value="colt">Colt</option>
+                <option value="el_primo">El Primo</option>
+            </select>
+            <select class="complement-select">
+                <option value="" selected>Escolhas Adicionais</option>
+                <option value="gad1-star1">Gadget 1, Star Power 1</option>
+                <option value="gad1-star2">Gadget 1, Star Power 2</option>
+                <option value="gad2-star1">Gadget 2, Star Power 1</option>
+                <option value="gad2-star2">Gadget 2, Star Power 2</option>
+            </select>
+            <div class="brawler-status">Terrible</div>
+        </section>
+        <section class="brawl-card">
+            <div class="brawler-image">🏆</div>
+            <select class="brawler-select">
+                <option value="" selected>Escolha seu Brawler</option>
+                <option value="shelly">Shelly</option>
+                <option value="colt">Colt</option>
+                <option value="el_primo">El Primo</option>
+            </select>
+            <select class="complement-select">
+                <option value="" selected>Escolhas Adicionais</option>
+                <option value="gad1-star1">Gadget 1, Star Power 1</option>
+                <option value="gad1-star2">Gadget 1, Star Power 2</option>
+                <option value="gad2-star1">Gadget 2, Star Power 1</option>
+                <option value="gad2-star2">Gadget 2, Star Power 2</option>
+            </select>
+            <div class="brawler-status">Good</div>
+        </section>
     </article>
-    <article>
-        <select class="brawl-select">
-            <option value="" disabled selected>Escolha seu Brawler...</option>
-            <option value="shelly">Shelly</option>
-            <option value="colt">Colt</option>
-            <option value="el_primo">El Primo</option>
-        </select>
-        <select class="brawl-select">
-            <option value="" disabled selected>Escolha seu Brawler...</option>
-            <option value="shelly">Shelly</option>
-            <option value="colt">Colt</option>
-            <option value="el_primo">El Primo</option>
-        </select>
-        <select class="brawl-select">
-            <option value="" disabled selected>Escolha seu Brawler...</option>
-            <option value="shelly">Shelly</option>
-            <option value="colt">Colt</option>
-            <option value="el_primo">El Primo</option>
-        </select>
-    </article>
-    <details>
+    <details class="enemy-team-details">
         <summary>
             <span>ENEMY TEAM STRONG SKILLS</span>
-            <span>+X</span>
+            <span>+2</span>
         </summary>
         <div>
-            <div>aaaaaa</div>
-            <div>aaaaaa</div>
-            <div>aaaaaa</div>
+            <div>Range</div>
+            <div>Defense</div>
+            <div>Burst</div>
         </div>
         <div>
-            O time inimigo...
+            O time inimigo é forte em distância e defesa. Evite confrontos diretos e use estratégias de flanco.
         </div>
     </details>
 </main>
