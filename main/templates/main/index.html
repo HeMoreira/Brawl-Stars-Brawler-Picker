@@ -4,8 +4,10 @@
 
 {% block main %}
 <main>
-    <a href="{% url 'brawler_picker' %}" class="link-button">BRAWLER PICKER</a>
-    <a href="{% url 'supporters' %}" class="link-button">CREDITS</a>
-    <a href="" class="link-button">Coming Soon</a>
+    <article class="center-container">
+        <a href="{% url 'brawler_picker' %}" class="link-button">BRAWLER PICKER</a>
+        <a href="{% url 'supporters' %}" class="link-button">CREDITS</a>
+        <a href="" class="link-button">Coming Soon</a>
+    </article>
 </main>
 {% endblock %}
