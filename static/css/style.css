@@ -9,6 +9,8 @@
     --text-dark: #141414;
     --shadow: rgba(0,0,0,0.5);
     --glow-shadow: rgba(255, 188, 42, 0.3);
+    --blue-team-color: #0c4d8a;
+    --red-team-color: #a3250f;
 }
 
 /* Configurações Gerais */
@@ -236,8 +238,7 @@ details aside {
 }
 
 /* BRAWL SELECT CARD */
-.brawl-card {
-    background: var(--bg-gray);
+.brawl-card-blue, .brawl-card-red {
     border: 2px solid transparent;
     border-radius: 12px;
     padding: 1.5vw 1vw;
@@ -251,7 +252,14 @@ details aside {
     transition: all 0.3s ease;
 }
 
-.brawl-card:hover {
+.brawl-card-blue {
+    background-color: var(--blue-team-color);
+}
+.brawl-card-red {
+    background-color: var(--red-team-color);
+}
+
+.brawl-card-blue:hover, .brawl-card-red:hover {
     border-color: var(--primary-color);
     box-shadow: 0 8px 25px var(--glow-shadow);
     transform: translateY(-4px);
@@ -272,7 +280,7 @@ details aside {
     position: relative;
 }
 
-.brawl-card:hover .brawler-image {
+.brawl-card-blue:hover, .brawl-card-red:hover, .brawler-image {
     border-color: var(--primary-color);
     box-shadow: 0 0 15px var(--glow-shadow);
 }
@@ -324,13 +332,21 @@ details aside {
 
 /* SELECT STYLE */
 .brawler-select, .complement-select {
+    color: var(--text-dark);
     text-align: center;
     width: 100%;
     padding: 0.8rem;
-    background: var(--bg-gray);
-    border: 1.5px solid var(--primary-color);
+    background: linear-gradient(
+        to bottom,
+        var(--primary-light) 0%, 
+        var(--primary-light) 10%,
+        var(--primary-color) 10%, 
+        var(--primary-color) 90%,
+        var(--primary-dark) 90%, 
+        var(--primary-dark) 100%
+    );
+    border: 2px solid var(--text-dark);
     border-radius: 6px;
-    color: var(--text-light);
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -339,6 +355,15 @@ details aside {
 }
 
 .brawler-select:hover, .complement-select:hover {
+    background: linear-gradient(
+        to bottom, 
+        var(--text-light) 0%, 
+        var(--text-light) 10%,
+        var(--primary-light) 10%, 
+        var(--primary-light) 90%,
+        var(--primary-color) 90%, 
+        var(--primary-color) 100%
+    );
     border-color: var(--primary-light);
     box-shadow: 0 0 12px var(--glow-shadow);
 }
@@ -427,7 +452,7 @@ details aside {
         letter-spacing: 2px;
     }
 
-    .brawl-card {
+    .brawl-card-blue, .brawl-card-red {
         padding: 1rem 0.8rem;
         gap: 0.8rem;
     }
@@ -480,7 +505,7 @@ details aside {
         gap: 0.8rem;
     }
 
-    .brawl-card {
+    .brawl-card-blue, .brawl-card-red {
         gap: 0.6rem;
     }
 
