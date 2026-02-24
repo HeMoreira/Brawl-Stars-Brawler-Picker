@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Proficiency(models.Model):
 
-    # Ataques: Dano e resistência
+    # Atacando, sendo atacado e manipulando o campo a seu favor
     durability = models.SmallIntegerField(verbose_name="Durability", help_text="capacidade de resistir a muitos ataques", default=0)
     counter_durability = models.SmallIntegerField(verbose_name="Counter Durability", help_text="capacidade de causar problemas para brawlers resistentes", default=0)
     attack_distance = models.SmallIntegerField(verbose_name="Attack-Distance", help_text="capacidade de causar danos em um alcance longo", default=0)
@@ -24,22 +24,10 @@ class Proficiency(models.Model):
     counter_multiple_pets = models.SmallIntegerField(verbose_name="Counter Multiple-Pets", help_text="capacidade de lidar com a pressão de múltiplos inimigos em cena", default=0)
     durable_pets = models.SmallIntegerField(verbose_name="Durable-Pets", help_text="capacidade de gerar pets resistentes que forçam o gasto de recursos", default=0)
     counter_durable_pets = models.SmallIntegerField(verbose_name="Counter Durable-Pets", help_text="capacidade de lidar com a pressão de inimigos resistentes em cena sem gastar muitos recursos", default=0)
-    turret_power = models.SmallIntegerField(verbose_name="Turret-Control", help_text="capacidade de gerar torretas que incomodam inimigos e são dificilmente destruíveis", default=0)
-    counter_turret_power = models.SmallIntegerField(verbose_name="Counter Turret-Power", help_text="capacidade de destruir torretas que incomodam dos inimigos", default=0)
     wide_attack = models.SmallIntegerField(verbose_name="Wide-Attack", help_text="capacidade de atingir grandes áreas com seus ataques", default=0)
     counter_wide_attack = models.SmallIntegerField(verbose_name="Counter Wide-Attack", help_text="capacidade de enfrentar brawlers com áreas de ataque grandes", default=0)
     retreat_button = models.SmallIntegerField(verbose_name="Retreat-Button", help_text="capacidade de escapar de uma situação perigosa rapidamente", default=0)
     counter_retreat_button = models.SmallIntegerField(verbose_name="Counter Retreat-Button", help_text="capacidade de evitar problemas relacionados a fugas de inimigos", default=0)
-    auto_fire_punishment = models.SmallIntegerField(verbose_name="Auto-Fire-Punishment", help_text="capacidade de manipular o auto-fire inimigo ao spawnar outras entidades, forçando a mira", default=0)
-    counter_auto_fire_punishment = models.SmallIntegerField(verbose_name="Counter Auto-Fire-Punishment", help_text="capacidade de evitar problemas relacionados a manipulação de auto-fire", default=0)
-
-    # Controle direto: Muros e Pressão
-    open_lane_pressure = models.SmallIntegerField(verbose_name="Open-Lane-Pressure", help_text="capacidade de manter inimigos recuados em lanes abertas", default=0)
-    counter_open_lane_pressure = models.SmallIntegerField(verbose_name="Counter Open-Lane-Pressure", help_text="capacidade de se aproximar perante pressão inimiga em lanes abertas", default=0)
-    closed_lane_pressure = models.SmallIntegerField(verbose_name="Closed-Lane-Pressure", help_text="capacidade de manter inimigos recuados em lanes fechadas", default=0)
-    counter_closed_lane_pressure = models.SmallIntegerField(verbose_name="Counter Closed-Lane-Pressure", help_text="capacidade de se aproximar perante pressão inimiga em lanes fechadas", default=0)
-    grassy_lane_pressure = models.SmallIntegerField(verbose_name="Grassy-Lane-Pressure", help_text="capacidade de manter inimigos recuados em lanes com muita moita", default=0)
-    counter_grassy_lane_pressure = models.SmallIntegerField(verbose_name="Counter Grassy-Lane-Pressure", help_text="capacidade de se aproximar perante pressão inimiga em lanes com muita moita", default=0)
     wall_break_efficiency = models.SmallIntegerField(verbose_name="Wall-Break-Efficiency", help_text="capacidade de destruição de muros", default=0)
     counter_wall_break_efficiency = models.SmallIntegerField(verbose_name="Counter Wall-Break-Efficiency", help_text="capacidade de evitar problemas mesmo em mapas sem muros", default=0)
     grass_break_efficiency = models.SmallIntegerField(verbose_name="Grass-Break-Efficiency", help_text="capacidade de destruição de moitas", default=0)
