@@ -113,7 +113,7 @@
                 <option value="gad2-star1">Gadget 2, Star Power 1</option>
                 <option value="gad2-star2">Gadget 2, Star Power 2</option>
             </select>
-            <div class="brawler-status" data-tooltip="TExtooo">Terrible</div>
+            <div class="brawler-status" data-tooltip="TExtooo">awful</div>
         </section>
         <section class="brawl-card-red">
             <div class="brawler-image">🏆</div>
@@ -148,4 +148,40 @@
         </aside>
     </details>
 </main>
+<script>
+    function applyStatusColor(element) {
+        const text = element.textContent.trim().toLowerCase();
+        
+        element.classList.remove('awful', 'bad', 'ok', 'good', 'great');
+        
+        if (text === 'awful') {
+            element.classList.add('awful');
+        } else if (text === 'bad') {
+            element.classList.add('bad');
+        } else if (text === 'ok') {
+            element.classList.add('ok');
+        } else if (text === 'good') {
+            element.classList.add('good');
+        } else if (text === 'great') {
+            element.classList.add('great');
+        }
+    }
+
+    document.querySelectorAll('.brawler-status').forEach(element => {
+        applyStatusColor(element);
+    });
+
+    // Utiliza a função novamente se o texto mudar
+    const observer = new MutationObserver(() => {
+        document.querySelectorAll('.brawler-status').forEach(element => {
+            applyStatusColor(element);
+        });
+    });
+
+    observer.observe(document.body, {
+        subtree: true,
+        childList: true,
+        characterData: true
+    });
+</script>
 {% endblock %}

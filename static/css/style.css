@@ -164,7 +164,7 @@ main {
     transform: translateY(-2px);
 }
 
-/* DETAILS STYLING */
+/* --- DETAILS STYLING --- */
 
 details {
     background-color: var(--bg-gray);
@@ -230,14 +230,15 @@ details aside {
     padding: 0.5rem 0;
 }
 
-/* BRAWLER CONTAINER */
+/* --- BRAWLER CONTAINER --- */
+
 .brawlers-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
-/* BRAWL SELECT CARD */
+/* --- BRAWL SELECT CARD --- */
 .brawl-card-blue, .brawl-card-red {
     border: 2px solid transparent;
     border-radius: 12px;
@@ -265,7 +266,8 @@ details aside {
     transform: translateY(-4px);
 }
 
-/* BRAWLER IMAGE PLACEHOLDER */
+/* --- BRAWLER IMAGE PLACEHOLDER --- */
+
 .brawler-image {
     width: 120px;
     height: 120px;
@@ -285,12 +287,14 @@ details aside {
     box-shadow: 0 0 15px var(--glow-shadow);
 }
 
-/* BRAWLER STATUS */
+/* --- BRAWLER STATUS --- */
+
 .brawler-status {
     color: var(--text-light);
     width: 100%;
     padding: 0.8rem;
     border-radius: 6px;
+    box-shadow: 0 0 15px var(--shadow);
     font-weight: bold;
     text-align: center;
     font-size: 0.9rem;
@@ -330,7 +334,33 @@ details aside {
     bottom: -30px;
 }
 
-/* SELECT STYLE */
+.brawler-status.awful {
+    background-color: #ff0000;
+    box-shadow: 0 0 20px var(--text-dark);
+}
+
+.brawler-status.bad {
+    background-color: #f1612d;
+    color: var(--text-dark);
+}
+
+.brawler-status.ok {
+    background-color: #fea618;
+    color: var(--text-dark);
+}
+
+.brawler-status.good {
+    background-color: #4fc737;
+    color: var(--text-dark);
+}
+
+.brawler-status.great {
+    background-color: #128518;
+    box-shadow: 0 0 20px var(--text-dark);
+}
+
+/* --- SELECT STYLE --- */
+
 .brawler-select, .complement-select {
     color: var(--text-dark);
     text-align: center;

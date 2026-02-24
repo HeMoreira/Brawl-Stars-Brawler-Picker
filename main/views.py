@@ -5,6 +5,10 @@ def index(request):
     return render(request, 'main/index.html')
 
 def brawler_picker(request):
+    # context = {
+    #     "brawlers":[brawlers],
+    #     "maps":[maps],
+    # }
     return render(request, 'main/brawler_picker.html')
 
 def supporters(request):
