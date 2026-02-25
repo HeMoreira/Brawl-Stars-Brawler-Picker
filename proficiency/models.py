@@ -58,10 +58,10 @@ class Proficiency(models.Model):
     counter_stun_debuffing = models.SmallIntegerField(verbose_name="Counter Stun-Debuffing", help_text="(frequency, power)", default=0)
     slowness_debuffing = models.SmallIntegerField(verbose_name="Slowness-Debuffing", help_text="Capacity of decreasing enemies speed (frequency, power, duration)", default=0)
     counter_slowness_debuffing = models.SmallIntegerField(verbose_name="Counter Slowness-Debuffing", help_text="(frequency, power)", default=0)
-    block_attacks = models.SmallIntegerField(verbose_name="Block-Attacks", help_text="capacidade de anular ataques ou inimigos", default=0)
-    counter_block_attacks = models.SmallIntegerField(verbose_name="Counter Block-Attacks", help_text="capacidade de reduzir eficácia de anulação de ataques ou inimigos", default=0)
-    forced_stopped_time = models.SmallIntegerField(verbose_name="Forced-Stopped-Time", help_text="capacidade de dar um tempo antes de atacar ou executar uma ação poderosa, comum em ataques fortes", default=0)
-    counter_forced_stopped_time = models.SmallIntegerField(verbose_name="Counter Forced-Stopped-Time", help_text="capacidade de cancelar ataques que demoram para acontecer", default=0)
+    block_enemies = models.SmallIntegerField(verbose_name="Block-Attacks", help_text="Capacity of neutralizing enemies (no parameters at this moment)", default=0)
+    counter_block_enemies = models.SmallIntegerField(verbose_name="Counter Block-Attacks", help_text="Capacity of not being neutralized (no parameters at this moment)", default=0)
+    attacks_canceling = models.SmallIntegerField(verbose_name="Forced-Stopped-Time", help_text="Capacity of cancel delayed attacks", default=0)
+    counter_attacks_canceling = models.SmallIntegerField(verbose_name="Counter Forced-Stopped-Time", help_text="Capacity of not being affected by attacks canceling", default=0)
 
     class Meta:
         verbose_name = "Proficiency"
