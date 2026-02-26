@@ -2,9 +2,9 @@
     <div class="brawler-image">{{ icon }}</div>
     <select class="brawler-select">
         <option value="" selected>Brawler Name</option>
-        <option value="shelly">Shelly</option>
-        <option value="colt">Colt</option>
-        <option value="el_primo">El Primo</option>
+        {% for brawler in brawlers %}
+            <option value="1">{{ brawler.name }}</option>
+        {% endfor %}
     </select>
     <select class="complement-select">
         <option value="" selected>Complements</option>
