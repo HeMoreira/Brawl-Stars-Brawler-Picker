@@ -28,110 +28,14 @@
             Seu time tem vantagens significativas em dano e velocidade. Aproveite para fazer ataques rápidos e coordenados. (texto genérico de IA XD)
         </aside>
     </details>
-
     <article class="brawlers-container">
-        <section class="brawl-card-blue">
-            <div class="brawler-image">🔫</div>
-            <select class="brawler-select">
-                <option value="" selected>Brawler Name</option>
-                <option value="shelly">Shelly</option>
-                <option value="colt">Colt</option>
-                <option value="el_primo">El Primo</option>
-            </select>
-            <select class="complement-select">
-                <option value="" selected>Complements</option>
-                <option value="gad1-star1">Gadget 1, Star Power 1</option>
-                <option value="gad1-star2">Gadget 1, Star Power 2</option>
-                <option value="gad2-star1">Gadget 2, Star Power 1</option>
-                <option value="gad2-star2">Gadget 2, Star Power 2</option>
-            </select>
-            <div class="brawler-status" data-tooltip="TExtooo">Good</div>
-        </section>
-        <section class="brawl-card-blue">
-            <div class="brawler-image">⚔️</div>
-            <select class="brawler-select">
-                <option value="" selected>Brawler Name</option>
-                <option value="shelly">Shelly</option>
-                <option value="colt">Colt</option>
-                <option value="el_primo">El Primo</option>
-            </select>
-            <select class="complement-select">
-                <option value="" selected>Complements</option>
-                <option value="gad1-star1">Gadget 1, Star Power 1</option>
-                <option value="gad1-star2">Gadget 1, Star Power 2</option>
-                <option value="gad2-star1">Gadget 2, Star Power 1</option>
-                <option value="gad2-star2">Gadget 2, Star Power 2</option>
-            </select>
-            <div class="brawler-status" data-tooltip="TExtooo">OK</div>
-        </section>
-        <section class="brawl-card-blue">
-            <div class="brawler-image">💪</div>
-            <select class="brawler-select">
-                <option value="" selected>Brawler Name</option>
-                <option value="shelly">Shelly</option>
-                <option value="colt">Colt</option>
-                <option value="el_primo">El Primo</option>
-            </select>
-            <select class="complement-select">
-                <option value="" selected>Complements</option>
-                <option value="gad1-star1">Gadget 1, Star Power 1</option>
-                <option value="gad1-star2">Gadget 1, Star Power 2</option>
-                <option value="gad2-star1">Gadget 2, Star Power 1</option>
-                <option value="gad2-star2">Gadget 2, Star Power 2</option>
-            </select>
-            <div class="brawler-status" data-tooltip="TExtooo">Great</div>
-        </section>
-        <section class="brawl-card-red">
-            <div class="brawler-image">🎯</div>
-            <select class="brawler-select">
-                <option value="" selected>Brawler Name</option>
-                <option value="shelly">Shelly</option>
-                <option value="colt">Colt</option>
-                <option value="el_primo">El Primo</option>
-            </select>
-            <select class="complement-select">
-                <option value="" selected>Complements</option>
-                <option value="gad1-star1">Gadget 1, Star Power 1</option>
-                <option value="gad1-star2">Gadget 1, Star Power 2</option>
-                <option value="gad2-star1">Gadget 2, Star Power 1</option>
-                <option value="gad2-star2">Gadget 2, Star Power 2</option>
-            </select>
-            <div class="brawler-status" data-tooltip="TExtooo">Bad</div>
-        </section>
-        <section class="brawl-card-red">
-            <div class="brawler-image">🌟</div>
-            <select class="brawler-select">
-                <option value="" selected>Brawler Name</option>
-                <option value="shelly">Shelly</option>
-                <option value="colt">Colt</option>
-                <option value="el_primo">El Primo</option>
-            </select>
-            <select class="complement-select">
-                <option value="" selected>Complements</option>
-                <option value="gad1-star1">Gadget 1, Star Power 1</option>
-                <option value="gad1-star2">Gadget 1, Star Power 2</option>
-                <option value="gad2-star1">Gadget 2, Star Power 1</option>
-                <option value="gad2-star2">Gadget 2, Star Power 2</option>
-            </select>
-            <div class="brawler-status" data-tooltip="TExtooo">awful</div>
-        </section>
-        <section class="brawl-card-red">
-            <div class="brawler-image">🏆</div>
-            <select class="brawler-select">
-                <option value="" selected>Brawler Name</option>
-                <option value="shelly">Shelly</option>
-                <option value="colt">Colt</option>
-                <option value="el_primo">El Primo</option>
-            </select>
-            <select class="complement-select">
-                <option value="" selected>Complements</option>
-                <option value="gad1-star1">Gadget 1, Star Power 1</option>
-                <option value="gad1-star2">Gadget 1, Star Power 2</option>
-                <option value="gad2-star1">Gadget 2, Star Power 1</option>
-                <option value="gad2-star2">Gadget 2, Star Power 2</option>
-            </select>
-            <div class="brawler-status" data-tooltip="TExtooo">Good</div>
-        </section>
+        {% include "partials/_brawler_card.html" with card_class="brawl-card-blue" icon="🔫" status="Good" %}
+        {% include "partials/_brawler_card.html" with card_class="brawl-card-blue" icon="⚔️" status="Ok" %}
+        {% include "partials/_brawler_card.html" with card_class="brawl-card-blue" icon="💪" status="Great" %}
+
+        {% include "partials/_brawler_card.html" with card_class="brawl-card-red" icon="🎯" status="Awful" %}
+        {% include "partials/_brawler_card.html" with card_class="brawl-card-red" icon="🌟" status="Good" %}
+        {% include "partials/_brawler_card.html" with card_class="brawl-card-red" icon="🏆" status="Bad" %}
     </article>
     <details class="enemy-team-details">
         <summary>

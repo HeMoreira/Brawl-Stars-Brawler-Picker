@@ -1,0 +1,17 @@
+<section class="{{ card_class }}">
+    <div class="brawler-image">{{ icon }}</div>
+    <select class="brawler-select">
+        <option value="" selected>Brawler Name</option>
+        <option value="shelly">Shelly</option>
+        <option value="colt">Colt</option>
+        <option value="el_primo">El Primo</option>
+    </select>
+    <select class="complement-select">
+        <option value="" selected>Complements</option>
+        <option value="gad1-star1">Gadget 1, Star Power 1</option>
+        <option value="gad1-star2">Gadget 1, Star Power 2</option>
+        <option value="gad2-star1">Gadget 2, Star Power 1</option>
+        <option value="gad2-star2">Gadget 2, Star Power 2</option>
+    </select>
+    <div class="brawler-status" data-tooltip="TExtooo">{{ status|default:"OK" }}</div>
+</section>
