@@ -334,31 +334,6 @@ details aside {
     bottom: -30px;
 }
 
-.brawler-status.awful {
-    background-color: #ff0000;
-    box-shadow: 0 0 20px var(--text-dark);
-}
-
-.brawler-status.bad {
-    background-color: #f1612d;
-    color: var(--text-dark);
-}
-
-.brawler-status.ok {
-    background-color: #fea618;
-    color: var(--text-dark);
-}
-
-.brawler-status.good {
-    background-color: #4fc737;
-    color: var(--text-dark);
-}
-
-.brawler-status.great {
-    background-color: #128518;
-    box-shadow: 0 0 20px var(--text-dark);
-}
-
 /* --- SELECT STYLE --- */
 
 .brawler-select, .complement-select {

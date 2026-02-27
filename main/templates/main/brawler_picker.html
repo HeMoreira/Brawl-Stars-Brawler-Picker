@@ -54,20 +54,23 @@
 </main>
 <script>
     function applyStatusColor(element) {
-        const text = element.textContent.trim().toLowerCase();
+        const status = element.dataset['status'].trim().toLowerCase();
         
-        element.classList.remove('awful', 'bad', 'ok', 'good', 'great');
-        
-        if (text === 'awful') {
-            element.classList.add('awful');
-        } else if (text === 'bad') {
-            element.classList.add('bad');
-        } else if (text === 'ok') {
-            element.classList.add('ok');
-        } else if (text === 'good') {
-            element.classList.add('good');
-        } else if (text === 'great') {
-            element.classList.add('great');
+        if (status === 'awful') {
+            element.style.backgroundColor = '#ff0000'
+            element.style.boxShadow = '0 0 20px var(--text-dark)'
+        } else if (status === 'bad') {
+            element.style.backgroundColor = '#f1612d'
+            element.style.color = 'var(--text-dark)'
+        } else if (status === 'ok') {
+            element.style.backgroundColor = '#fea618'
+            element.style.color = 'var(--text-dark)'
+        } else if (status === 'good') {
+            element.style.backgroundColor = '#4fc737'
+            element.style.color = 'var(--text-dark)'
+        } else if (status === 'great') {
+            element.style.backgroundColor = '#128518'
+            element.style.boxShadow = '0 0 20px var(--text-dark)'
         }
     }
 
