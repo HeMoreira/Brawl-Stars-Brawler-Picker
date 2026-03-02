@@ -56,13 +56,19 @@
 </main>
 <script>
     function changeBrawlerImage(image, input) {
-        const namelist_of_brawlers = {{ namelist_of_brawlers|safe }};
+        const namelist_of_brawlers_and_icons = {{ namelist_of_brawlers_and_icons|safe }};
 
-        namelist_of_brawlers.forEach(brawler_name => {
-            if(brawler_name === input.value) {
-                image.src = "{% static 'images/brawlers/shelly_icon.png' %}"
+        var brawler_was_found = false
+        namelist_of_brawlers_and_icons.forEach(brawler => {
+            if(brawler.name === input.value) {
+                const url_base = "{% static 'images/brawlers/brawler_icon' %}";
+                image.src = url_base.replace('brawler_icon', brawler.icon);
+                brawler_was_found = true;
             }
         });
+        if (brawler_was_found === false) {
+            image.src = "{% static 'images/brawlers/glowbert_icon.png' %}";
+        }
     }
 
     function applyStatusColor(element) {

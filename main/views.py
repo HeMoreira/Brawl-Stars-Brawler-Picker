@@ -7,12 +7,12 @@ def index(request):
 
 def brawler_picker(request):
     brawlers = Brawler.objects.all()
-    namelist_of_brawlers = []
+    namelist_of_brawlers_and_icons = []
     for brawler in brawlers:
-        namelist_of_brawlers.append(brawler.name)
+        namelist_of_brawlers_and_icons.append({"name":brawler.name, "icon":brawler.icon_name})
     context = {
         "brawlers": brawlers,
-        "namelist_of_brawlers": namelist_of_brawlers,
+        "namelist_of_brawlers_and_icons": namelist_of_brawlers_and_icons,
         # "maps":[maps],
     }
     return render(request, 'main/brawler_picker.html', context)
