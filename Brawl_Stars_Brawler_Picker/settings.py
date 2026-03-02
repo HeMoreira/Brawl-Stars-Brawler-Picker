@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'proficiency',
     'additional_power',
     'main',
+    'map',
 ]
 
 MIDDLEWARE = [
