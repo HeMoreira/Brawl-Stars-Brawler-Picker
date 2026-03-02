@@ -1,5 +1,7 @@
 {% extends 'main/base.html' %}
 
+{% load static %}
+
 {% block title %}Brawler Picker{% endblock %}
 
 {% block main %}
@@ -29,13 +31,13 @@
         </aside>
     </details>
     <article class="brawlers-container">
-        {% include "partials/_brawler_card.html" with card_class="brawl-card-blue" icon="🔫" status="Good" %}
-        {% include "partials/_brawler_card.html" with card_class="brawl-card-blue" icon="⚔️" status="Ok" %}
-        {% include "partials/_brawler_card.html" with card_class="brawl-card-blue" icon="💪" status="Great" %}
+        {% include "partials/_brawler_card.html" with card_id="0" card_class="brawl-card-blue" status="Good" %}
+        {% include "partials/_brawler_card.html" with card_id="1" card_class="brawl-card-blue" status="Ok" %}
+        {% include "partials/_brawler_card.html" with card_id="2" card_class="brawl-card-blue" status="Great" %}
 
-        {% include "partials/_brawler_card.html" with card_class="brawl-card-red" icon="🎯" status="Awful" %}
-        {% include "partials/_brawler_card.html" with card_class="brawl-card-red" icon="🌟" status="Good" %}
-        {% include "partials/_brawler_card.html" with card_class="brawl-card-red" icon="🏆" status="Bad" %}
+        {% include "partials/_brawler_card.html" with card_id="3" card_class="brawl-card-red" status="Awful" %}
+        {% include "partials/_brawler_card.html" with card_id="4" card_class="brawl-card-red" status="Good" %}
+        {% include "partials/_brawler_card.html" with card_id="5" card_class="brawl-card-red" status="Bad" %}
     </article>
     <details class="enemy-team-details">
         <summary>
@@ -53,6 +55,16 @@
     </details>
 </main>
 <script>
+    function changeBrawlerImage(image, input) {
+        const namelist_of_brawlers = {{ namelist_of_brawlers|safe }};
+
+        namelist_of_brawlers.forEach(brawler_name => {
+            if(brawler_name === input.value) {
+                image.src = "{% static 'images/brawlers/shelly_icon.png' %}"
+            }
+        });
+    }
+
     function applyStatusColor(element) {
         const status = element.dataset['status'].trim().toLowerCase();
         
