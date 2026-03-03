@@ -89,24 +89,15 @@
         } else if (status === 'great') {
             element.style.backgroundColor = '#128518'
             element.style.boxShadow = '0 0 20px var(--text-dark)'
+        } else {
+            element.style.backgroundColor = '#fea618'
+            element.style.color = 'var(--text-dark)'
+            element.textContent = 'ok'
         }
     }
 
     document.querySelectorAll('.brawler-status').forEach(element => {
         applyStatusColor(element);
-    });
-
-    // Utiliza a função novamente se o texto mudar
-    const observer = new MutationObserver(() => {
-        document.querySelectorAll('.brawler-status').forEach(element => {
-            applyStatusColor(element);
-        });
-    });
-
-    observer.observe(document.body, {
-        subtree: true,
-        childList: true,
-        characterData: true
     });
 </script>
 {% endblock %}
