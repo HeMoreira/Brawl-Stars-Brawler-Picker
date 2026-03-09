@@ -6,7 +6,7 @@ from .models import Gadget, StarPower, Hipercharge
 class GadgetAdmin(admin.ModelAdmin):
     list_display = ('name',)
     fieldsets = (
-        ('Basic Information', {'fields':('name',)}),
+        ('Basic Information', {'fields':('name', 'icon_name')}),
         ('Proficiency', {'fields':('base_proficiency',)}),
     )
 
@@ -14,7 +14,7 @@ class GadgetAdmin(admin.ModelAdmin):
 class StarPowerAdmin(admin.ModelAdmin):
     list_display = ('name',)
     fieldsets = (
-        ('Basic Information', {'fields':('name',)}),
+        ('Basic Information', {'fields':('name', 'icon_name')}),
         ('Proficiency', {'fields':('base_proficiency',)}),
     )
 
@@ -22,6 +22,6 @@ class StarPowerAdmin(admin.ModelAdmin):
 class HiperchargeAdmin(admin.ModelAdmin):
     list_display = ('name',)
     fieldsets = (
-        ('Basic Information', {'fields':('name',)}),
+        ('Basic Information', {'fields':('name', 'icon_name')}),
         ('Proficiency', {'fields':('base_proficiency',)}),
     )

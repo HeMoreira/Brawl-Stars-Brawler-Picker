@@ -8,14 +8,14 @@ class Brawler(models.Model):
     icon_name = models.CharField(max_length=34, verbose_name="Brawler Icon Name", default="unown_icon.png")
     primary_class = models.CharField(max_length=2, choices=[('D', 'Damage Dealer'), ('T', 'Tank'), ('AS', 'Assasin'), ('S', 'Support'), ('C', 'Controler'), ('M', 'Marksman'), ('AT', 'Artillery')], verbose_name="Primary Class")
     secondary_class = models.CharField(max_length=2, choices=[('D', 'Damage Dealer'), ('T', 'Tank'), ('AS', 'Assasin'), ('S', 'Support'), ('C', 'Controler'), ('M', 'Marksman'), ('AT', 'Artillery')], verbose_name="Secondary Class")
-    base_proficiency = models.ForeignKey(Proficiency, on_delete=models.PROTECT, verbose_name="Base Proficiency")
-    first_gadget = models.ForeignKey(Gadget, on_delete=models.PROTECT, verbose_name="First Gadget", related_name="first_gadget")
-    second_gadget = models.ForeignKey(Gadget, on_delete=models.PROTECT, verbose_name="Second Gadget", related_name="second_gadget")
-    first_starpower = models.ForeignKey(StarPower, on_delete=models.PROTECT, verbose_name="First Star Power", related_name="first_starpower")
-    second_starpower = models.ForeignKey(StarPower, on_delete=models.PROTECT, verbose_name="Second Star Power", related_name="second_starpower")
+    base_proficiency = models.OneToOneField(Proficiency, on_delete=models.CASCADE, verbose_name="Base Proficiency")
+    first_gadget = models.OneToOneField(Gadget, on_delete=models.CASCADE, verbose_name="First Gadget", related_name="first_gadget")
+    second_gadget = models.OneToOneField(Gadget, on_delete=models.CASCADE, verbose_name="Second Gadget", related_name="second_gadget")
+    first_starpower = models.OneToOneField(StarPower, on_delete=models.CASCADE, verbose_name="First Star Power", related_name="first_starpower")
+    second_starpower = models.OneToOneField(StarPower, on_delete=models.CASCADE, verbose_name="Second Star Power", related_name="second_starpower")
+    hipercharge = models.OneToOneField(Hipercharge, on_delete=models.CASCADE, verbose_name="Hipercharge")
     gadgets = [first_gadget, second_gadget]
     starpowers = [first_starpower, second_starpower]
-    hipercharge = models.ForeignKey(Hipercharge, on_delete=models.PROTECT, verbose_name="Hipercharge")
 
     class Meta:
         verbose_name = "Brawler"

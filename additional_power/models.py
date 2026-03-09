@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 class AdditionalPower(models.Model):
     name = models.CharField(max_length=40)
     icon_name = models.CharField(max_length=49)
-    base_proficiency = models.ForeignKey(Proficiency, on_delete=models.PROTECT, verbose_name="Base Proficiency")
+    base_proficiency = models.OneToOneField(Proficiency, on_delete=models.CASCADE, verbose_name="Base Proficiency")
 
     class Meta:
         abstract = True
