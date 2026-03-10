@@ -20,9 +20,9 @@ class AdditionalPower(models.Model):
         if adapted_name != self.icon_name[:name_length] or self.icon_name[name_length:] != "_icon.png":
             raise ValidationError({'icon_name': 'The icon_name needs to be composed of <brawlernameinlowercaseandwithoutspaces>_icon.png'})
         
-    def save(self):
+    def save(self, *args, **kwargs):
         self.full_clean()
-        return super().save()
+        return super().save(*args, **kwargs)
 
 class Gadget(AdditionalPower):
     name = models.CharField(max_length=40, verbose_name="Gadget Name")

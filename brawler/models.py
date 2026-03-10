@@ -1,6 +1,7 @@
 from django.db import models
 from proficiency.models import Proficiency
 from additional_power.models import Gadget, StarPower, Hipercharge
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Brawler(models.Model):
@@ -24,3 +25,14 @@ class Brawler(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def clean(self):
+        super().clean()
+        adapted_name = self.name.lower().replace(" ", "")
+        name_length = len(adapted_name)
+        if adapted_name != self.icon_name[:name_length] or self.icon_name[name_length:] != "_icon.png":
+            raise ValidationError({'icon_name': 'The icon_name needs to be composed of <brawlernameinlowercaseandwithoutspaces>_icon.png'})
+    
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)

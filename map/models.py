@@ -23,6 +23,6 @@ class Map(models.Model):
     def __str__(self):
         return self.name
     
-    def save(self):
+    def save(self, *args, **kwargs):
         self.full_clean()
-        return super().save()
+        return super().save(*args, **kwargs)
