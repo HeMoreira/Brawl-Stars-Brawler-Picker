@@ -5,10 +5,74 @@ from .models import Proficiency
 @admin.register(Proficiency)
 class ProficiencyAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Attacking, being attacked and manipulating terrain', {
-            'fields':('durability', 'counter_durability', 'attack_distance', 'counter_attack_distance', 'surprise_attack', 'counter_surprise_attack', 'easy_approximation', 'counter_easy_approximation', 'retreat_button', 'counter_retreat_button', 'burst_damage', 'counter_burst_damage', 'wide_attack', 'counter_wide_attack', 'multiple_pets', 'counter_multiple_pets', 'durable_pets', 'counter_durable_pets', 'groupment_punishment', 'counter_groupment_punishment', 'objects_burst_damage', 'counter_objects_burst_damage', 'indirect_damage', 'counter_indirect_damage', 'area_denial', 'counter_area_denial', 'water_walking', 'counter_water_walking', 'wall_break_efficiency', 'counter_wall_break_efficiency', 'grass_break_efficiency', 'counter_grass_break_efficiency', 'enemy_position_manipulation', 'counter_enemy_position_manipulation')
+        ('Basic Damage Information', {
+            'fields':(
+                '_necessary_projectiles_to_charge_super',
+                '_necessary_supers_to_charge_hipercharge',
+                '_projectile_damage',
+                '_shots_per_five_seconds',
+                'average_projectiles_per_shot',
+                'projectiles_per_shot_in_short_range',
+                'projectiles_per_shot_in_medium_range',
+                'projectiles_per_shot_in_long_range',
+                'projectiles_per_shot_in_very_long_range',
+                '_auto_charge_super',
+                'super_damage_in_short_range',
+                'super_damage_in_medium_range',
+                'super_damage_in_long_range',
+                'super_damage_in_very_long_range',
+                'average_super_damage',
+                'ocasional_extra_damage',
+            )
         }),
-        ('Buffing and Debuffing Brawlers', {
-            'fields':('heal_buffing', 'counter_heal_buffing', 'shield_buffing', 'counter_shield_buffing', 'damage_buffing', 'counter_damage_buffing', 'speed_buffing', 'counter_speed_buffing', 'invisibility_buffing', 'counter_invisibility_buffing', 'positioning_buffing', 'counter_positioning_buffing', 'poison_debuffing', 'counter_poison_debuffing', 'stun_debuffing', 'counter_stun_debuffing', 'slowness_debuffing', 'counter_slowness_debuffing', 'block_enemies', 'counter_block_enemies', 'attacks_canceling', 'counter_attacks_canceling')
-        })
+        ('Attacking, being attacked and manipulating terrain', {
+            'fields':(
+                'durability',
+                'attack_distance',
+                'retreat_button',
+                'wide_attack',
+                '_indirect_damage_efficiency',
+                'area_denial',
+                'enemy_position_manipulation',
+                'water_walking',
+                'counter_water_walking',
+                'wall_break_efficiency',
+                'grass_break_efficiency',
+                'cover_creation_efficiency',
+                '_movement_speed',
+                '_surprise_attack_power',
+                'surprise_attack',
+                '_frequency_of_pets_generation',
+                '_accumulation_of_pets',
+                '_deteriorability_of_pets',
+                '_pets_resistence',
+                '_pets_damage',
+                '_pets_range',
+                '_pets_speed',
+                '_pets_proximity',
+                'groupment_punishment',
+                'circumstantiality_of_overall_proficiency',
+            )
+        }),
+        ('Buffs and Debuffs', {
+            'fields':(
+                'heal_buffing',
+                'counter_heal_buffing',
+                'shield_buffing',
+                'damage_buffing',
+                'counter_damage_buffing',
+                'speed_buffing',
+                'invisibility_buffing',
+                'positioning_buffing',
+                'poison_debuffing',
+                'counter_poison_debuffing',
+                'stun_debuffing',
+                'counter_stun_debuffing',
+                'slowness_debuffing',
+                'counter_slowness_debuffing',
+                'block_enemies',
+                'attacks_canceling',
+                'counter_attacks_canceling',
+            )
+        }),
     )
