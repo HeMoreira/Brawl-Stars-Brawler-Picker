@@ -23,7 +23,7 @@ class Proficiency(models.Model):
     super_damage_in_long_range = models.IntegerField(verbose_name="Super Damage in Long Range", help_text="Damage of super when the enemy is far", default=0)
     super_damage_in_very_long_range = models.IntegerField(verbose_name="Super Damage in Very Long Range", help_text="Damage of super when the enemy is very far", default=0)
     average_super_damage = models.IntegerField(verbose_name="Average Super Damage", help_text="Average damage of super", default=0)
-    ocasional_extra_damage = models.SmallIntegerField(verbose_name="Ocasional Extra Damage", help_text="Capacity of dealing damage with ocasional attacks (frequency, power)", default=0)
+    ocasional_damage = models.IntegerField(verbose_name="Ocasional Damage", help_text="Capacity of dealing damage with ocasional attacks (frequency, power)", default=0)
 
     # Atacando, sendo atacado e manipulando o campo a seu favor
     durability = models.SmallIntegerField(verbose_name="Durability", help_text="Capacity of absorving damage", default=0)
@@ -50,6 +50,7 @@ class Proficiency(models.Model):
     _pets_speed = models.SmallIntegerField(verbose_name="Pets Speed", help_text="Capacity of pets/objects to reach enemies quickly", default=0)
     _pets_proximity = models.SmallIntegerField(verbose_name="Pets Proximity", help_text="Capacity of pets/objects to be close to allies, helping them to approach enemies", default=0)
     groupment_punishment = models.SmallIntegerField(verbose_name="Groupment-Punishment", help_text="Capacity of punishing enemies with other hitboxes around", default=0)
+    _grass_vision = models.SmallIntegerField(verbose_name="Grass-Vision", help_text="Capacity of seeing enemies hiding in the grass", default=0)
     circumstantiality_of_overall_proficiency = models.SmallIntegerField(verbose_name="Circumstantiality of Overall Proficiency", help_text="Defines in what level this proficiency is dependent of external factors that need humam avaliation/observation", default=0)
     
     # Buffs: Suporte e seus counters

@@ -22,7 +22,7 @@ class ProficiencyAdmin(admin.ModelAdmin):
                 'super_damage_in_long_range',
                 'super_damage_in_very_long_range',
                 'average_super_damage',
-                'ocasional_extra_damage',
+                'ocasional_damage',
             )
         }),
         ('Attacking, being attacked and manipulating terrain', {
@@ -51,6 +51,7 @@ class ProficiencyAdmin(admin.ModelAdmin):
                 '_pets_speed',
                 '_pets_proximity',
                 'groupment_punishment',
+                '_grass_vision',
                 'circumstantiality_of_overall_proficiency',
             )
         }),
