@@ -3,26 +3,58 @@ console.log(brawler_card_list)
 
 brawler_card_list.forEach(card => {
     const input = card.querySelector('.brawler-select');
-    const image = card.querySelector('.brawler-image');
-    const status = card.querySelector('.brawler-status');
     input.addEventListener('input', () => {
-        changeBrawlerSelected(image, input);
+        changeBrawlerSelected(card);
     });
 });
 
-function changeBrawlerSelected(image, input) {
-    console.log("aaaaaaaaaaa")
+function changeBrawlerSelected(card) {
     const base_path = BRAWLER_ICONS_STATIC_URL
-    var brawler_was_found = false
-    namelist_of_brawlers_and_icons.forEach(brawler => {
+    const image = card.querySelector('.brawler-image');
+    const input = card.querySelector('.brawler-select');
+    const gadget_select = card.querySelector('.gadget-select');
+    const star_power_select = card.querySelector('.star-power-select');
+    brawler = getTypedBrawler(input);
+    if (brawler === null) {
+        image.src = base_path + "glowbert_icon.png"
+        resetBrawlerOptions(gadget_select, star_power_select);
+        return;
+    }
+
+    image.src = base_path + brawler.icon
+    
+    changeBrawlerOptions(gadget_select, star_power_select);
+}
+
+function getTypedBrawler(input) {
+    var typed_brawler = null;
+    main_brawler_info_list.forEach(brawler => {
         if(brawler.name === input.value) {
-            image.src = base_path + brawler.icon
-            brawler_was_found = true;
+            typed_brawler = brawler;
         }
     });
-    if (brawler_was_found === false) {
-        image.src = base_path + "glowbert_icon.png"
-    }
+    return typed_brawler;
+}
+
+function changeBrawlerOptions(gadget_select, star_power_select) {
+    changeBrawlerOption(brawler.first_gadget, brawler.second_gadget, gadget_select);
+    changeBrawlerOption(brawler.first_star_power, brawler.second_star_power, star_power_select);
+}
+
+function changeBrawlerOption(first_option_content, second_option_content, select) {
+    first_option = document.createElement('option');
+    first_option.value = 1;
+    first_option.textContent = first_option_content;
+    second_option = document.createElement('option');
+    second_option.value = 2;
+    second_option.textContent = second_option_content;
+    select.appendChild(first_option);
+    select.appendChild(second_option);
+}
+
+function resetBrawlerOptions(gadget_select, star_power_select) {
+    gadget_select.innerHTML = '';
+    star_power_select.innerHTML = '';
 }
 
 function applyStatusColor(element) {

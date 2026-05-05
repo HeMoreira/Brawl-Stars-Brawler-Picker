@@ -63,7 +63,7 @@ class TestMatchPage(TestCase):
     def test_brawler_picker_context(self):
         response = self.client.get(reverse('brawler_picker'))
         self.assertEqual(len(response.context['brawlers']), 2)
-        self.assertEqual(len(response.context['namelist_of_brawlers_and_icons']), 2)
+        self.assertEqual(len(response.context['main_brawler_info_list']), 2)
         self.assertContains(response, "Incredible Brawler test")
         self.assertContains(response, "AweSome Br@wler test")
 

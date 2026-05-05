@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from brawler.models import Brawler
+from brawler.models import Brawler, Gadget, StarPower
 
 # Create your views here.
 def index(request):
@@ -7,12 +7,19 @@ def index(request):
 
 def brawler_picker(request):
     brawlers = Brawler.objects.all()
-    namelist_of_brawlers_and_icons = []
+    main_brawler_info_list = []
     for brawler in brawlers:
-        namelist_of_brawlers_and_icons.append({"name":brawler.name, "icon":brawler.icon_name})
+        main_brawler_info_list.append({
+            "name": brawler.name, 
+            "icon": brawler.icon_name, 
+            "first_gadget": Gadget.objects.get(id=brawler.first_gadget.id).name, 
+            "second_gadget": Gadget.objects.get(id=brawler.second_gadget.id).name, 
+            "first_star_power": StarPower.objects.get(id=brawler.first_starpower.id).name, 
+            "second_star_power": StarPower.objects.get(id=brawler.second_starpower.id).name
+            })
     context = {
         "brawlers": brawlers,
-        "namelist_of_brawlers_and_icons": namelist_of_brawlers_and_icons,
+        "main_brawler_info_list": main_brawler_info_list,
         # "maps":[maps],
     }
     return render(request, 'main/brawler_picker.html', context)
