@@ -2,18 +2,19 @@
 
 <section id="{{ card_id }}" class="{{ card_class }}">
     <img src="{% static 'images/brawlers/glowbert_icon.png' %}" alt="" class="brawler-image">
-    <input oninput="changeBrawlerImage(document.querySelectorAll('.brawler-image')['{{ card_id }}'], document.querySelectorAll('.brawler-select')['{{ card_id }}']), applyStatusColor(document.querySelectorAll('.brawler-status')['{{ card_id }}'])" type="text" class="brawler-select" list="brawler-suggestions" placeholder="Brawler Name:">
+    <input type="text" class="brawler-select" list="brawler-suggestions" placeholder="Brawler Name:">
     <datalist id="brawler-suggestions">
         {% for brawler in brawlers %}
             <option value="{{ brawler.name }}"></option>
         {% endfor %}
     </datalist>
-    <select class="complement-select">
-        <option value="" selected>Complements</option>
-        <option value="gad1-star1">Gadget 1, Star Power 1</option>
-        <option value="gad1-star2">Gadget 1, Star Power 2</option>
-        <option value="gad2-star1">Gadget 2, Star Power 1</option>
-        <option value="gad2-star2">Gadget 2, Star Power 2</option>
-    </select>
+    <div>
+        <select class="gadget-select">
+        
+        </select>
+        <select class="star-power-select">
+
+        </select>
+    </div>
     <div class="brawler-status" data-tooltip="TExtooo" data-status='{{ status|default:"OK" }}''>{{ status|default:"OK" }}</div>
 </section>

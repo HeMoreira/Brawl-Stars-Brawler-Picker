@@ -379,6 +379,12 @@ details aside {
     box-shadow: 0 0 20px var(--glow-shadow);
 }
 
+.star-power-select, .gadget-select {
+    display: inline-block;
+    width: 40%;
+    padding: 0;
+}
+
 /* --- RESPONSIVINESS --- */
 
 @media (min-width: 1024px) {

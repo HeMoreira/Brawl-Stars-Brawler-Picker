@@ -1,6 +1,17 @@
-// {% load static %}
+const brawler_card_list = document.querySelectorAll('.brawl-card');
+console.log(brawler_card_list)
 
-function changeBrawlerImage(image, input) {
+brawler_card_list.forEach(card => {
+    const input = card.querySelector('.brawler-select');
+    const image = card.querySelector('.brawler-image');
+    const status = card.querySelector('.brawler-status');
+    input.addEventListener('input', () => {
+        changeBrawlerSelected(image, input);
+    });
+});
+
+function changeBrawlerSelected(image, input) {
+    console.log("aaaaaaaaaaa")
     const base_path = BRAWLER_ICONS_STATIC_URL
     var brawler_was_found = false
     namelist_of_brawlers_and_icons.forEach(brawler => {
@@ -33,9 +44,9 @@ function applyStatusColor(element) {
         element.style.backgroundColor = '#128518'
         element.style.boxShadow = '0 0 20px var(--text-dark)'
     } else {
-        element.style.backgroundColor = '#fea618'
+        element.style.backgroundColor = '#828282'
         element.style.color = 'var(--text-dark)'
-        element.textContent = 'ok'
+        element.textContent = 'undefined'
     }
 }
 
