@@ -8,13 +8,19 @@
             <option value="{{ brawler.name }}"></option>
         {% endfor %}
     </datalist>
-    <div>
-        <select class="gadget-select">
-        
-        </select>
-        <select class="star-power-select">
+    <div class="brawler-additional-info">
+        <div class="gadget-container">
+            <div class="image-selected"><img src="{% static 'images/gadgets/gadget_base.png' %}" alt=""></div>
+            <div class="gadget-select select-items select-hide">
 
-        </select>
+            </div>
+        </div>
+        <div class="star-power-container">
+            <div class="image-selected"><img src="{% static 'images/star-powers/starpower_base.png' %}" alt=""></div>
+            <div class="star-power-select select-items select-hide">
+
+            </div>
+        </div>
     </div>
     <div class="brawler-status" data-tooltip="TExtooo" data-status='{{ status|default:"OK" }}''>{{ status|default:"OK" }}</div>
 </section>

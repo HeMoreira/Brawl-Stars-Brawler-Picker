@@ -378,10 +378,38 @@ details aside {
     box-shadow: 0 0 20px var(--glow-shadow);
 }
 
+.brawler-additional-info {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.image-selected {
+    cursor: pointer;
+}
+.select-items {
+    position: absolute;
+    top: 245px;
+    left: 10px;
+    right: 10px;
+    z-index: 99;
+    background-color: var(--shadow);
+    border-radius: 10px;
+}
+.select-items img {
+    margin: 6px 7px 0;
+    cursor: pointer;
+}
+.select-items.select-hide {
+    display: none;
+}
+
 .star-power-select, .gadget-select {
     display: inline-block;
-    width: 40%;
     padding: 0;
+}
+.brawler-additional-info img {
+    width: 40px;
+    height: 40px;
 }
 
 /* --- RESPONSIVINESS --- */
@@ -392,7 +420,7 @@ details aside {
         grid-template-columns: 1fr 2fr 1fr;
         gap: 2rem;
         grid-template-areas:
-            "left center right";
+        "left center right";
     }
 
     .map-select-wrapper {
