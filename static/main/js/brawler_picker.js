@@ -29,7 +29,7 @@ function changeBrawlerSelected(card) {
     brawler = getTypedBrawler(input);
     if (brawler === null) {
         image.src = base_brawlers_path + "glowbert_icon.png"
-        resetBrawlerOptions(gadget_select, star_power_select);
+        resetBrawlerOptions(card);
         return;
     }
 
@@ -74,9 +74,19 @@ function changeBrawlerOption(first_option_content, second_option_content, select
     select.appendChild(second_option);
 }
 
-function resetBrawlerOptions(gadget_select, star_power_select) {
-    gadget_select.innerHTML = '';
-    star_power_select.innerHTML = '';
+function resetBrawlerOptions(card) {
+    const gadget_container = card.querySelector('.gadget-container');
+    const star_power_container = card.querySelector('.star-power-container');
+    const hipercharge_container = card.querySelector('.hipercharge-container');
+
+    gadget_container.querySelector('.gadget-select').innerHTML = '';
+    star_power_container.querySelector('.star-power-select').innerHTML = '';
+
+    gadget_container.querySelector('.image-selected').src = BRAWLER_ICONS_STATIC_URL + 'gadgets/gadget_base.png';
+    gadget_container.querySelector('.image-selected').dataset.id = '0';
+    star_power_container.querySelector('.image-selected').src = BRAWLER_ICONS_STATIC_URL + 'star-powers/starpower_base.png';
+    star_power_container.querySelector('.image-selected').dataset.id = '0';
+    hipercharge_container.querySelector('.hipercharge-image').src = BRAWLER_ICONS_STATIC_URL + 'hipercharges/hipercharge_base.png';
 }
 
 function updateBrawlerSelectedComplements(card) {
