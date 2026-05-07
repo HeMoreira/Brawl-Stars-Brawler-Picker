@@ -25,6 +25,7 @@ function changeBrawlerSelected(card) {
     const input = card.querySelector('.brawler-select');
     const gadget_select = card.querySelector('.gadget-select');
     const star_power_select = card.querySelector('.star-power-select');
+    const hipercharge_container = card.querySelector('.hipercharge-container');
     brawler = getTypedBrawler(input);
     if (brawler === null) {
         image.src = base_brawlers_path + "glowbert_icon.png"
@@ -34,7 +35,7 @@ function changeBrawlerSelected(card) {
 
     image.src = base_brawlers_path + brawler.icon
     
-    changeBrawlerOptions(gadget_select, star_power_select);
+    changeBrawlerOptions(gadget_select, star_power_select, hipercharge_container);
 
     updateBrawlerSelectedComplements(card);
 }
@@ -49,9 +50,10 @@ function getTypedBrawler(input) {
     return typed_brawler;
 }
 
-function changeBrawlerOptions(gadget_select, star_power_select) {
+function changeBrawlerOptions(gadget_select, star_power_select, hipercharge_container) {
     changeBrawlerOption(brawler.first_gadget, brawler.second_gadget, gadget_select);
     changeBrawlerOption(brawler.first_star_power, brawler.second_star_power, star_power_select);
+    hipercharge_container.querySelector('.hipercharge-image').src = BRAWLER_ICONS_STATIC_URL + 'hipercharges/' + brawler.hipercharge;
 }
 
 function changeBrawlerOption(first_option_content, second_option_content, select) {

@@ -407,9 +407,19 @@ details aside {
     display: inline-block;
     padding: 0;
 }
+.hipercharge-container {
+    position: absolute;
+    top: -15px;
+    right: -20px;
+    z-index: 10;
+}
 .brawler-additional-info img {
     width: 40px;
     height: 40px;
+}
+.hipercharge-container img {
+    width: auto;
+    height: 50px;
 }
 
 /* --- RESPONSIVINESS --- */

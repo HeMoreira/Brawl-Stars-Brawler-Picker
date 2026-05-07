@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from brawler.models import Brawler, Gadget, StarPower
+from brawler.models import Brawler, Gadget, StarPower, Hipercharge
 
 # Create your views here.
 def index(request):
@@ -15,7 +15,8 @@ def brawler_picker(request):
             "first_gadget": Gadget.objects.get(id=brawler.first_gadget.id).icon_name, 
             "second_gadget": Gadget.objects.get(id=brawler.second_gadget.id).icon_name, 
             "first_star_power": StarPower.objects.get(id=brawler.first_starpower.id).icon_name, 
-            "second_star_power": StarPower.objects.get(id=brawler.second_starpower.id).icon_name
+            "second_star_power": StarPower.objects.get(id=brawler.second_starpower.id).icon_name,
+            "hipercharge": Hipercharge.objects.get(id=brawler.hipercharge.id).icon_name,
             })
     context = {
         "brawlers": brawlers,
