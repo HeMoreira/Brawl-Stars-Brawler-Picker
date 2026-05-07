@@ -1,5 +1,4 @@
 const brawler_card_list = document.querySelectorAll('.brawl-card');
-console.log(brawler_card_list)
 
 brawler_card_list.forEach(card => {
     const input = card.querySelector('.brawler-select');
@@ -130,4 +129,8 @@ function applyStatusColor(element) {
 
 document.querySelectorAll('.brawler-status').forEach(element => {
     applyStatusColor(element);
+});
+
+brawler_card_list.forEach(card => {
+    changeBrawlerSelected(card);
 });
