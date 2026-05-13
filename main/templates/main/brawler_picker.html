@@ -37,6 +37,18 @@
         {% include "partials/_brawler_card.html" with card_id="4" card_class="brawl-card brawl-card-red" status="Good" %}
         {% include "partials/_brawler_card.html" with card_id="5" card_class="brawl-card brawl-card-red" status="Bad" %}
     </article>
+
+    <section class="analysis-summary">
+        <div class="analysis-box">
+            <h3>Proficências do Time</h3>
+            <pre id="team-proficiencies-output">Clique em UPDATE CARD para ver o resultado.</pre>
+        </div>
+        <div class="analysis-box">
+            <h3>Qualidade por Brawler</h3>
+            <pre id="quality-output">Clique em UPDATE CARD para ver o resultado.</pre>
+        </div>
+    </section>
+
     <details class="enemy-team-details">
         <summary>
             <span>ENEMY TEAM STRONG SKILLS</span>
@@ -55,6 +67,7 @@
 
 <script>
     const BRAWLER_ICONS_STATIC_URL = "{% static 'images/' %}";
+    const BRAWLER_UPDATE_API_URL = "{% url 'update_card' %}";
     const main_brawler_info_list = {{ main_brawler_info_list|safe }};
 </script>
 <script src="{% static 'main/js/brawler_picker.js' %}"></script>
