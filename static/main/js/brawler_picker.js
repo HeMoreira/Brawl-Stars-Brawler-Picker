@@ -15,7 +15,7 @@ function getCsrfToken() {
 
 function markCardUpdateRequired(card) {
     const statusElement = card.querySelector('.brawler-status');
-    statusElement.textContent = 'UPDATE CARD';
+    statusElement.textContent = 'UPDATE';
     statusElement.dataset.status = 'update';
     statusElement.style.backgroundColor = '#6f6f6f';
     statusElement.style.color = '#ffffff';
@@ -226,45 +226,28 @@ function applyStatusColor(element) {
 
     if (status === 'awful') {
         element.style.backgroundColor = '#ff0000';
+        element.style.color = 'var(--text-light)';
         element.style.boxShadow = '0 0 20px var(--text-dark)';
-        element.style.color = '';
-        element.style.cursor = 'default';
     } else if (status === 'bad') {
         element.style.backgroundColor = '#f1612d';
         element.style.color = 'var(--text-dark)';
-        element.style.boxShadow = 'none';
-        element.style.cursor = 'default';
+        element.style.boxShadow = '0 0 10px var(--shadow)';
     } else if (status === 'ok') {
         element.style.backgroundColor = '#fea618';
         element.style.color = 'var(--text-dark)';
-        element.style.boxShadow = 'none';
-        element.style.cursor = 'default';
+        element.style.boxShadow = '0 0 10px var(--shadow)';
     } else if (status === 'good') {
         element.style.backgroundColor = '#4fc737';
         element.style.color = 'var(--text-dark)';
-        element.style.boxShadow = 'none';
-        element.style.cursor = 'default';
+        element.style.boxShadow = '0 0 10px var(--shadow)';
     } else if (status === 'great') {
         element.style.backgroundColor = '#128518';
+        element.style.color = 'var(--text-light)';
         element.style.boxShadow = '0 0 20px var(--text-dark)';
-        element.style.color = '';
-        element.style.cursor = 'default';
-    } else if (status === 'update') {
-        element.style.backgroundColor = '#6f6f6f';
-        element.style.color = '#ffffff';
-        element.style.cursor = 'pointer';
-        element.style.boxShadow = 'none';
-    } else if (status === 'invalid') {
-        element.style.backgroundColor = '#555555';
-        element.style.color = '#ffffff';
-        element.style.boxShadow = 'none';
-        element.style.cursor = 'default';
     } else {
-        element.style.backgroundColor = '#828282';
-        element.style.color = 'var(--text-dark)';
-        element.style.boxShadow = 'none';
-        element.style.cursor = 'default';
-        element.textContent = 'undefined';
+        element.style.backgroundColor = '#6f6f6f';
+        element.style.color = 'var(--text-light)';
+        element.style.boxShadow = '0 0 10px var(--shadow)';
     }
 }
 
