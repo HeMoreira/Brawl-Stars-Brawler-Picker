@@ -314,14 +314,14 @@ details aside {
     content: attr(data-tooltip);
     position: absolute;
     bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: -8px;
+    right: -8px;
+    white-space: pre-line;
     background: var(--bg-black);
     color: var(--text-light);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-size: 0.75rem;
-    white-space: nowrap;
     pointer-events: none;
     opacity: 0;
     transition: all 0.3s ease;

@@ -23,11 +23,27 @@ function markCardUpdateRequired(card) {
     statusElement.style.boxShadow = 'none';
 }
 
-function updateCardStatusFromServer(card, result) {
+function changeStatusCard(card, updated_status_information) {
     const statusElement = card.querySelector('.brawler-status');
-    statusElement.textContent = result.status;
-    statusElement.dataset.status = result.status.toLowerCase();
-    statusElement.setAttribute('data-tooltip', `Rating: ${result.rating} | Qualidade: ${JSON.stringify(result.quality_vs_enemies)}`);
+    statusElement.textContent = updated_status_information.status;
+    statusElement.dataset.status = updated_status_information.status.toLowerCase();
+    if (updated_status_information.quality_vs_enemies["0"] === undefined) {
+        statusElement.setAttribute('data-tooltip', 
+            `Rating: ${updated_status_information.rating}
+            ---------------
+            Fit-Against:
+            - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"])}
+            - 2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["4"])}
+            - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"])}`);
+    } else {
+        statusElement.setAttribute('data-tooltip', 
+            `Rating: ${updated_status_information.rating}
+            ---------------
+            Fit-Against:
+            - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"])}
+            - 2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"])}
+            - 3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"])}`);
+    }
     applyStatusColor(statusElement);
 }
 
@@ -71,7 +87,7 @@ async function sendUpdateRequest(clickedIndex) {
             data.card_results.forEach(result => {
                 const card = brawler_card_list[result.index];
                 if (card) {
-                    updateCardStatusFromServer(card, result);
+                    changeStatusCard(card, result);
                 }
             });
         }
