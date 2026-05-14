@@ -1,67 +1,4 @@
 const brawler_card_list = document.querySelectorAll('.brawl-card');
-const UPDATE_CARD_API_URL = typeof BRAWLER_UPDATE_API_URL !== 'undefined' ? BRAWLER_UPDATE_API_URL : '/match/api/update-card/';
-
-function getCsrfToken() {
-    const name = 'csrftoken';
-    const cookies = document.cookie ? document.cookie.split(';') : [];
-    for (let cookie of cookies) {
-        cookie = cookie.trim();
-        if (cookie.startsWith(name + '=')) {
-            return decodeURIComponent(cookie.substring(name.length + 1));
-        }
-    }
-    return null;
-}
-
-function markCardUpdateRequired(card) {
-    const statusElement = card.querySelector('.brawler-status');
-    statusElement.textContent = 'UPDATE';
-    statusElement.dataset.status = 'update';
-    statusElement.style.backgroundColor = '#878787';
-    applyDefaultStatusDecoration(statusElement);
-    statusElement.setAttribute('data-tooltip', 'Needs Update');
-}
-
-function changeStatusCard(card, updated_status_information) {
-    const statusElement = card.querySelector('.brawler-status');
-    statusElement.textContent = updated_status_information.status;
-    statusElement.dataset.status = updated_status_information.status.toLowerCase();
-    if (updated_status_information.quality_vs_enemies["3"] != undefined) {
-        statusElement.setAttribute('data-tooltip', 
-            `Rating: ${updated_status_information.rating}
-            ---------------
-            Fit-Against:
-            - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"])}
-            - 2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["4"])}
-            - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"])}`);
-    } else if (updated_status_information.quality_vs_enemies["0"] != undefined) {
-        statusElement.setAttribute('data-tooltip', 
-            `Rating: ${updated_status_information.rating}
-            ---------------
-            Fit-Against:
-            - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"])}
-            - 2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"])}
-            - 3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"])}`);
-    } else {
-        statusElement.setAttribute('data-tooltip', `Enter a valid brawler`);
-    }
-    applyStatusColor(statusElement);
-}
-
-function collectCardsState() {
-    return Array.from(brawler_card_list).map((card, index) => {
-        const input = card.querySelector('.brawler-select');
-        const gadgetSelected = card.querySelector('.gadget-container .image-selected');
-        const starpowerSelected = card.querySelector('.star-power-container .image-selected');
-
-        return {
-            index,
-            name: input ? input.value.trim() : '',
-            gadget_id: gadgetSelected ? parseInt(gadgetSelected.dataset.id || 0, 10) : 0,
-            starpower_id: starpowerSelected ? parseInt(starpowerSelected.dataset.id || 0, 10) : 0,
-        };
-    });
-}
 
 async function sendUpdateRequest(clickedIndex) {
     const cards = collectCardsState();
@@ -69,7 +6,7 @@ async function sendUpdateRequest(clickedIndex) {
     const csrfToken = getCsrfToken();
 
     try {
-        const response = await fetch(UPDATE_CARD_API_URL, {
+        const response = await fetch(BRAWLER_UPDATE_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,6 +36,59 @@ async function sendUpdateRequest(clickedIndex) {
     }
 }
 
+function getCsrfToken() {
+    const name = 'csrftoken';
+    const cookies = document.cookie ? document.cookie.split(';') : [];
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
+    }
+    return null;
+}
+
+function collectCardsState() {
+    return Array.from(brawler_card_list).map((card, index) => {
+        const input = card.querySelector('.brawler-select');
+        const gadgetSelected = card.querySelector('.gadget-container .image-selected');
+        const starpowerSelected = card.querySelector('.star-power-container .image-selected');
+
+        return {
+            index,
+            name: input ? input.value.trim() : '',
+            gadget_id: gadgetSelected ? parseInt(gadgetSelected.dataset.id || 0, 10) : 0,
+            starpower_id: starpowerSelected ? parseInt(starpowerSelected.dataset.id || 0, 10) : 0,
+        };
+    });
+}
+
+function changeStatusCard(card, updated_status_information) {
+    const statusElement = card.querySelector('.brawler-status');
+    statusElement.textContent = updated_status_information.status;
+    statusElement.dataset.status = updated_status_information.status.toLowerCase();
+    if (updated_status_information.quality_vs_enemies["3"] != undefined) {
+        statusElement.setAttribute('data-tooltip', 
+            `Rating: ${updated_status_information.rating}
+            ---------------
+            Fit-Against:
+            - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"])}
+            - 2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["4"])}
+            - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"])}`);
+    } else if (updated_status_information.quality_vs_enemies["0"] != undefined) {
+        statusElement.setAttribute('data-tooltip', 
+            `Rating: ${updated_status_information.rating}
+            ---------------
+            Fit-Against:
+            - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"])}
+            - 2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"])}
+            - 3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"])}`);
+    } else {
+        statusElement.setAttribute('data-tooltip', `Enter a valid brawler`);
+    }
+    applyStatusColor(statusElement);
+}
+
 function updateTeamSummary(data) {
     const proficienciesOutput = document.getElementById('team-proficiencies-output');
     const qualityOutput = document.getElementById('quality-output');
@@ -122,7 +112,7 @@ brawler_card_list.forEach((card, index) => {
 
     input.addEventListener('input', () => {
         changeBrawlerSelected(card);
-        markCardUpdateRequired(card);
+        updateStatusToUptateRequired(card);
     });
 
     gadget_container.addEventListener('click', () => {
@@ -235,8 +225,31 @@ function updateBrawlerSelectedComplements(card) {
 function updateBrawlerComplement(selected_image, new_image, card) {
     selected_image.src = new_image.src;
     selected_image.dataset.id = new_image.dataset.id;
-    markCardUpdateRequired(card);
+    updateStatusToUptateRequired(card);
 }
+
+function updateStatusToUptateRequired(card) {
+    const statusElement = card.querySelector('.brawler-status');
+    statusElement.textContent = 'UPDATE';
+    statusElement.dataset.status = 'update';
+    statusElement.style.backgroundColor = '#878787';
+    applyDefaultStatusDecoration(statusElement);
+    statusElement.setAttribute('data-tooltip', 'Needs Update');
+}
+
+
+function applyDefaultStatusDecoration(element) {
+    element.style.color = 'var(--text-dark)';
+    element.style.boxShadow = '0 0 10px var(--shadow)';
+}
+function applyContrastStatusDecoration(element) {
+    element.style.color = 'var(--text-light)';
+    element.style.boxShadow = '0 0 20px var(--text-dark)';
+}
+
+document.querySelectorAll('.brawler-status').forEach(element => {
+    applyStatusColor(element);
+});
 
 function applyStatusColor(element) {
     const status = element.dataset['status'].trim().toLowerCase();
@@ -261,19 +274,6 @@ function applyStatusColor(element) {
         applyDefaultStatusDecoration(element);
     }
 }
-
-function applyDefaultStatusDecoration(element) {
-    element.style.color = 'var(--text-dark)';
-    element.style.boxShadow = '0 0 10px var(--shadow)';
-}
-function applyContrastStatusDecoration(element) {
-    element.style.color = 'var(--text-light)';
-    element.style.boxShadow = '0 0 20px var(--text-dark)';
-}
-
-document.querySelectorAll('.brawler-status').forEach(element => {
-    applyStatusColor(element);
-});
 
 brawler_card_list.forEach(card => {
     changeBrawlerSelected(card);
