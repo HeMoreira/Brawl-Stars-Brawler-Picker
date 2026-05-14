@@ -42,13 +42,19 @@ def update_card(request):
 
     for raw_card in cards:
         normalized_cards.append({
-            'index': int(raw_card.get('index', 0)),
+            'index': int(raw_card.get('index', -1)),
             'name': (raw_card.get('name') or '').strip(),
-            'gadget_id': int(raw_card.get('gadget_id', 0) or 0),
-            'starpower_id': int(raw_card.get('starpower_id', 0) or 0),
+            'gadget_id': int(raw_card.get('gadget_id', 0)),
+            'starpower_id': int(raw_card.get('starpower_id', 0)),
         })
 
-    card_results = [analyze_card(card, normalized_cards) for card in normalized_cards]
+    card_results = []
+    for card in normalized_cards:
+        if card['index'] not in [0, 1, 2, 3, 4, 5]:
+            return JsonResponse({"error": "Each card must have a valid index."}, status=400)
+        else:
+            card_results.append(analyze_card(card, normalized_cards))
+
     team_proficiencies = {
         'blue': aggregate_team_proficiencies(normalized_cards[:3]),
         'red': aggregate_team_proficiencies(normalized_cards[3:]),
