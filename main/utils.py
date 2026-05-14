@@ -36,7 +36,7 @@ def calculate_quality_vs_enemies(card, all_cards):
     enemy_indexes = get_enemy_indexes(card['index'])
     quality = {}
     for enemy_index in enemy_indexes:
-        quality[enemy_index] = "XXX"
+        quality[enemy_index] = "X"
         ...
         
     return quality

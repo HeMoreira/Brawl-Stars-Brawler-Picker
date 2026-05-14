@@ -69,7 +69,7 @@ function changeStatusCard(card, updated_status_information) {
     statusElement.dataset.status = updated_status_information.status.toLowerCase();
     if (updated_status_information.quality_vs_enemies["3"] != undefined) {
         statusElement.setAttribute('data-tooltip', 
-            `Rating: ${updated_status_information.rating}
+            `Rating: ${updated_status_information.rating}/100
             ---------------
             Fit-Against:
             - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"])}
@@ -77,7 +77,7 @@ function changeStatusCard(card, updated_status_information) {
             - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"])}`);
     } else if (updated_status_information.quality_vs_enemies["0"] != undefined) {
         statusElement.setAttribute('data-tooltip', 
-            `Rating: ${updated_status_information.rating}
+            `Rating: ${updated_status_information.rating}/100
             ---------------
             Fit-Against:
             - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"])}
