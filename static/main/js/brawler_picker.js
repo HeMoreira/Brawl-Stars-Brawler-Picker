@@ -17,17 +17,16 @@ function markCardUpdateRequired(card) {
     const statusElement = card.querySelector('.brawler-status');
     statusElement.textContent = 'UPDATE';
     statusElement.dataset.status = 'update';
-    statusElement.style.backgroundColor = '#6f6f6f';
-    statusElement.style.color = '#ffffff';
-    statusElement.style.cursor = 'pointer';
-    statusElement.style.boxShadow = 'none';
+    statusElement.style.backgroundColor = '#878787';
+    applyDefaultStatusDecoration(statusElement);
+    statusElement.setAttribute('data-tooltip', 'Needs Update');
 }
 
 function changeStatusCard(card, updated_status_information) {
     const statusElement = card.querySelector('.brawler-status');
     statusElement.textContent = updated_status_information.status;
     statusElement.dataset.status = updated_status_information.status.toLowerCase();
-    if (updated_status_information.quality_vs_enemies["0"] === undefined) {
+    if (updated_status_information.quality_vs_enemies["3"] != undefined) {
         statusElement.setAttribute('data-tooltip', 
             `Rating: ${updated_status_information.rating}
             ---------------
@@ -35,7 +34,7 @@ function changeStatusCard(card, updated_status_information) {
             - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"])}
             - 2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["4"])}
             - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"])}`);
-    } else {
+    } else if (updated_status_information.quality_vs_enemies["0"] != undefined) {
         statusElement.setAttribute('data-tooltip', 
             `Rating: ${updated_status_information.rating}
             ---------------
@@ -43,6 +42,8 @@ function changeStatusCard(card, updated_status_information) {
             - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"])}
             - 2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"])}
             - 3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"])}`);
+    } else {
+        statusElement.setAttribute('data-tooltip', `Enter a valid brawler`);
     }
     applyStatusColor(statusElement);
 }
@@ -242,29 +243,32 @@ function applyStatusColor(element) {
 
     if (status === 'awful') {
         element.style.backgroundColor = '#ff0000';
-        element.style.color = 'var(--text-light)';
-        element.style.boxShadow = '0 0 20px var(--text-dark)';
+        applyContrastStatusDecoration(element);
     } else if (status === 'bad') {
         element.style.backgroundColor = '#f1612d';
-        element.style.color = 'var(--text-dark)';
-        element.style.boxShadow = '0 0 10px var(--shadow)';
+        applyDefaultStatusDecoration(element);
     } else if (status === 'ok') {
         element.style.backgroundColor = '#fea618';
-        element.style.color = 'var(--text-dark)';
-        element.style.boxShadow = '0 0 10px var(--shadow)';
+        applyDefaultStatusDecoration(element);
     } else if (status === 'good') {
         element.style.backgroundColor = '#4fc737';
-        element.style.color = 'var(--text-dark)';
-        element.style.boxShadow = '0 0 10px var(--shadow)';
+        applyDefaultStatusDecoration(element);
     } else if (status === 'great') {
         element.style.backgroundColor = '#128518';
-        element.style.color = 'var(--text-light)';
-        element.style.boxShadow = '0 0 20px var(--text-dark)';
+        applyContrastStatusDecoration(element);
     } else {
-        element.style.backgroundColor = '#6f6f6f';
-        element.style.color = 'var(--text-light)';
-        element.style.boxShadow = '0 0 10px var(--shadow)';
+        element.style.backgroundColor = '#878787';
+        applyDefaultStatusDecoration(element);
     }
+}
+
+function applyDefaultStatusDecoration(element) {
+    element.style.color = 'var(--text-dark)';
+    element.style.boxShadow = '0 0 10px var(--shadow)';
+}
+function applyContrastStatusDecoration(element) {
+    element.style.color = 'var(--text-light)';
+    element.style.boxShadow = '0 0 20px var(--text-dark)';
 }
 
 document.querySelectorAll('.brawler-status').forEach(element => {
