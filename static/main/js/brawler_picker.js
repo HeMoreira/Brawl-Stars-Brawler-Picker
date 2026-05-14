@@ -90,16 +90,45 @@ function changeStatusCard(card, updated_status_information) {
 }
 
 function updateTeamSummary(data) {
-    const proficienciesOutput = document.getElementById('team-proficiencies-output');
-    const qualityOutput = document.getElementById('quality-output');
-
-    if (proficienciesOutput) {
-        proficienciesOutput.textContent = JSON.stringify(data.team_proficiencies || {}, null, 2);
+    const yourTeamDetails = document.querySelector('.your-team-details .scroll-box');
+    const enemyTeamDetails = document.querySelector('.enemy-team-details .scroll-box');
+    
+    if (yourTeamDetails) {
+        updateTeamDetails(data.team_proficiencies["blue"], yourTeamDetails);
     }
 
-    if (qualityOutput) {
-        qualityOutput.textContent = JSON.stringify(data.relative_quality || [], null, 2);
+    if (enemyTeamDetails) {
+        updateTeamDetails(data.team_proficiencies["red"], enemyTeamDetails);
     }
+}
+
+function updateTeamDetails(team_data, team_details_element) {
+    if (!team_data || typeof team_data !== 'object') {
+        return;
+    }
+
+    team_details_element.innerHTML = '';
+
+    const entries = Array.isArray(team_data)
+        ? team_data
+        : Object.entries(team_data);
+
+    entries.forEach(entry => {
+        let key;
+        let value;
+
+        if (Array.isArray(entry)) {
+            [key, value] = entry;
+        } else if (entry && typeof entry === 'object') {
+            key = entry.key;
+            value = entry.value;
+        }
+        if (key[0] != '_') {
+            const attributeDiv = document.createElement('div');
+            attributeDiv.textContent = `${key}: ${Math.trunc(value / 3)}`;
+            team_details_element.appendChild(attributeDiv);
+        }
+    });
 }
 
 brawler_card_list.forEach((card, index) => {
