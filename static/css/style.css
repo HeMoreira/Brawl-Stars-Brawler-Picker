@@ -213,6 +213,11 @@ details section {
     border-radius: 8px;
 }
 
+details section.scroll-box {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
 details section div {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     padding: 0.8rem 1rem;
@@ -440,19 +445,20 @@ details aside {
         background: var(--bg-black);
         border-bottom: 2px solid var(--primary-color);
     }
-
+    
     .your-team-details {
         grid-area: left;
-        animation: slideAndAppear 1s ease-out;
     }
-
+    
     .brawlers-container {
         grid-area: center;
-        animation: slideAndAppear 1s ease-out;
     }
-
+    
     .enemy-team-details {
         grid-area: right;
+    }
+    
+    .your-team-details, .brawlers-container, .enemy-team-details {
         animation: slideAndAppear 1s ease-out;
     }
 
