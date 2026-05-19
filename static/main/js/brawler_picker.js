@@ -1,8 +1,8 @@
 const brawler_card_list = document.querySelectorAll('.brawl-card');
 
-async function sendUpdateRequest(clickedIndex) {
+async function sendUpdateRequest() {
     const cards = collectCardsState();
-    const payload = { cards, clicked_index: clickedIndex };
+    const payload = { cards };
     const csrfToken = getCsrfToken();
 
     try {
@@ -156,7 +156,7 @@ brawler_card_list.forEach((card, index) => {
 
     statusElement.addEventListener('click', () => {
         if (statusElement.dataset.status === 'update') {
-            sendUpdateRequest(index);
+            sendUpdateRequest();
         }
     });
 });
