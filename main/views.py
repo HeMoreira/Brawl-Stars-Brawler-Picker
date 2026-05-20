@@ -65,6 +65,7 @@ def update_card(request):
         }
         for result in all_cards_results
     ]
+    print(relative_quality)
 
     return JsonResponse({
         'card_results': all_cards_results,

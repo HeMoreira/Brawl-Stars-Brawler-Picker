@@ -66,25 +66,33 @@ function collectCardsState() {
 function changeStatusCard(card, updated_status_information) {
     const statusElement = card.querySelector('.brawler-status');
     statusElement.textContent = updated_status_information.status;
-    statusElement.dataset.status = updated_status_information.status.toLowerCase();
-    if (updated_status_information.quality_vs_enemies["3"] != undefined) {
-        statusElement.setAttribute('data-tooltip', 
-            `Rating: ${updated_status_information.rating}/100
-            ---------------
-            Fit-Against:
-            - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"])}
-            - 2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["4"])}
-            - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"])}`);
-    } else if (updated_status_information.quality_vs_enemies["0"] != undefined) {
-        statusElement.setAttribute('data-tooltip', 
-            `Rating: ${updated_status_information.rating}/100
-            ---------------
-            Fit-Against:
-            - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"])}
-            - 2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"])}
-            - 3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"])}`);
-    } else {
+    statusElement.dataset.status = String(updated_status_information.status).toLowerCase();
+    const idx = Number(updated_status_information.index);
+
+    if (statusElement.dataset.status === 'invalid') {
         statusElement.setAttribute('data-tooltip', `Enter a valid brawler`);
+        applyStatusColor(statusElement);
+        return;
+    }
+
+    if ([0, 1, 2].includes(idx)) {
+        statusElement.setAttribute('data-tooltip',
+            `Rating: ${updated_status_information.rating}/100
+            ---------------
+            Fit-Against:
+            - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"]) }
+            - 2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"]) }
+            - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"]) }`);
+    } else if ([3, 4, 5].includes(idx)) {
+        statusElement.setAttribute('data-tooltip',
+            `Rating: ${updated_status_information.rating}/100
+            ---------------
+            Fit-Against:
+            - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"]) }
+            - 2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"]) }
+            - 3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"]) }`);
+    } else {
+        statusElement.setAttribute('data-tooltip', `Something went wrong...`);
     }
     applyStatusColor(statusElement);
 }
