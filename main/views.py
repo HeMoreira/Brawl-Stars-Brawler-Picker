@@ -31,7 +31,7 @@ def brawler_picker(request):
     return render(request, 'main/brawler_picker.html', context)
 
 @require_http_methods(["POST"])
-def update_card(request):
+def update_cards(request):
     try:
         payload = json.loads(request.body)
     except json.JSONDecodeError:
@@ -65,7 +65,6 @@ def update_card(request):
         }
         for result in all_cards_results
     ]
-    print(relative_quality)
 
     return JsonResponse({
         'card_results': all_cards_results,

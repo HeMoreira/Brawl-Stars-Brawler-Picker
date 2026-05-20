@@ -46,7 +46,7 @@
 
 <script>
     const BRAWLER_ICONS_STATIC_URL = "{% static 'images/' %}";
-    const BRAWLER_UPDATE_API_URL = "{% url 'update_card' %}";
+    const BRAWLER_UPDATE_API_URL = "{% url 'update_cards' %}";
     const main_brawler_info_list = {{ main_brawler_info_list|safe }};
 </script>
 <script src="{% static 'main/js/brawler_picker.js' %}"></script>
