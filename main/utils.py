@@ -1,6 +1,8 @@
 from brawler.models import Brawler
-# from additional_power.models import Gadget, StarPower
+from additional_power.models import Gadget, StarPower
 from django.db import models
+from django.forms.models import model_to_dict
+from collections import Counter
 
 
 def analyze_all_cards(all_cards):
@@ -14,13 +16,7 @@ def analyze_all_cards(all_cards):
         5 : {},
     }
     for card in all_cards:
-        brawler = find_brawler(card['name'])
-        if not brawler:
-            brawlers_proficiencies[card['index']] = {}
-            continue
-        
-        # Somar as proficiências de cada brawler com as de seus gadgets, star powers e hipercharges
-        # Passar apenas essas informações para brawler_proficiencies, para depois comparar as proficiências de cada brawler com as dos inimigos
+        brawlers_proficiencies[card['index']] = get_brawler_proficiency(card)
     
     for brawler_key, brawler_proficiency_value in brawlers_proficiencies.items():
         ...
@@ -45,10 +41,54 @@ def analyze_all_cards(all_cards):
 
     return results
 
+def get_brawler_proficiency(card):
+    brawler = find_brawler(card['name'])
+    if not brawler:
+        return {}
+    brawler_total_proficiency = get_brawler_total_proficiency(brawler, card)
+    return brawler_total_proficiency
+
+def get_brawler_total_proficiency(brawler, card):
+    dictionary_base_proficiencies = model_to_dict(brawler.base_proficiency)
+    total_proficiency = dictionary_base_proficiencies
+
+    selected_gadget = find_gadget(brawler.name, card['gadget_id'])
+    selected_starpower = find_starpower(brawler.name, card['starpower_id'])
+
+    if selected_gadget:
+        dictionary_gadget_proficiencies = model_to_dict(selected_gadget.base_proficiency)
+        for key, value in dictionary_gadget_proficiencies.items():
+            total_proficiency[key] += value
+
+    if selected_starpower:
+        dictionary_starpower_proficiencies = model_to_dict(selected_starpower.base_proficiency)
+        for key, value in dictionary_starpower_proficiencies.items():
+            total_proficiency[key] += value
+
+    return total_proficiency
+
 def find_brawler(name):
     if not name:
         return None
     return Brawler.objects.filter(name__iexact=name.strip()).first()
+
+def find_gadget(brawler_name, index):
+    brawler = find_brawler(brawler_name)
+    if not brawler_name or index not in [1, 2]:
+        return None
+    elif index == 1:
+        return brawler.first_gadget
+    else:
+        return brawler.second_gadget
+    
+def find_starpower(brawler_name, index):
+    brawler = find_brawler(brawler_name)
+    if not brawler_name or index not in [1, 2]:
+        return None
+    elif index == 1:
+        return brawler.first_starpower
+    else:
+        return brawler.second_starpower
 
 def return_invalid_brawler(index=None):
     return {
