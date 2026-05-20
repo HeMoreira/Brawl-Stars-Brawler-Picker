@@ -3,21 +3,47 @@ from brawler.models import Brawler
 from django.db import models
 
 
-def analyze_card(card, all_cards):
-    brawler = find_brawler(card['name'])
-    if not brawler:
-        return return_invalid_brawler(card['index'])
-
-    quality_vs_enemies = calculate_quality_vs_enemies(card, all_cards)
-    rating = calculate_card_rating(quality_vs_enemies)
-    status = calculate_card_status_from_rating(rating)
-
-    return {
-        'index': card['index'],
-        'status': status,
-        'rating': rating,
-        'quality_vs_enemies': quality_vs_enemies,
+def analyze_all_cards(all_cards):
+    results = []
+    brawlers_proficiencies = {
+        0 : {},
+        1 : {},
+        2 : {},
+        3 : {},
+        4 : {},
+        5 : {},
     }
+    for card in all_cards:
+        brawler = find_brawler(card['name'])
+        if not brawler:
+            brawlers_proficiencies[card['index']] = {}
+            continue
+        
+        # Somar as proficiências de cada brawler com as de seus gadgets, star powers e hipercharges
+        # Passar apenas essas informações para brawler_proficiencies, para depois comparar as proficiências de cada brawler com as dos inimigos
+    
+    for brawler_key, brawler_proficiency_value in brawlers_proficiencies.items():
+        ...
+        # Comparar as proficiências de cada brawler com as de cada um dos seus inimigos, para obter a nova qualidade de cada brawler contra cada inimigo =@=
+        # Calcular a nota do brawler com base nessas qualidades =@=
+        # Calcular o status do brawler com base na nota =@=
+        # Adicionar a informação à variavel results, que será retornada no final da função =@=
+
+        quality_vs_enemies = calculate_quality_vs_enemies(all_cards[brawler_key], brawlers_proficiencies)
+        rating = calculate_card_rating(quality_vs_enemies)
+        status = calculate_card_status_from_rating(rating)
+
+        if find_brawler(all_cards[brawler_key]['name']):
+            results.append({
+                'index': brawler_key,
+                'status': status,
+                'rating': rating,
+                'quality_vs_enemies': quality_vs_enemies,
+            })
+        else:
+            results.append(return_invalid_brawler(brawler_key))
+
+    return results
 
 def find_brawler(name):
     if not name:
@@ -32,12 +58,12 @@ def return_invalid_brawler(index=None):
         'quality_vs_enemies': {},
     }
 
-def calculate_quality_vs_enemies(card, all_cards):
-    enemy_indexes = get_enemy_indexes(card['index'])
+def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
+    enemy_indexes = get_enemy_indexes(brawler_index)
     quality = {}
     for enemy_index in enemy_indexes:
-        quality[enemy_index] = "X"
         ...
+        quality[enemy_index] = "X"
         
     return quality
 

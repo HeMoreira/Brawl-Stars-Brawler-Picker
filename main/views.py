@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .utils import aggregate_team_proficiencies, analyze_card
+from .utils import aggregate_team_proficiencies, analyze_all_cards
 import json
 
 from brawler.models import Brawler, Gadget, StarPower, Hipercharge
@@ -48,12 +48,11 @@ def update_card(request):
             'starpower_id': int(raw_card.get('starpower_id', 0)),
         })
 
-    card_results = []
     for card in normalized_cards:
         if card['index'] not in [0, 1, 2, 3, 4, 5]:
             return JsonResponse({"error": "Each card must have a valid index."}, status=400)
-        else:
-            card_results.append(analyze_card(card, normalized_cards))
+    all_cards_results = analyze_all_cards(normalized_cards)
+    print(all_cards_results)
 
     team_proficiencies = {
         'blue': aggregate_team_proficiencies(normalized_cards[:3]),
@@ -64,11 +63,11 @@ def update_card(request):
             'index': result['index'],
             'quality_vs_enemies': result['quality_vs_enemies'],
         }
-        for result in card_results
+        for result in all_cards_results
     ]
 
     return JsonResponse({
-        'card_results': card_results,
+        'card_results': all_cards_results,
         'team_proficiencies': team_proficiencies,
         'relative_quality': relative_quality,
     })
