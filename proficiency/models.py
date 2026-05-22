@@ -49,7 +49,7 @@ class Proficiency(models.Model):
     _pets_range = models.SmallIntegerField(verbose_name="Pets Range", help_text="Capacity of pets/objects to reach enemies", default=0)
     _pets_speed = models.SmallIntegerField(verbose_name="Pets Speed", help_text="Capacity of pets/objects to reach enemies quickly", default=0)
     _pets_proximity = models.SmallIntegerField(verbose_name="Pets Proximity", help_text="Capacity of pets/objects to be close to allies, helping them to approach enemies", default=0)
-    groupment_punishment = models.SmallIntegerField(verbose_name="Groupment-Punishment", help_text="Capacity of punishing enemies with other hitboxes around", default=0)
+    _increased_damage_when_grouped = models.SmallIntegerField(verbose_name="Groupment-Punishment", help_text="Capacity of punishing enemies with other hitboxes around", default=0)
     _grass_vision = models.SmallIntegerField(verbose_name="Grass-Vision", help_text="Capacity of seeing enemies hiding in the grass", default=0)
     circumstantiality_of_overall_proficiency = models.SmallIntegerField(verbose_name="Circumstantiality of Overall Proficiency", help_text="Defines in what level this proficiency is dependent of external factors that need humam avaliation/observation", default=0)
     

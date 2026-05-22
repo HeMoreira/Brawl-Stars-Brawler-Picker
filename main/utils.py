@@ -126,7 +126,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     '_accumulation_of_pets': {
         'weaknesses': ['wide_attack'],
-        'necessary_against': ['ggroupment_punishment'],
+        'necessary_against': ['groupment_punishment'],
         'synergies': ['durability'],
     },
     '_deteriorability_of_pets': {
@@ -165,10 +165,10 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     '_pets_proximity': {
         'weaknesses': ['wide_attack'],
-        'necessary_against': ['ggroupment_punishment'],
+        'necessary_against': ['groupment_punishment'],
         'synergies': ['durability'],
     },
-    'groupment_punishment': {
+    '_increased_damage_when_grouped': {
         'weaknesses': [],
         'necessary_against': ['multiple_pets_efficiency', 'durable_pets_efficiency'],
         'synergies': [
@@ -471,16 +471,16 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         ],
     },
     'multiple_pets_efficiency': {
-        'weaknesses': ['wide_attack', 'ggroupment_punishment'],
+        'weaknesses': ['wide_attack', 'groupment_punishment'],
         'necessary_against': [],
         'synergies': ['surprise_attack', 'pressure'],
     },
     'durable_pets_efficiency': {
-        'weaknesses': ['ggroupment_punishment', 'wide_attack'],
+        'weaknesses': ['groupment_punishment', 'wide_attack'],
         'necessary_against': [],
         'synergies': ['pressure', 'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range'],
     },
-    'ggroupment_punishment': {
+    'groupment_punishment': {
         'weaknesses': [],
         'necessary_against': [
             'attack_distance', 'multiple_pets_efficiency', 'durable_pets_efficiency'
@@ -619,7 +619,7 @@ def generate_more_properties(bp):
 
     bp['multiple_pets_generation'] = round((bp['_frequency_of_pets_generation'] * 4) + ((bp['_pets_resistence'] * 2) / (bp['_deteriorability_of_pets'] + 1)) + (bp['_accumulation_of_pets'] * 4), 2)
     bp['durable_pets_generation'] = round((bp['_pets_resistence'] * 3) + (bp['_frequency_of_pets_generation'] * 3) + ((bp['_pets_damage'] * 2) + (bp['_pets_range'] * 2) + (bp['_pets_speed'] * 2)), 2)
-    bp['ggroupment_punishment'] = round(((bp['wide_attack'] * 2) + (bp['stun_debuffing'] * 1) + (bp['groupment_punishment'] * 3)) / 4.5, 2)
+    bp['groupment_punishment'] = round(((bp['wide_attack'] * 2) + (bp['stun_debuffing'] * 1) + (bp['groupment_punishment'] * 3)) / 4.5, 2)
 
     return bp
 

@@ -50,7 +50,7 @@ class ProficiencyAdmin(admin.ModelAdmin):
                 '_pets_range',
                 '_pets_speed',
                 '_pets_proximity',
-                'groupment_punishment',
+                '_increased_damage_when_grouped',
                 '_grass_vision',
                 'circumstantiality_of_overall_proficiency',
             )
