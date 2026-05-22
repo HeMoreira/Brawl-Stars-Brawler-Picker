@@ -11,604 +11,482 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         ],
         'necessary_against': [],
         'synergies': [
-            'heal_buffing', 'shield_buffing', 'wall_break_efficiency', 
-            'grass_break_efficiency', 'usual_burst_damage_in_very_long_range'
+            'heal_buffing', 'invisibility_buffing', 'cover_creation_efficiency', 
+            'usual_burst_damage_in_very_long_range'
         ],
     },
     'attack_distance': {
         'weaknesses': [
-            'slowness_debuffing', 'attack_distance', 'retreat_button'
+            'attack_distance', 'surprise_attack_power_in_very_long_range', 
+            'surprise_attack_power_in_long_range'
         ],
         'necessary_against': [],
         'synergies': [
-            'heal_buffing', 'grass_vision', 'attack_distance', 'slowness_debuffing'
+            'heal_buffing', 'shield_buffing', 'durability', 'counter_damage_buffing'
         ],
     },
     'retreat_button': {
-        'weaknesses': [
-            'durability', 'retreat_button'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'grass_vision', 'slowness_debuffing', 'retreat_button'
-        ],
+        'weaknesses': ['slowness_debuffing'],
+        'necessary_against': ['easy_approach'],
+        'synergies': ['_grass_vision'],
     },
     'wide_attack': {
-        'weaknesses': [
-            'easy_approach', 'attack_distance'
+        'weaknesses': ['durability'],
+        'necessary_against': [
+            'multiple_pets_efficiency', 'durable_pets_efficiency', 
+            'counter_damage_buffing', '_movement_speed'
         ],
-        'necessary_against': [],
         'synergies': [
-            'enemy_position_manipulation', 'stun_debuffing', 'retreat_button'
+            'enemy_position_manipulation', 'shield_buffing', 'area_denial'
         ],
     },
     'indirect_damage_efficiency': {
-        'weaknesses': [
-            'attack_distance', 'surprise_attack'
-        ],
-        'necessary_against': [
-            'durable_pets_efficiency'
-        ],
+        'weaknesses': ['easy_approach', 'wall_break_efficiency'],
+        'necessary_against': [],
         'synergies': [
-            'cover_creation_efficiency', 'indirect_damage', 'easy_approach'
+            'cover_creation_efficiency', 
+            'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'area_denial': {
-        'weaknesses': [
-            'attack_distance', 'surprise_attack'
-        ],
+        'weaknesses': ['attack_distance', 'surprise_attack'],
         'necessary_against': [],
         'synergies': [
-            'enemy_position_manipulation', 'area_denial'
+            'enemy_position_manipulation', 'stun_debuffing', 
+            'cover_creation_efficiency', 'attack_distance'
         ],
     },
     'enemy_position_manipulation': {
-        'weaknesses': [
-            'counter_water_walking', 'easy_approach'
-        ],
+        'weaknesses': ['retreat_button'],
         'necessary_against': [],
         'synergies': [
-            'area_denial', 'enemy_position_manipulation'
+            'area_denial', 'wide_attack', 'slowness_debuffing', 
+            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
+            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
         ],
     },
     'water_walking': {
-        'weaknesses': [
-            'wall_break_efficiency'
-        ],
+        'weaknesses': ['counter_water_walking'],
         'necessary_against': [],
         'synergies': [],
     },
     'counter_water_walking': {
-        'weaknesses': [
-            'wide_attack'
-        ],
+        'weaknesses': [],
         'necessary_against': [],
         'synergies': [],
     },
     'wall_break_efficiency': {
-        'weaknesses': [
-            'durability'
-        ],
+        'weaknesses': [],
         'necessary_against': [],
         'synergies': [
-            'attack_distance', 'wall_break_efficiency'
+            'attack_distance', 'counter_damage_buffing', '! indirect_damage'
         ],
     },
     'grass_break_efficiency': {
-        'weaknesses': [
-            'durability'
-        ],
+        'weaknesses': [],
         'necessary_against': [],
         'synergies': [
-            'attack_distance'
+            'attack_distance', 'counter_damage_buffing'
         ],
     },
     'cover_creation_efficiency': {
-        'weaknesses': [
-            'wide_attack'
-        ],
+        'weaknesses': ['wall_break_efficiency', 'grass_break_efficiency'],
         'necessary_against': [],
         'synergies': [
-            'indirect_damage', 'durability', 'cover_creation_efficiency'
+            'indirect_damage', 'balance_between_damage_and_durability_in_short_range'
         ],
     },
     '_movement_speed_': {
-        'weaknesses': [],
-        'necessary_against': [
-            'groupment_punishment'
-        ],
-        'synergies': [
-            'invisibility_buffing', 'usual_burst_damage_in_short_range', 'slowness_debuffing'
-        ],
+        'weaknesses': ['wide_attack'],
+        'necessary_against': [],
+        'synergies': [],
     },
-    'surprise_attack_power': {
+    '_surprise_attack_power': {
         'weaknesses': [
-            'easy_approach'
+            'durability', 'retreat_button', 'usual_burst_damage_in_short_range'
         ],
         'necessary_against': [],
         'synergies': [
-            'invisibility_buffing', 'wide_attack', 'counter_slowness_debuffing'
+            'invisibility_buffing', 'counter_damage_buffing', 'shield_buffing'
         ],
     },
-    'surprise_attack_frequency': {
+    'surprise_attack': {
         'weaknesses': [
-            'usual_burst_damage_in_short_range'
+            'durability', 'retreat_button', 'usual_burst_damage_in_short_range'
         ],
         'necessary_against': [],
         'synergies': [
-            'durability'
+            'invisibility_buffing', 'counter_damage_buffing', 'shield_buffing'
         ],
     },
-    'of_pets_generation': {
+    '_frequency_of_pets_generation': {
+        'weaknesses': ['wide_attack'],
+        'necessary_against': [],
+        'synergies': ['durability'],
+    },
+    '_accumulation_of_pets': {
+        'weaknesses': ['wide_attack'],
+        'necessary_against': ['ggroupment_punishment'],
+        'synergies': ['durability'],
+    },
+    '_deteriorability_of_pets': {
+        'weaknesses': ['easy_approach'],
+        'necessary_against': [],
+        'synergies': [],
+    },
+    '_pets_resistence': {
         'weaknesses': [
-            'durability'
+            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
+            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
         ],
         'necessary_against': [],
         'synergies': [
-            'durability'
+            'attack_distance', 'usual_burst_damage_in_short_range', 
+            'easy_approach', 'surprise_attack'
         ],
     },
-    'accumulation_of_pets': {
-        'weaknesses': [
-            'attack_distance'
-        ],
+    '_pets_damage': {
+        'weaknesses': ['durability'],
         'necessary_against': [],
         'synergies': [
-            'enemy_position_manipulation'
+            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
+            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
         ],
     },
-    'deteriorability_of_pets': {
-        'weaknesses': [
-            'easy_approach'
-        ],
+    '_pets_range': {
+        'weaknesses': ['attack_distance'],
         'necessary_against': [],
-        'synergies': [
-            'object_burst_damage_in_short_range'
-        ],
+        'synergies': [],
     },
-    'pets_resistence': {
-        'weaknesses': [],
-        'necessary_against': [
-            'groupment_punishment',
-            'multiple_pets_efficiency'
-        ],
-        'synergies': [
-            'durability'
-        ],
-    },
-    'pets_damage': {
-        'weaknesses': [],
-        'necessary_against': [
-            'multiple_pets_efficiency'
-        ],
-        'synergies': [
-            'usual_burst_damage_in_short_range'
-        ],
-    },
-    'pets_range': {
-        'weaknesses': [
-            'counter_heal_buffing'
-        ],
-        'necessary_against': [
-            'heal_buffing'
-        ],
-        'synergies': [
-            'usual_burst_damage_in_very_long_range'
-        ],
-    },
-    'pets_speed': {
-        'weaknesses': [
-            'damage_buffing'
-        ],
-        'necessary_against': [
-            'shield_buffing'
-        ],
-        'synergies': [
-            'durability'
-        ],
-    },
-    'pets_proximity': {
-        'weaknesses': [
-            'wide_attack'
-        ],
+    '_pets_speed': {
+        'weaknesses': ['easy_approach'],
         'necessary_against': [],
-        'synergies': [
-            'pressure'
-        ],
+        'synergies': ['wide_attack'],
+    },
+    '_pets_proximity': {
+        'weaknesses': ['wide_attack'],
+        'necessary_against': ['ggroupment_punishment'],
+        'synergies': ['durability'],
     },
     'groupment_punishment': {
-        'weaknesses': [
-            'wide_attack'
-        ],
-        'necessary_against': [],
+        'weaknesses': [],
+        'necessary_against': ['multiple_pets_efficiency', 'durable_pets_efficiency'],
         'synergies': [
-            'surprise_attack'
+            'enemy_position_manipulation', 'pressure', 'indirect_damage', 'easy_approach'
         ],
     },
-    'grass_vision': {
-        'weaknesses': [
-            'retreat_button'
-        ],
+    '_grass_vision': {
+        'weaknesses': [],
         'necessary_against': [],
         'synergies': [
-            'surprise_attack'
+            'object_burst_damage_in_short_range', 'object_burst_damage_in_medium_range', 
+            'object_burst_damage_in_long_range', 'object_burst_damage_in_very_long_range', 
+            'attack_distance'
         ],
     },
     'circumstanciability_of_overall_proficiency': {
-        'weaknesses': [
-            'object_burst_damage_in_short_range'
-        ],
+        'weaknesses': [],
         'necessary_against': [],
-        'synergies': [
-            'object_burst_damage_in_short_range'
-        ],
+        'synergies': [],
     },
     'heal_buffing': {
-        'weaknesses': [
-            'counter_poison_debuffing'
-        ],
-        'necessary_against': [
-            'poison_debuffing'
-        ],
-        'synergies': [
-            'pressure'
-        ],
+        'weaknesses': ['counter_heal_buffing'],
+        'necessary_against': [],
+        'synergies': ['durability', 'attack_distance', 'pressure'],
     },
     'counter_heal_buffing': {
-        'weaknesses': [
-            'counter_stun_debuffing'
-        ],
-        'necessary_against': [
-            'stun_debuffing'
-        ],
+        'weaknesses': [],
+        'necessary_against': ['heal_buffing'],
         'synergies': [
-            'poison_debuffing'
+            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
+            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
         ],
     },
     'shield_buffing': {
-        'weaknesses': [
-            'counter_slowness_debuffing'
-        ],
-        'necessary_against': [
-            'slowness_debuffing'
-        ],
+        'weaknesses': ['damage_buffing'],
+        'necessary_against': [],
         'synergies': [
-            'indirect_damage'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range'
         ],
     },
     'damage_buffing': {
-        'weaknesses': [
-            'counter_attacks_canceling'
-        ],
-        'necessary_against': [
-            'attacks_canceling'
-        ],
-        'synergies': [
-            'stun_debuffing'
-        ],
+        'weaknesses': [],
+        'necessary_against': ['shield_buffing'],
+        'synergies': ['durability', 'pressure'],
     },
     'counter_damage_buffing': {
-        'weaknesses': [
-            'retreat_button'
-        ],
+        'weaknesses': ['wide_attack', 'retreat_button', 'area_denial'],
         'necessary_against': [],
         'synergies': [
-            'surprise_attack'
+            'pressure', 'durability', 'object_burst_damage_in_short_range', 
+            'object_burst_damage_in_medium_range'
         ],
     },
     'speed_buffing': {
         'weaknesses': [
-            'attack_distance'
+            'wide_attack', 'balance_between_damage_and_durability_in_short_range'
         ],
         'necessary_against': [],
         'synergies': [
-            'slowness_debuffing'
+            'surprise_attack', 'object_burst_damage_in_short_range', 
+            'object_burst_damage_in_medium_range'
         ],
     },
     'invisibility_buffing': {
         'weaknesses': [
-            'surprise_attack'
+            'retreat_button', 'balance_between_damage_and_durability_in_short_range'
         ],
         'necessary_against': [],
-        'synergies': [
-            'grass_vision'
-        ],
+        'synergies': ['surprise_attack', 'easy_approach', 'pressure'],
     },
     'positioning_buffing': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
+        'weaknesses': ['object_burst_damage_in_short_range'],
         'necessary_against': [],
         'synergies': [
-            'attack_distance'
+            'object_burst_damage_in_short_range', 
+            'object_burst_damage_in_medium_range', 'area_control'
         ],
     },
     'poison_debuffing': {
-        'weaknesses': [
-            'easy_approach'
-        ],
+        'weaknesses': ['counter_poison_debuffing'],
         'necessary_against': [],
-        'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
-        ],
+        'synergies': ['pressure', 'surprise_attack', 'area_control'],
     },
     'counter_poison_debuffing': {
-        'weaknesses': [
-            'attack_distance'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
-        ],
+        'weaknesses': [],
+        'necessary_against': ['poison_debuffing'],
+        'synergies': ['! poison_debuffing'],
     },
     'stun_debuffing': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
+        'weaknesses': ['counter_stun_debuffing'],
         'necessary_against': [],
         'synergies': [
-            'pressure'
+            'indirect_damage', 'object_burst_damage_in_very_long_range', 
+            'object_burst_damage_in_long_range', 'area_denial'
         ],
     },
     'counter_stun_debuffing': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'attack_distance'
-        ],
+        'weaknesses': [],
+        'necessary_against': ['stun_debuffing'],
+        'synergies': ['! stun_debuffing'],
     },
     'slowness_debuffing': {
-        'weaknesses': [
-            'easy_approach'
-        ],
+        'weaknesses': ['counter_slowness_debuffing'],
         'necessary_against': [],
         'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
+            'surprise_attack', 'object_burst_damage_in_very_long_range', 
+            'object_burst_damage_in_long_range'
         ],
     },
     'counter_slowness_debuffing': {
-        'weaknesses': [
-            'attack_distance'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
-        ],
+        'weaknesses': [],
+        'necessary_against': ['slowness_debuffing'],
+        'synergies': ['! slowness_debuffing'],
     },
     'attacks_canceling': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
+        'weaknesses': ['counter_attacks_canceling'],
         'necessary_against': [],
-        'synergies': [
-            'pressure'
-        ],
+        'synergies': ['! counter_attacks_canceling'],
     },
     'counter_attacks_canceling': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'attack_distance'
-        ],
+        'weaknesses': [],
+        'necessary_against': ['attacks_canceling'],
+        'synergies': ['! attacks_canceling'],
     },
     'block_enemies': {
-        'weaknesses': [
-            'easy_approach'
-        ],
+        'weaknesses': ['retreat_button'],
         'necessary_against': [],
-        'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
-        ],
+        'synergies': ['_grass_vision'],
     },
     'object_burst_damage_in_short_range': {
-        'weaknesses': [
-            'attack_distance'
-        ],
+        'weaknesses': ['attack_distance', 'easy_approach', 'surprise_attack'],
         'necessary_against': [],
         'synergies': [
+            'attack_distance', 'pressure', 
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'object_burst_damage_in_medium_range': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
+        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'pressure'
+            'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance', 'pressure'
         ],
     },
     'object_burst_damage_in_long_range': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
+        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
+            'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance', 'pressure'
         ],
     },
     'object_burst_damage_in_very_long_range': {
-        'weaknesses': [
-            'easy_approach'
-        ],
+        'weaknesses': ['easy_approach', 'surprise_attack', 'attack_distance'],
         'necessary_against': [],
         'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
+            'pressure', 'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance'
         ],
     },
     'usual_burst_damage_in_short_range': {
-        'weaknesses': [
-            'durability'
-        ],
+        'weaknesses': ['attack_distance', 'easy_approach', 'surprise_attack'],
         'necessary_against': [],
         'synergies': [
+            'attack_distance', 'pressure', 
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'usual_burst_damage_in_medium_range': {
-        'weaknesses': [
-            'durability'
-        ],
+        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'slowness_debuffing'
+            'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance', 'pressure'
         ],
     },
     'usual_burst_damage_in_long_range': {
-        'weaknesses': [
-            'durability'
-        ],
+        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'attack_distance'
+            'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance', 'pressure'
         ],
     },
     'usual_burst_damage_in_very_long_range': {
-        'weaknesses': [
-            'durability'
-        ],
+        'weaknesses': ['easy_approach', 'surprise_attack', 'attack_distance'],
         'necessary_against': [],
         'synergies': [
+            'pressure', 'balance_between_damage_and_durability_in_short_range', 
             'attack_distance'
         ],
     },
     'balance_between_damage_and_durability_in_short_range': {
-        'weaknesses': [
-            'retreat_button'
-        ],
+        'weaknesses': ['attack_distance', 'easy_approach', 'surprise_attack'],
         'necessary_against': [],
         'synergies': [
-            'durability'
+            'attack_distance', 'pressure', 
+            'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'balance_between_damage_and_durability_in_medium_range': {
-        'weaknesses': [
-            'balance_between_damage_and_durability_in_long_range'
-        ],
+        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'surprise_attack'
+            'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance', 'pressure'
         ],
     },
     'balance_between_damage_and_durability_in_long_range': {
-        'weaknesses': [
-            'attack_distance'
-        ],
+        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'pressure'
+            'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance', 'pressure'
         ],
     },
     'balance_between_damage_and_durability_in_very_long_range': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
+        'weaknesses': ['easy_approach', 'surprise_attack', 'attack_distance'],
         'necessary_against': [],
         'synergies': [
-            'enemy_position_manipulation'
+            'pressure', 'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance'
         ],
     },
     'surprise_attack_power_in_short_range': {
         'weaknesses': [
-            'wide_attack'
+            'durability', 'attack_distance', 
+            'usual_burst_damage_in_short_range', 'retreat_button'
         ],
         'necessary_against': [],
         'synergies': [
-            'invisibility_buffing'
+            'balance_between_damage_and_durability_in_short_range', 
+            'attack_distance', 'retreat_button', 'slowness_debuffing'
         ],
     },
     'surprise_attack_power_in_medium_range': {
         'weaknesses': [
-            'groupment_punishment'
+            'durability', 'usual_burst_damage_in_short_range', 
+            'attack_distance', 'retreat_button'
         ],
         'necessary_against': [],
         'synergies': [
-            'shield_buffing'
+            'balance_between_damage_and_durability_in_short_range', 
+            'slowness_debuffing', 'attack_distance', 'retreat_button'
         ],
     },
     'surprise_attack_power_in_long_range': {
         'weaknesses': [
-            'attack_distance'
+            'durability', 'usual_burst_damage_in_short_range', 
+            'attack_distance', 'retreat_button'
         ],
         'necessary_against': [],
         'synergies': [
-            'shield_buffing'
+            'balance_between_damage_and_durability_in_short_range', 
+            'slowness_debuffing', 'attack_distance', 'retreat_button'
         ],
     },
     'surprise_attack_power_in_very_long_range': {
         'weaknesses': [
-            'usual_burst_damage_in_medium_range'
+            'durability', 'usual_burst_damage_in_short_range', 
+            'retreat_button', 'attack_distance'
         ],
         'necessary_against': [],
         'synergies': [
-            'balance_between_damage_and_durability_in_short_range'
+            'balance_between_damage_and_durability_in_short_range', 
+            'retreat_button', 'slowness_debuffing', 'attack_distance'
         ],
     },
     'easy_approach': {
-        'weaknesses': [
-            'surprise_attack_power_in_very_long_range'
-        ],
-        'necessary_against': [
-            'easy_approach'
-        ],
-        'synergies': [
-            'stun_debuffing'
-        ],
+        'weaknesses': ['retreat_button', 'wide_attack'],
+        'necessary_against': [],
+        'synergies': ['slowness_debuffing', 'durability'],
     },
     'pressure': {
-        'weaknesses': [],
-        'necessary_against': [
-            'multiple_pets_efficiency'
+        'weaknesses': [
+            'balance_between_damage_and_durability_in_long_range', 
+            'balance_between_damage_and_durability_in_very_long_range', 
+            'poison_debuffing', 'stun_debuffing', 'slowness_debuffing'
         ],
+        'necessary_against': [],
         'synergies': [
-            'wide_attack'
+            'attack_distance', 'counter_poison_debuffing', 'counter_stun_debuffing', 
+            'counter_slowness_debuffing', 'heal_buffing'
         ],
     },
     'area_control': {
-        'weaknesses': [
-            'wall_break_efficiency'
-        ],
+        'weaknesses': ['attack_distance', 'surprise_attack'],
         'necessary_against': [],
         'synergies': [
-            'counter_damage_buffing'
+            'attack_distance', 'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'indirect_damage': {
-        'weaknesses': [
-            'surprise_attack'
-        ],
+        'weaknesses': ['surprise_attack', 'wall_break_efficiency', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'counter_damage_buffing'
-        ],
-    },
-    'multiple_pets_efficiency': {
-        'weaknesses': [
-            'grass_break_efficiency'
-        ],
-        'necessary_against': [],
-        'synergies': [
+            'durability', 'cover_creation_efficiency', 
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
-    'durable_pets_efficiency': {
-        'weaknesses': [
-            'retreat_button'
-        ],
+    'multiple_pets_efficiency': {
+        'weaknesses': ['wide_attack', 'ggroupment_punishment'],
         'necessary_against': [],
-        'synergies': []
+        'synergies': ['surprise_attack', 'pressure'],
+    },
+    'durable_pets_efficiency': {
+        'weaknesses': ['ggroupment_punishment', 'wide_attack'],
+        'necessary_against': [],
+        'synergies': ['pressure', 'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range'],
     },
     'ggroupment_punishment': {
-        'weaknesses': [
-            'retreat_button'
+        'weaknesses': [],
+        'necessary_against': [
+            'attack_distance', 'multiple_pets_efficiency', 'durable_pets_efficiency'
         ],
-        'necessary_against': [],
         'synergies': [
-            'usual_burst_damage_in_short_range'
+            'enemy_position_manipulation', 'pressure', 'indirect_damage', 'easy_approach'
         ],
     }
 }
