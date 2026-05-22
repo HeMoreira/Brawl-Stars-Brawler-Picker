@@ -33,14 +33,14 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     'wide_attack': {
         'weaknesses': ['durability'],
         'necessary_against': [
-            'multiple_pets_efficiency', 'durable_pets_efficiency', 
+            'multiple_pets_generation', 'durable_pets_generation', 
             'counter_damage_buffing', '_movement_speed'
         ],
         'synergies': [
             'enemy_position_manipulation', 'shield_buffing', 'area_denial'
         ],
     },
-    'indirect_damage_efficiency': {
+    '_indirect_damage_efficiency': {
         'weaknesses': ['easy_approach', 'wall_break_efficiency'],
         'necessary_against': [],
         'synergies': [
@@ -96,7 +96,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             'indirect_damage', 'balance_between_damage_and_durability_in_short_range'
         ],
     },
-    '_movement_speed_': {
+    '_movement_speed': {
         'weaknesses': ['wide_attack'],
         'necessary_against': [],
         'synergies': [],
@@ -170,7 +170,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     '_increased_damage_when_grouped': {
         'weaknesses': [],
-        'necessary_against': ['multiple_pets_efficiency', 'durable_pets_efficiency'],
+        'necessary_against': ['multiple_pets_generation', 'durable_pets_generation'],
         'synergies': [
             'enemy_position_manipulation', 'pressure', 'indirect_damage', 'easy_approach'
         ],
@@ -184,7 +184,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             'attack_distance'
         ],
     },
-    'circumstanciability_of_overall_proficiency': {
+    'circumstantiality_of_overall_proficiency': {
         'weaknesses': [],
         'necessary_against': [],
         'synergies': [],
@@ -470,12 +470,12 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
-    'multiple_pets_efficiency': {
+    'multiple_pets_generation': {
         'weaknesses': ['wide_attack', 'groupment_punishment'],
         'necessary_against': [],
         'synergies': ['surprise_attack', 'pressure'],
     },
-    'durable_pets_efficiency': {
+    'durable_pets_generation': {
         'weaknesses': ['groupment_punishment', 'wide_attack'],
         'necessary_against': [],
         'synergies': ['pressure', 'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range'],
@@ -483,7 +483,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     'groupment_punishment': {
         'weaknesses': [],
         'necessary_against': [
-            'attack_distance', 'multiple_pets_efficiency', 'durable_pets_efficiency'
+            'attack_distance', 'multiple_pets_generation', 'durable_pets_generation'
         ],
         'synergies': [
             'enemy_position_manipulation', 'pressure', 'indirect_damage', 'easy_approach'
@@ -500,17 +500,20 @@ def analyze_all_cards(all_cards):
     }
     for card in all_cards:
         brawlers_proficiencies[card['index']] = get_brawler_proficiency(card)
+
+    for brawler_key, _ in brawlers_proficiencies.items():
+        if find_brawler(all_cards[brawler_key]['name']) == None:
+            results.append(return_invalid_brawler(brawler_key))
+            continue
+        convert_proficiencies(brawlers_proficiencies[brawler_key])
+        brawlers_proficiencies[brawler_key] = generate_more_properties(brawlers_proficiencies[brawler_key])
     
     for brawler_key, _ in brawlers_proficiencies.items():
         if find_brawler(all_cards[brawler_key]['name']) == None:
             results.append(return_invalid_brawler(brawler_key))
             continue
 
-        convert_proficiencies(brawlers_proficiencies[brawler_key])
-
-        brawlers_proficiencies[brawler_key] = generate_more_properties(brawlers_proficiencies[brawler_key])
-
-        quality_vs_enemies = calculate_quality_vs_enemies(all_cards[brawler_key], brawlers_proficiencies)
+        quality_vs_enemies = calculate_quality_vs_enemies(all_cards[brawler_key]['index'], brawlers_proficiencies)
         rating = calculate_card_rating(quality_vs_enemies)
         status = calculate_card_status_from_rating(rating)
 
@@ -619,7 +622,7 @@ def generate_more_properties(bp):
 
     bp['multiple_pets_generation'] = round((bp['_frequency_of_pets_generation'] * 4) + ((bp['_pets_resistence'] * 2) / (bp['_deteriorability_of_pets'] + 1)) + (bp['_accumulation_of_pets'] * 4), 2)
     bp['durable_pets_generation'] = round((bp['_pets_resistence'] * 3) + (bp['_frequency_of_pets_generation'] * 3) + ((bp['_pets_damage'] * 2) + (bp['_pets_range'] * 2) + (bp['_pets_speed'] * 2)), 2)
-    bp['groupment_punishment'] = round(((bp['wide_attack'] * 2) + (bp['stun_debuffing'] * 1) + (bp['groupment_punishment'] * 3)) / 4.5, 2)
+    bp['groupment_punishment'] = round(((bp['wide_attack'] * 2) + (bp['stun_debuffing'] * 1) + (bp['_increased_damage_when_grouped'] * 3)) / 4.5, 2)
 
     return bp
 
@@ -627,11 +630,33 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
     enemy_indexes = get_enemy_indexes(brawler_index)
     quality = {}
     for enemy_index in enemy_indexes:
-        
+        for property_key in brawlers_proficiencies[enemy_index].keys():
+            if property_key in ['id', '_necessary_projectiles_to_charge_super', '_necessary_supers_to_charge_hipercharge', '_projectile_damage', '_shots_per_five_seconds', 'average_projectiles_per_shot', 'projectiles_per_shot_in_short_range', 'projectiles_per_shot_in_medium_range', 'projectiles_per_shot_in_long_range', 'projectiles_per_shot_in_very_long_range', '_auto_charge_super', 'super_damage_in_short_range', 'super_damage_in_medium_range', 'super_damage_in_long_range', 'super_damage_in_very_long_range', 'average_super_damage', 'ocasional_damage']:
+                continue
+            analized_brawler_power_values = []
+            property_relations = PROFICIENCIES_PROPERTIES_RELATIONSHIP[property_key]
 
+            analized_brawler_properties = brawlers_proficiencies[brawler_index]
+            analized_enemy_properties = brawlers_proficiencies[enemy_index]
 
-        quality[enemy_index] = "X"
-        
+            print(analized_enemy_properties)
+
+            for weakness in property_relations['weaknesses']:
+                print(weakness)
+                result = analized_brawler_properties[property_key] - analized_enemy_properties[weakness]
+                analized_brawler_power_values.append(result)
+
+            for necessity in property_relations['necessary_against']:
+                result = analized_enemy_properties[necessity] - analized_brawler_properties[property_key]
+                analized_brawler_power_values.append(result)
+
+            result_analized_brawler = 0
+            for power in analized_brawler_power_values:
+                result_analized_brawler += power
+            result_analized_brawler /= len(analized_brawler_power_values)+1
+
+            quality[enemy_index] = result_analized_brawler
+            
     return quality
 
 def get_enemy_indexes(card_index):
