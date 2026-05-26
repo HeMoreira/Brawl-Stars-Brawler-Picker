@@ -3,66 +3,36 @@ from django.db import models
 from django.forms.models import model_to_dict
 
 PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
-    'durability': {
-        'weaknesses': [
-            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
-            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range', 
-            'indirect_damage', 'wall_break_efficiency', 'grass_break_efficiency'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'heal_buffing', 'invisibility_buffing', 'cover_creation_efficiency', 
-            'usual_burst_damage_in_very_long_range'
-        ],
-    },
-    'attack_distance': {
-        'weaknesses': [
-            'attack_distance', 'surprise_attack_power_in_very_long_range', 
-            'surprise_attack_power_in_long_range'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'heal_buffing', 'shield_buffing', 'durability', 'counter_damage_buffing'
-        ],
-    },
     'retreat_button': {
         'weaknesses': ['slowness_debuffing'],
         'necessary_against': ['easy_approach'],
-        'synergies': ['_grass_vision'],
+        'synergies': ['grass_vision'],
     },
     'wide_attack': {
-        'weaknesses': ['durability'],
+        'weaknesses': [
+            'balance_between_damage_and_durability_in_short_range', 'balance_between_damage_and_durability_in_medium_range','balance_between_damage_and_durability_in_long_range', 'balance_between_damage_and_durability_in_very_long_range',
+        ],
         'necessary_against': [
-            'multiple_pets_generation', 'durable_pets_generation', 
-            'counter_damage_buffing', '_movement_speed'
+            'multiple_pets_generation', 'durable_pets_generation', 'counter_damage_buffing', 'easy_approach'
         ],
         'synergies': [
             'enemy_position_manipulation', 'shield_buffing', 'area_denial'
         ],
     },
-    '_indirect_damage_efficiency': {
-        'weaknesses': ['easy_approach', 'wall_break_efficiency'],
-        'necessary_against': [],
-        'synergies': [
-            'cover_creation_efficiency', 
-            'balance_between_damage_and_durability_in_short_range'
-        ],
-    },
     'area_denial': {
-        'weaknesses': ['attack_distance', 'surprise_attack'],
+        'weaknesses': [
+            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range', 'easy_approach'
+        ],
         'necessary_against': [],
         'synergies': [
-            'enemy_position_manipulation', 'stun_debuffing', 
-            'cover_creation_efficiency', 'attack_distance'
+            'enemy_position_manipulation', 'stun_debuffing', 'cover_creation_efficiency', 'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
         ],
     },
     'enemy_position_manipulation': {
         'weaknesses': ['retreat_button'],
         'necessary_against': [],
         'synergies': [
-            'area_denial', 'wide_attack', 'slowness_debuffing', 
-            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
-            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
+            'area_denial', 'wide_attack', 'slowness_debuffing', 'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
         ],
     },
     'water_walking': {
@@ -77,111 +47,33 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     'wall_break_efficiency': {
         'weaknesses': [],
-        'necessary_against': [],
+        'necessary_against': ['indirect_damage'],
         'synergies': [
-            'attack_distance', 'counter_damage_buffing', '! indirect_damage'
+            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range', 'counter_damage_buffing'
         ],
     },
     'grass_break_efficiency': {
         'weaknesses': [],
         'necessary_against': [],
         'synergies': [
-            'attack_distance', 'counter_damage_buffing'
+            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range', 'counter_damage_buffing'
         ],
     },
     'cover_creation_efficiency': {
-        'weaknesses': ['wall_break_efficiency', 'grass_break_efficiency'],
+        'weaknesses': [
+            'wall_break_efficiency', 'grass_break_efficiency'
+        ],
         'necessary_against': [],
         'synergies': [
             'indirect_damage', 'balance_between_damage_and_durability_in_short_range'
         ],
     },
-    '_movement_speed': {
-        'weaknesses': ['wide_attack'],
-        'necessary_against': [],
-        'synergies': [],
-    },
-    '_surprise_attack_power': {
-        'weaknesses': [
-            'durability', 'retreat_button', 'usual_burst_damage_in_short_range'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'invisibility_buffing', 'counter_damage_buffing', 'shield_buffing'
-        ],
-    },
-    'surprise_attack': {
-        'weaknesses': [
-            'durability', 'retreat_button', 'usual_burst_damage_in_short_range'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'invisibility_buffing', 'counter_damage_buffing', 'shield_buffing'
-        ],
-    },
-    '_frequency_of_pets_generation': {
-        'weaknesses': ['wide_attack'],
-        'necessary_against': [],
-        'synergies': ['durability'],
-    },
-    '_accumulation_of_pets': {
-        'weaknesses': ['wide_attack'],
-        'necessary_against': ['groupment_punishment'],
-        'synergies': ['durability'],
-    },
-    '_deteriorability_of_pets': {
-        'weaknesses': ['easy_approach'],
-        'necessary_against': [],
-        'synergies': [],
-    },
-    '_pets_resistence': {
-        'weaknesses': [
-            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
-            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
-        ],
-        'necessary_against': [],
-        'synergies': [
-            'attack_distance', 'usual_burst_damage_in_short_range', 
-            'easy_approach', 'surprise_attack'
-        ],
-    },
-    '_pets_damage': {
-        'weaknesses': ['durability'],
-        'necessary_against': [],
-        'synergies': [
-            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
-            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
-        ],
-    },
-    '_pets_range': {
-        'weaknesses': ['attack_distance'],
-        'necessary_against': [],
-        'synergies': [],
-    },
-    '_pets_speed': {
-        'weaknesses': ['easy_approach'],
-        'necessary_against': [],
-        'synergies': ['wide_attack'],
-    },
-    '_pets_proximity': {
-        'weaknesses': ['wide_attack'],
-        'necessary_against': ['groupment_punishment'],
-        'synergies': ['durability'],
-    },
-    '_increased_damage_when_grouped': {
-        'weaknesses': [],
-        'necessary_against': ['multiple_pets_generation', 'durable_pets_generation'],
-        'synergies': [
-            'enemy_position_manipulation', 'pressure', 'indirect_damage', 'easy_approach'
-        ],
-    },
-    '_grass_vision': {
+    'grass_vision': {
         'weaknesses': [],
         'necessary_against': [],
         'synergies': [
-            'object_burst_damage_in_short_range', 'object_burst_damage_in_medium_range', 
-            'object_burst_damage_in_long_range', 'object_burst_damage_in_very_long_range', 
-            'attack_distance'
+            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
+            'usual_burst_damage_in_long_range'
         ],
     },
     'circumstantiality_of_overall_proficiency': {
@@ -192,14 +84,15 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     'heal_buffing': {
         'weaknesses': ['counter_heal_buffing'],
         'necessary_against': [],
-        'synergies': ['durability', 'attack_distance', 'pressure'],
+        'synergies': [
+            'balance_between_damage_and_durability_in_short_range', 'balance_between_damage_and_durability_in_medium_range', 'balance_between_damage_and_durability_in_long_range', 'balance_between_damage_and_durability_in_very_long_range', 'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range', 'pressure'
+        ],
     },
     'counter_heal_buffing': {
         'weaknesses': [],
         'necessary_against': ['heal_buffing'],
         'synergies': [
-            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 
-            'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
+            'usual_burst_damage_in_short_range', 'usual_burst_damage_in_medium_range', 'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range'
         ],
     },
     'shield_buffing': {
@@ -212,14 +105,17 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     'damage_buffing': {
         'weaknesses': [],
         'necessary_against': ['shield_buffing'],
-        'synergies': ['durability', 'pressure'],
+        'synergies': [
+            'balance_between_damage_and_durability_in_short_range', 'balance_between_damage_and_durability_in_medium_range','pressure'
+        ],
     },
     'counter_damage_buffing': {
-        'weaknesses': ['wide_attack', 'retreat_button', 'area_denial'],
+        'weaknesses': [
+            'wide_attack', 'retreat_button', 'area_denial'
+        ],
         'necessary_against': [],
         'synergies': [
-            'pressure', 'durability', 'object_burst_damage_in_short_range', 
-            'object_burst_damage_in_medium_range'
+            'pressure', 'balance_between_damage_and_durability_in_short_range', 'balance_between_damage_and_durability_in_medium_range','balance_between_damage_and_durability_in_long_range', 'balance_between_damage_and_durability_in_very_long_range', 'object_burst_damage_in_short_range', 'object_burst_damage_in_medium_range'
         ],
     },
     'speed_buffing': {
@@ -228,7 +124,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         ],
         'necessary_against': [],
         'synergies': [
-            'surprise_attack', 'object_burst_damage_in_short_range', 
+            'surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'object_burst_damage_in_short_range', 
             'object_burst_damage_in_medium_range'
         ],
     },
@@ -237,211 +133,227 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             'retreat_button', 'balance_between_damage_and_durability_in_short_range'
         ],
         'necessary_against': [],
-        'synergies': ['surprise_attack', 'easy_approach', 'pressure'],
+        'synergies': [
+            'surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range',  'easy_approach', 'pressure'
+        ],
     },
     'positioning_buffing': {
         'weaknesses': ['object_burst_damage_in_short_range'],
         'necessary_against': [],
         'synergies': [
-            'object_burst_damage_in_short_range', 
-            'object_burst_damage_in_medium_range', 'area_control'
+            'usual_burst_damage_in_short_range', 
+            'usual_burst_damage_in_medium_range', 'area_control'
         ],
     },
     'poison_debuffing': {
         'weaknesses': ['counter_poison_debuffing'],
         'necessary_against': [],
-        'synergies': ['pressure', 'surprise_attack', 'area_control'],
+        'synergies': ['pressure', 'surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'area_control'],
     },
     'counter_poison_debuffing': {
         'weaknesses': [],
         'necessary_against': ['poison_debuffing'],
-        'synergies': ['! poison_debuffing'],
+        'synergies': [],
     },
     'stun_debuffing': {
         'weaknesses': ['counter_stun_debuffing'],
         'necessary_against': [],
         'synergies': [
-            'indirect_damage', 'object_burst_damage_in_very_long_range', 
-            'object_burst_damage_in_long_range', 'area_denial'
+            'indirect_damage', 'usual_burst_damage_in_very_long_range', 
+            'usual_burst_damage_in_long_range', 'area_denial'
         ],
     },
     'counter_stun_debuffing': {
         'weaknesses': [],
         'necessary_against': ['stun_debuffing'],
-        'synergies': ['! stun_debuffing'],
+        'synergies': [],
     },
     'slowness_debuffing': {
         'weaknesses': ['counter_slowness_debuffing'],
         'necessary_against': [],
         'synergies': [
-            'surprise_attack', 'object_burst_damage_in_very_long_range', 
-            'object_burst_damage_in_long_range'
+            'surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 
         ],
     },
     'counter_slowness_debuffing': {
         'weaknesses': [],
         'necessary_against': ['slowness_debuffing'],
-        'synergies': ['! slowness_debuffing'],
+        'synergies': [],
     },
     'attacks_canceling': {
         'weaknesses': ['counter_attacks_canceling'],
         'necessary_against': [],
-        'synergies': ['! counter_attacks_canceling'],
+        'synergies': [],
     },
     'counter_attacks_canceling': {
         'weaknesses': [],
         'necessary_against': ['attacks_canceling'],
-        'synergies': ['! attacks_canceling'],
+        'synergies': [],
     },
     'block_enemies': {
         'weaknesses': ['retreat_button'],
         'necessary_against': [],
-        'synergies': ['_grass_vision'],
+        'synergies': ['grass_vision'],
     },
     'object_burst_damage_in_short_range': {
-        'weaknesses': ['attack_distance', 'easy_approach', 'surprise_attack'],
+        'weaknesses': [
+            'usual_burst_damage_in_medium_range', 'usual_burst_damage_in_long_range', 'usual_burst_damage_in_very_long_range', 'easy_approach', 'surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 
+        ],
         'necessary_against': [],
         'synergies': [
-            'attack_distance', 'pressure', 
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure', 
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'object_burst_damage_in_medium_range': {
-        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
+        'weaknesses': ['surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance', 'pressure'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure'
         ],
     },
     'object_burst_damage_in_long_range': {
-        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
+        'weaknesses': ['surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'usual_burst_damage_in_very_long_range', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance', 'pressure'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure'
         ],
     },
     'object_burst_damage_in_very_long_range': {
-        'weaknesses': ['easy_approach', 'surprise_attack', 'attack_distance'],
+        'weaknesses': ['easy_approach', 'surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range'],
         'necessary_against': [],
         'synergies': [
             'pressure', 'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range'
         ],
     },
     'usual_burst_damage_in_short_range': {
-        'weaknesses': ['attack_distance', 'easy_approach', 'surprise_attack'],
+        'weaknesses': [
+            'usual_burst_damage_in_medium_range', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'easy_approach', 'surprise_attack_power_in_very_long_range'
+        ],
         'necessary_against': [],
         'synergies': [
-            'attack_distance', 'pressure', 
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure', 
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'usual_burst_damage_in_medium_range': {
-        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
+        'weaknesses': [
+            'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'easy_approach'
+        ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance', 'pressure'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure'
         ],
     },
     'usual_burst_damage_in_long_range': {
-        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
+        'weaknesses': [
+            'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'usual_burst_damage_in_very_long_range', 'easy_approach'
+        ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance', 'pressure'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure'
         ],
     },
     'usual_burst_damage_in_very_long_range': {
-        'weaknesses': ['easy_approach', 'surprise_attack', 'attack_distance'],
+        'weaknesses': [
+            'easy_approach', 'surprise_attack_power_in_very_long_range', 'usual_burst_damage_in_very_long_range', 
+        ],
         'necessary_against': [],
         'synergies': [
             'pressure', 'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range'
         ],
     },
     'balance_between_damage_and_durability_in_short_range': {
-        'weaknesses': ['attack_distance', 'easy_approach', 'surprise_attack'],
+        'weaknesses': [
+            'usual_burst_damage_in_medium_range', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'easy_approach', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range'
+        ],
         'necessary_against': [],
         'synergies': [
-            'attack_distance', 'pressure', 
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure', 
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'balance_between_damage_and_durability_in_medium_range': {
-        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
+        'weaknesses': [
+            'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'easy_approach'
+        ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance', 'pressure'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'pressure'
         ],
     },
     'balance_between_damage_and_durability_in_long_range': {
-        'weaknesses': ['surprise_attack', 'attack_distance', 'easy_approach'],
+        'weaknesses': [
+            'surprise_attack_power_in_very_long_range', 'easy_approach'
+        ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance', 'pressure'
+            'pressure'
         ],
     },
     'balance_between_damage_and_durability_in_very_long_range': {
-        'weaknesses': ['easy_approach', 'surprise_attack', 'attack_distance'],
+        'weaknesses': ['easy_approach', 'surprise_attack_power_in_very_long_range'],
         'necessary_against': [],
         'synergies': [
-            'pressure', 'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance'
+            'pressure', 'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'surprise_attack_power_in_short_range': {
         'weaknesses': [
-            'durability', 'attack_distance', 
+            'balance_between_damage_and_durability_in_short_range', 'usual_burst_damage_in_medium_range', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 
             'usual_burst_damage_in_short_range', 'retreat_button'
         ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'attack_distance', 'retreat_button', 'slowness_debuffing'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'retreat_button', 'slowness_debuffing'
         ],
     },
     'surprise_attack_power_in_medium_range': {
         'weaknesses': [
-            'durability', 'usual_burst_damage_in_short_range', 
-            'attack_distance', 'retreat_button'
+            'balance_between_damage_and_durability_in_short_range', 'usual_burst_damage_in_short_range', 
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'retreat_button'
         ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'slowness_debuffing', 'attack_distance', 'retreat_button'
+            'slowness_debuffing', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'retreat_button'
         ],
     },
     'surprise_attack_power_in_long_range': {
         'weaknesses': [
-            'durability', 'usual_burst_damage_in_short_range', 
-            'attack_distance', 'retreat_button'
+            'balance_between_damage_and_durability_in_short_range', 'usual_burst_damage_in_short_range', 
+            'usual_burst_damage_in_very_long_range', 'retreat_button'
         ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'slowness_debuffing', 'attack_distance', 'retreat_button'
+            'slowness_debuffing', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'retreat_button'
         ],
     },
     'surprise_attack_power_in_very_long_range': {
         'weaknesses': [
-            'durability', 'usual_burst_damage_in_short_range', 
-            'retreat_button', 'attack_distance'
+            'balance_between_damage_and_durability_in_short_range', 'usual_burst_damage_in_short_range', 
+            'retreat_button', 'usual_burst_damage_in_very_long_range'
         ],
         'necessary_against': [],
         'synergies': [
             'balance_between_damage_and_durability_in_short_range', 
-            'retreat_button', 'slowness_debuffing', 'attack_distance'
+            'retreat_button', 'slowness_debuffing', 'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range'
         ],
     },
     'easy_approach': {
         'weaknesses': ['retreat_button', 'wide_attack'],
         'necessary_against': [],
-        'synergies': ['slowness_debuffing', 'durability'],
+        'synergies': ['slowness_debuffing', 'balance_between_damage_and_durability_in_short_range', 'balance_between_damage_and_durability_in_medium_range', 'balance_between_damage_and_durability_in_long_range', 'balance_between_damage_and_durability_in_very_long_range'],
     },
     'pressure': {
         'weaknesses': [
@@ -451,29 +363,29 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         ],
         'necessary_against': [],
         'synergies': [
-            'attack_distance', 'counter_poison_debuffing', 'counter_stun_debuffing', 
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'counter_poison_debuffing', 'counter_stun_debuffing', 
             'counter_slowness_debuffing', 'heal_buffing'
         ],
     },
     'area_control': {
-        'weaknesses': ['attack_distance', 'surprise_attack'],
+        'weaknesses': ['usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range'],
         'necessary_against': [],
         'synergies': [
-            'attack_distance', 'balance_between_damage_and_durability_in_short_range'
+            'usual_burst_damage_in_very_long_range', 'usual_burst_damage_in_long_range', 'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'indirect_damage': {
-        'weaknesses': ['surprise_attack', 'wall_break_efficiency', 'easy_approach'],
+        'weaknesses': ['surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'wall_break_efficiency', 'easy_approach'],
         'necessary_against': [],
         'synergies': [
-            'durability', 'cover_creation_efficiency', 
+            'balance_between_damage_and_durability_in_short_range', 'balance_between_damage_and_durability_in_medium_range','cover_creation_efficiency', 
             'balance_between_damage_and_durability_in_short_range'
         ],
     },
     'multiple_pets_generation': {
         'weaknesses': ['wide_attack', 'groupment_punishment'],
         'necessary_against': [],
-        'synergies': ['surprise_attack', 'pressure'],
+        'synergies': ['surprise_attack_power_in_short_range', 'surprise_attack_power_in_medium_range', 'surprise_attack_power_in_long_range', 'surprise_attack_power_in_very_long_range', 'pressure'],
     },
     'durable_pets_generation': {
         'weaknesses': ['groupment_punishment', 'wide_attack'],
@@ -483,7 +395,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     'groupment_punishment': {
         'weaknesses': [],
         'necessary_against': [
-            'attack_distance', 'multiple_pets_generation', 'durable_pets_generation'
+            'multiple_pets_generation', 'durable_pets_generation'
         ],
         'synergies': [
             'enemy_position_manipulation', 'pressure', 'indirect_damage', 'easy_approach'
@@ -506,7 +418,7 @@ def analyze_all_cards(all_cards):
             results.append(return_invalid_brawler(brawler_key))
             continue
         convert_proficiencies(brawlers_proficiencies[brawler_key])
-        brawlers_proficiencies[brawler_key] = generate_more_properties(brawlers_proficiencies[brawler_key])
+        brawlers_proficiencies[brawler_key] = get_final_brawler_properties(brawlers_proficiencies[brawler_key])
     
     for brawler_key, _ in brawlers_proficiencies.items():
         if find_brawler(all_cards[brawler_key]['name']) == None:
@@ -583,7 +495,7 @@ def convert_proficiencies(brawler_proficiencies):
         brawler_proficiencies[key] = value/10
     return brawler_proficiencies
 
-def generate_more_properties(bp):
+def get_final_brawler_properties(bp):
 
     weight_object_burst_damage_isr = 2000
     weight_object_burst_damage_imr = 1800
@@ -636,6 +548,16 @@ def generate_more_properties(bp):
     bp['durable_pets_generation'] = round((bp['_pets_resistence'] * 3) + (bp['_frequency_of_pets_generation'] * 3) + ((bp['_pets_damage'] * 2) + (bp['_pets_range'] * 2) + (bp['_pets_speed'] * 2)), 2)
     bp['groupment_punishment'] = round(((bp['wide_attack'] * 2) + (bp['stun_debuffing'] * 1) + (bp['_increased_damage_when_grouped'] * 3)) / 4.5, 2)
 
+    del bp['durability']
+    del bp['attack_distance']
+    del bp['surprise_attack']
+    properties_to_delete = []
+    for property_key in bp.keys():
+        if property_key[0] == '_':
+            properties_to_delete.append(property_key)
+    for property_name in properties_to_delete:
+        del bp[property_name]
+
     print(bp, "\n\n\n")
 
     return bp
@@ -644,6 +566,7 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
     enemy_indexes = get_enemy_indexes(brawler_index)
     quality = {}
     for enemy_index in enemy_indexes:
+        quality[enemy_index] = 0
         for property_key in brawlers_proficiencies[enemy_index].keys():
             if property_key in ['id', '_necessary_projectiles_to_charge_super', '_necessary_supers_to_charge_hipercharge', '_projectile_damage', '_shots_per_five_seconds', 'average_projectiles_per_shot', 'projectiles_per_shot_in_short_range', 'projectiles_per_shot_in_medium_range', 'projectiles_per_shot_in_long_range', 'projectiles_per_shot_in_very_long_range', '_auto_charge_super', 'super_damage_in_short_range', 'super_damage_in_medium_range', 'super_damage_in_long_range', 'super_damage_in_very_long_range', 'average_super_damage', 'ocasional_damage']:
                 continue
@@ -653,24 +576,29 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
             analized_brawler_properties = brawlers_proficiencies[brawler_index]
             analized_enemy_properties = brawlers_proficiencies[enemy_index]
 
+            print(property_key, ":", analized_brawler_properties[property_key])
+
             for weakness in property_relations['weaknesses']:
-                result = analized_brawler_properties[property_key] - analized_enemy_properties[weakness]
+                result = result = (((analized_brawler_properties[property_key] - analized_enemy_properties[weakness]) * (analized_brawler_properties[property_key])) / 10) - ((analized_enemy_properties[weakness] * analized_brawler_properties[property_key]) / 10)
                 analized_brawler_power_values.append(result)
-                # print(analized_brawler_properties[property_key], analized_enemy_properties[weakness], result)
+                print("property:", weakness, analized_enemy_properties[weakness], result)
 
             for necessity in property_relations['necessary_against']:
-                result = analized_enemy_properties[necessity] - analized_brawler_properties[property_key]
-                analized_brawler_power_values.append(result)
-                # print(analized_enemy_properties[necessity], analized_brawler_properties[property_key], result)
+                result = analized_brawler_properties[property_key] + (analized_enemy_properties[necessity] * -1)
+                if result < 0:
+                    analized_brawler_power_values.append(result)
+                else:
+                    analized_brawler_power_values.append(0)
+                print("necessity:", necessity, analized_enemy_properties[necessity], result)
 
-            # print("\n\n", analized_brawler_power_values, "\n\n")
+            print("\n\n", analized_brawler_power_values, quality[enemy_index], "\n\n")
 
             result_analized_brawler = 0
             for power in analized_brawler_power_values:
                 result_analized_brawler += power
             result_analized_brawler /= len(analized_brawler_power_values)+1
 
-            quality[enemy_index] = result_analized_brawler
+            quality[enemy_index] += result_analized_brawler
             
     return quality
 
