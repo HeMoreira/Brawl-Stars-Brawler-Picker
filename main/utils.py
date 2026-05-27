@@ -143,8 +143,8 @@ def get_final_brawler_properties(bp):
         bp['indirect_damage'] = bp['_indirect_damage_efficiency'] * ((bp['balance_between_damage_and_durability_in_short_range'] + bp['balance_between_damage_and_durability_in_medium_range'] + bp['balance_between_damage_and_durability_in_long_range'] + bp['balance_between_damage_and_durability_in_very_long_range']) / (4 * 2.5)) * (bp['average_super_damage'] / 2000)
     bp['indirect_damage'] = round(bp['indirect_damage'] / ((10 - bp['attack_distance'] + 2) / 4), 2)
 
-    bp['multiple_pets_generation'] = round((bp['_frequency_of_pets_generation'] * 4) + ((bp['_pets_resistence'] * 2) / (bp['_deteriorability_of_pets'] + 1)) + (bp['_accumulation_of_pets'] * 4), 2)
-    bp['durable_pets_generation'] = round((bp['_pets_resistence'] * 3) + (bp['_frequency_of_pets_generation'] * 3) + ((bp['_pets_damage'] * 2) + (bp['_pets_range'] * 2) + (bp['_pets_speed'] * 2)), 2)
+    bp['multiple_pets_generation'] = round(((bp['_frequency_of_pets_generation'] * 4) + ((bp['_pets_resistence'] * 2) / (bp['_deteriorability_of_pets'] + 1)) + (bp['_accumulation_of_pets'] * 4)) / 7.5, 2)
+    bp['durable_pets_generation'] = round(((bp['_pets_resistence'] * 3) + (bp['_frequency_of_pets_generation'] * 3) + ((bp['_pets_damage'] * 2) + (bp['_pets_range'] * 2) + (bp['_pets_speed'] * 2))) / 8, 2)
     bp['groupment_punishment'] = round(((bp['wide_attack'] * 2) + (bp['stun_debuffing'] * 1) + (bp['_increased_damage_when_grouped'] * 3)) / 4.5, 2)
 
     del bp['durability']
@@ -180,7 +180,7 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
             for weakness in property_relations['weaknesses']:
                 result = result = (((analized_brawler_properties[property_key] - analized_enemy_properties[weakness]) * (analized_brawler_properties[property_key])) / 10) - ((analized_enemy_properties[weakness] * analized_brawler_properties[property_key]) / 10)
                 analized_brawler_power_values.append(result)
-                print("property:", weakness, analized_enemy_properties[weakness], result)
+                print("weakness:", weakness, analized_enemy_properties[weakness], result)
 
             for necessity in property_relations['necessary_against']:
                 result = analized_brawler_properties[property_key] + (analized_enemy_properties[necessity] * -1)
@@ -195,7 +195,10 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
             result_analized_brawler = 0
             for power in analized_brawler_power_values:
                 result_analized_brawler += power
-            result_analized_brawler /= len(analized_brawler_power_values)+1
+            if len(analized_brawler_power_values) > 0:
+                result_analized_brawler /= len(analized_brawler_power_values)
+            else:
+                result_analized_brawler /= 1
 
             quality[enemy_index] += result_analized_brawler
             
