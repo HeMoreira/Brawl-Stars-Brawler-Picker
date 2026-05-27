@@ -51,7 +51,7 @@ class ProficiencyAdmin(admin.ModelAdmin):
                 '_pets_speed',
                 '_pets_proximity',
                 '_increased_damage_when_grouped',
-                '_grass_vision',
+                'grass_vision',
                 'circumstantiality_of_overall_proficiency',
             )
         }),
