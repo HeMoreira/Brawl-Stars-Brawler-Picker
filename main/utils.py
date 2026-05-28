@@ -211,18 +211,20 @@ def get_enemy_indexes(card_index):
         return [0, 1, 2]
 
 def calculate_card_rating(quality_vs_enemies):
-    for enemy_index, quality in quality_vs_enemies.items():
-        ...
-    return 50
+    sum_of_qualities = 0
+    for quality in quality_vs_enemies.values():
+        sum_of_qualities += quality
+    average_quality = sum_of_qualities / 3
+    return average_quality
 
 def calculate_card_status_from_rating(rating):
-    if rating >= 85:
+    if rating >= 70:
         return 'Great'
-    if rating >= 60:
+    if rating >= 30:
         return 'Good'
-    if rating >= 40:
+    if rating > -30:
         return 'Ok'
-    if rating >= 15:
+    if rating > -70:
         return 'Bad'
     return 'Awful'
 
