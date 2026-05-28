@@ -298,8 +298,14 @@ function applyStatusColor(element) {
     } else if (status === 'bad') {
         element.style.backgroundColor = '#f1612d';
         applyDefaultStatusDecoration(element);
+    } else if (status === 'hmm') {
+        element.style.backgroundColor = '#f4822a';
+        applyDefaultStatusDecoration(element);
     } else if (status === 'ok') {
         element.style.backgroundColor = '#fea618';
+        applyDefaultStatusDecoration(element);
+    } else if (status === 'oh') {
+        element.style.backgroundColor = '#adc71a';
         applyDefaultStatusDecoration(element);
     } else if (status === 'good') {
         element.style.backgroundColor = '#4fc737';

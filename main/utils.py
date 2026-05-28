@@ -201,8 +201,25 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
                 result_analized_brawler /= 1
 
             quality[enemy_index] += result_analized_brawler
-            
+    
+    good_looking_quality = get_formated_quality(quality)
+    return good_looking_quality
+
+def get_formated_quality(quality):
+    for enemy_index in quality.keys():
+        if quality[enemy_index] < 10 and quality[enemy_index] > 0 or quality[enemy_index] > -10 and quality[enemy_index] < 0:
+            quality[enemy_index] = round(quality[enemy_index], 2)
+        else:
+            quality[enemy_index] = round(quality[enemy_index], 1)
     return quality
+
+def get_formated_rating(rating):
+    rating = round((rating * 0.5) + 50, 0)
+    if rating > 100:
+        rating = 100
+    elif rating < 0:
+        rating = 0
+    return rating
 
 def get_enemy_indexes(card_index):
     if card_index in [0, 1, 2]:
@@ -215,16 +232,21 @@ def calculate_card_rating(quality_vs_enemies):
     for quality in quality_vs_enemies.values():
         sum_of_qualities += quality
     average_quality = sum_of_qualities / 3
-    return average_quality
+    final_average = get_formated_rating(average_quality)
+    return final_average
 
 def calculate_card_status_from_rating(rating):
-    if rating >= 70:
+    if rating >= 85:
         return 'Great'
-    if rating >= 30:
+    elif rating >= 70:
         return 'Good'
-    if rating > -30:
+    elif rating >= 58:
+        return 'Oh'
+    elif rating > 42:
         return 'Ok'
-    if rating > -70:
+    elif rating > 30:
+        return 'Hmm'
+    elif rating > 15:
         return 'Bad'
     return 'Awful'
 
