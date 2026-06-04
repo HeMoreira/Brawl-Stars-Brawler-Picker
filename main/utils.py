@@ -107,32 +107,32 @@ def get_final_brawler_properties(bp):
     weight_usual_burst_damage_ivlr = 170
 
     # BASIC DAMAGE PROPERTIES
-    bp['object_burst_damage_in_short_range'] = round(((bp['average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_short_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_isr, 2)
-    bp['object_burst_damage_in_medium_range'] = round(((bp['average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_medium_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_imr, 2)
-    bp['object_burst_damage_in_long_range'] = round(((bp['average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_long_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_ilr, 2)
-    bp['object_burst_damage_in_very_long_range'] = round(((bp['average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_very_long_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_ivlr, 2)
-    bp['usual_burst_damage_in_short_range'] = round((((bp['projectiles_per_shot_in_short_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['projectiles_per_shot_in_short_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * bp['super_damage_in_short_range'])) / (1.25 - ((bp['projectiles_per_shot_in_short_range'] - bp['average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_isr, 2)
-    bp['usual_burst_damage_in_medium_range'] = round((((bp['projectiles_per_shot_in_medium_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['projectiles_per_shot_in_medium_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * (bp['super_damage_in_medium_range'] - bp['average_super_damage']))) / (1.25 - ((bp['projectiles_per_shot_in_medium_range'] - bp['average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_imr, 2)
-    bp['usual_burst_damage_in_long_range'] = round((((bp['projectiles_per_shot_in_long_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['projectiles_per_shot_in_long_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * (bp['super_damage_in_long_range'] - bp['average_super_damage']))) / (1.25 - ((bp['projectiles_per_shot_in_long_range'] - bp['average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_ilr, 2)
-    bp['usual_burst_damage_in_very_long_range'] = round((((bp['projectiles_per_shot_in_very_long_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['projectiles_per_shot_in_very_long_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * (bp['super_damage_in_very_long_range'] - bp['average_super_damage']))) / (1.25 - ((bp['projectiles_per_shot_in_very_long_range'] - bp['average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_ivlr, 2)
+    bp['object_burst_damage_in_short_range'] = round(((bp['_average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_short_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_isr, 2)
+    bp['object_burst_damage_in_medium_range'] = round(((bp['_average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_medium_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_imr, 2)
+    bp['object_burst_damage_in_long_range'] = round(((bp['_average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_long_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_ilr, 2)
+    bp['object_burst_damage_in_very_long_range'] = round(((bp['_average_projectiles_per_shot'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + bp['super_damage_in_very_long_range'] + (bp['ocasional_damage'] / 4))/weight_object_burst_damage_ivlr, 2)
+    bp['usual_burst_damage_in_short_range'] = round((((bp['_projectiles_per_shot_in_short_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['_projectiles_per_shot_in_short_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * bp['super_damage_in_short_range'])) / (1.25 - ((bp['_projectiles_per_shot_in_short_range'] - bp['_average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_isr, 2)
+    bp['usual_burst_damage_in_medium_range'] = round((((bp['_projectiles_per_shot_in_medium_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['_projectiles_per_shot_in_medium_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * (bp['super_damage_in_medium_range'] - bp['average_super_damage']))) / (1.25 - ((bp['_projectiles_per_shot_in_medium_range'] - bp['_average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_imr, 2)
+    bp['usual_burst_damage_in_long_range'] = round((((bp['_projectiles_per_shot_in_long_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['_projectiles_per_shot_in_long_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * (bp['super_damage_in_long_range'] - bp['average_super_damage']))) / (1.25 - ((bp['_projectiles_per_shot_in_long_range'] - bp['_average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_ilr, 2)
+    bp['usual_burst_damage_in_very_long_range'] = round((((bp['_projectiles_per_shot_in_very_long_range'] * bp['_projectile_damage'] * bp['_shots_per_five_seconds']) + (((bp['_shots_per_five_seconds'] * bp['_projectiles_per_shot_in_very_long_range'] + bp['_auto_charge_super']) / bp['_necessary_projectiles_to_charge_super']) * (bp['super_damage_in_very_long_range'] - bp['average_super_damage']))) / (1.25 - ((bp['_projectiles_per_shot_in_very_long_range'] - bp['_average_projectiles_per_shot']) / 4)) + (bp['ocasional_damage'] / 4))/weight_usual_burst_damage_ivlr, 2)
     if bp['usual_burst_damage_in_very_long_range'] < 0:
         bp['usual_burst_damage_in_very_long_range'] = 0
 
     # DAMAGE/DURABILITY RELATIONSHIP PROPERTIES
-    bp['balance_between_damage_and_durability_in_short_range'] = round(((bp['usual_burst_damage_in_short_range'] / 2) * (bp['durability'] / 1)) / 2.5, 2)
-    bp['balance_between_damage_and_durability_in_medium_range'] = round(((bp['usual_burst_damage_in_medium_range'] / 1) * (bp['durability'] / 2)) / 3, 2)
-    bp['balance_between_damage_and_durability_in_long_range'] = round(((bp['usual_burst_damage_in_long_range'] * 1.5) * (bp['durability'] / 3)) / 2.5, 2)
-    bp['balance_between_damage_and_durability_in_very_long_range'] = round(((bp['usual_burst_damage_in_very_long_range'] * 2) * (bp['durability'] / 4.5)) / 4, 2)
+    bp['balance_between_damage_and_durability_in_short_range'] = round(((bp['usual_burst_damage_in_short_range'] / 2) * (bp['_durability'] / 1)) / 2.5, 2)
+    bp['balance_between_damage_and_durability_in_medium_range'] = round(((bp['usual_burst_damage_in_medium_range'] / 1) * (bp['_durability'] / 2)) / 3, 2)
+    bp['balance_between_damage_and_durability_in_long_range'] = round(((bp['usual_burst_damage_in_long_range'] * 1.5) * (bp['_durability'] / 3)) / 2.5, 2)
+    bp['balance_between_damage_and_durability_in_very_long_range'] = round(((bp['usual_burst_damage_in_very_long_range'] * 2) * (bp['_durability'] / 4.5)) / 4, 2)
 
     # SURPRISE ATTACK POWER PROPERTIES
-    bp['surprise_attack_power_in_short_range'] = round((bp['surprise_attack'] * bp['balance_between_damage_and_durability_in_short_range']) / 3, 2)
-    bp['surprise_attack_power_in_medium_range'] = round((bp['surprise_attack'] * bp['balance_between_damage_and_durability_in_medium_range']) / 2.7, 2)
-    bp['surprise_attack_power_in_long_range'] = round((bp['surprise_attack'] * bp['balance_between_damage_and_durability_in_long_range']) / 2.4, 2)
-    bp['surprise_attack_power_in_very_long_range'] = round((bp['surprise_attack'] * bp['balance_between_damage_and_durability_in_very_long_range']) / 1.9, 2)
+    bp['surprise_attack_power_in_short_range'] = round((bp['_surprise_attack'] * bp['balance_between_damage_and_durability_in_short_range']) / 3, 2)
+    bp['surprise_attack_power_in_medium_range'] = round((bp['_surprise_attack'] * bp['balance_between_damage_and_durability_in_medium_range']) / 2.7, 2)
+    bp['surprise_attack_power_in_long_range'] = round((bp['_surprise_attack'] * bp['balance_between_damage_and_durability_in_long_range']) / 2.4, 2)
+    bp['surprise_attack_power_in_very_long_range'] = round((bp['_surprise_attack'] * bp['balance_between_damage_and_durability_in_very_long_range']) / 1.9, 2)
 
     # OTHER PROPERTIES
-    bp['easy_approach'] = round(((bp['surprise_attack'] * 4) + (bp['_movement_speed'] * 2) + (bp['durability'] * 2)) / 6, 2)
-    bp['pressure'] = round(((((bp['wide_attack'] + ((bp['balance_between_damage_and_durability_in_short_range'] + bp['balance_between_damage_and_durability_in_medium_range']) / 2) / 1.5) / 2) * 4) + (bp['durability'] * 4) + (bp['attack_distance'] * 2) + (bp['easy_approach'] * 2)) / 9, 2)
+    bp['easy_approach'] = round(((bp['_surprise_attack'] * 4) + (bp['_movement_speed'] * 2) + (bp['_durability'] * 2)) / 6, 2)
+    bp['pressure'] = round(((((bp['wide_attack'] + ((bp['balance_between_damage_and_durability_in_short_range'] + bp['balance_between_damage_and_durability_in_medium_range']) / 2) / 1.5) / 2) * 4) + (bp['_durability'] * 4) + (bp['_attack_distance'] * 2) + (bp['easy_approach'] * 2)) / 9, 2)
     bp['area_control'] = round(((bp['area_denial'] * 5) + (((bp['balance_between_damage_and_durability_in_short_range'] + bp['balance_between_damage_and_durability_in_medium_range'] + bp['balance_between_damage_and_durability_in_long_range'] + bp['balance_between_damage_and_durability_in_very_long_range']) / (4 * 2)) * 2) + (bp['invisibility_buffing'] * 2)) / 6, 2)
 
     if bp['_indirect_damage_efficiency'] < 6:
@@ -141,15 +141,12 @@ def get_final_brawler_properties(bp):
         bp['indirect_damage'] = bp['_indirect_damage_efficiency'] * ((bp['balance_between_damage_and_durability_in_short_range'] + bp['balance_between_damage_and_durability_in_medium_range'] + bp['balance_between_damage_and_durability_in_long_range'] + bp['balance_between_damage_and_durability_in_very_long_range']) / (4 * 2.5))
     else:
         bp['indirect_damage'] = bp['_indirect_damage_efficiency'] * ((bp['balance_between_damage_and_durability_in_short_range'] + bp['balance_between_damage_and_durability_in_medium_range'] + bp['balance_between_damage_and_durability_in_long_range'] + bp['balance_between_damage_and_durability_in_very_long_range']) / (4 * 2.5)) * (bp['average_super_damage'] / 2000)
-    bp['indirect_damage'] = round(bp['indirect_damage'] / ((10 - bp['attack_distance'] + 2) / 4), 2)
+    bp['indirect_damage'] = round(bp['indirect_damage'] / ((10 - bp['_attack_distance'] + 2) / 4), 2)
 
     bp['multiple_pets_generation'] = round(((bp['_frequency_of_pets_generation'] * 4) + ((bp['_pets_resistence'] * 2) / (bp['_deteriorability_of_pets'] + 1)) + (bp['_accumulation_of_pets'] * 4)) / 7.5, 2)
     bp['durable_pets_generation'] = round(((bp['_pets_resistence'] * 3) + (bp['_frequency_of_pets_generation'] * 3) + ((bp['_pets_damage'] * 2) + (bp['_pets_range'] * 2) + (bp['_pets_speed'] * 2))) / 8, 2)
     bp['groupment_punishment'] = round(((bp['wide_attack'] * 2) + (bp['stun_debuffing'] * 1) + (bp['_increased_damage_when_grouped'] * 3)) / 4.5, 2)
 
-    del bp['durability']
-    del bp['attack_distance']
-    del bp['surprise_attack']
     properties_to_delete = []
     for property_key in bp.keys():
         if property_key[0] == '_':
@@ -167,7 +164,7 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
     for enemy_index in enemy_indexes:
         quality[enemy_index] = 0
         for property_key in brawlers_proficiencies[enemy_index].keys():
-            if property_key in ['id', '_necessary_projectiles_to_charge_super', '_necessary_supers_to_charge_hipercharge', '_projectile_damage', '_shots_per_five_seconds', 'average_projectiles_per_shot', 'projectiles_per_shot_in_short_range', 'projectiles_per_shot_in_medium_range', 'projectiles_per_shot_in_long_range', 'projectiles_per_shot_in_very_long_range', '_auto_charge_super', 'super_damage_in_short_range', 'super_damage_in_medium_range', 'super_damage_in_long_range', 'super_damage_in_very_long_range', 'average_super_damage', 'ocasional_damage']:
+            if property_key in ['id', '_necessary_projectiles_to_charge_super', '_necessary_supers_to_charge_hipercharge', '_projectile_damage', '_shots_per_five_seconds', '_average_projectiles_per_shot', '_projectiles_per_shot_in_short_range', '_projectiles_per_shot_in_medium_range', '_projectiles_per_shot_in_long_range', '_projectiles_per_shot_in_very_long_range', '_auto_charge_super', 'super_damage_in_short_range', 'super_damage_in_medium_range', 'super_damage_in_long_range', 'super_damage_in_very_long_range', 'average_super_damage', 'ocasional_damage']:
                 continue
             analized_brawler_power_values = []
             property_relations = PROFICIENCIES_PROPERTIES_RELATIONSHIP[property_key]
