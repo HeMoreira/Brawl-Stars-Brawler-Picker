@@ -3,7 +3,7 @@ from proficiency.models import Proficiency
 from django.core.exceptions import ValidationError
 
 class AdditionalPower(models.Model):
-    name = models.CharField(max_length=40)
+    additional_power_name = models.CharField(max_length=40)
     icon_name = models.CharField(max_length=49)
     base_proficiency = models.OneToOneField(Proficiency, on_delete=models.CASCADE, verbose_name="Base Proficiency")
 
@@ -11,11 +11,11 @@ class AdditionalPower(models.Model):
         abstract = True
     
     def __str__(self):
-        return self.name
+        return self.additional_power_name
     
     def clean(self):
         super().clean()
-        adapted_name = self.name.lower().replace(" ", "")
+        adapted_name = self.additional_power_name.lower().replace(" ", "")
         name_length = len(adapted_name)
         if adapted_name != self.icon_name[:name_length] or self.icon_name[name_length:] != "_icon.png":
             raise ValidationError({'icon_name': 'The icon_name needs to be composed of <brawlernameinlowercaseandwithoutspaces>_icon.png'})
@@ -25,7 +25,7 @@ class AdditionalPower(models.Model):
         return super().save(*args, **kwargs)
 
 class Gadget(AdditionalPower):
-    name = models.CharField(max_length=40, verbose_name="Gadget Name")
+    additional_power_name = models.CharField(max_length=40, verbose_name="Gadget Name")
     icon_name = models.CharField(max_length=49,  verbose_name="Gadget Icon Name", default="unowngadget_icon.png")
 
     class Meta:
@@ -33,7 +33,7 @@ class Gadget(AdditionalPower):
         verbose_name_plural = "Gadgets"
 
 class StarPower(AdditionalPower):
-    name = models.CharField(max_length=40, verbose_name="Star Power Name")
+    additional_power_name = models.CharField(max_length=40, verbose_name="Star Power Name")
     icon_name = models.CharField(max_length=49,  verbose_name="Star Power Icon Name", default="unownstarpower_icon.png")
 
     class Meta:
@@ -41,7 +41,7 @@ class StarPower(AdditionalPower):
         verbose_name_plural = "Star Powers"
 
 class Hipercharge(AdditionalPower):
-    name = models.CharField(max_length=40, verbose_name="Hipercharge Name")
+    additional_power_name = models.CharField(max_length=40, verbose_name="Hipercharge Name")
     icon_name = models.CharField(max_length=49,  verbose_name="Hypercharge Icon Name", default="unownhipercharge_icon.png")
 
     class Meta:
