@@ -81,17 +81,17 @@ function changeStatusCard(card, updated_status_information) {
             `Rating: ${updated_status_information.rating}/100
             ---------------
             Fit-Against:
-            - 1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"]) }
-            - 2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["4"]) }
-            - 3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"]) }`);
+            1° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["3"]) }
+            2° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["4"]) }
+            3° Enemy: ${JSON.stringify(updated_status_information.quality_vs_enemies["5"]) }`);
     } else if ([3, 4, 5].includes(idx)) {
         statusElement.setAttribute('data-tooltip',
             `Rating: ${updated_status_information.rating}/100
             ---------------
             Fit-Against:
-            - 1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"]) }
-            - 2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"]) }
-            - 3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"]) }`);
+            1° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["0"]) }
+            2° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["1"]) }
+            3° Ally: ${JSON.stringify(updated_status_information.quality_vs_enemies["2"]) }`);
     } else {
         statusElement.setAttribute('data-tooltip', `Something went wrong...`);
     }
