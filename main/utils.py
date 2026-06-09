@@ -185,18 +185,15 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
             for weakness in property_relations['weaknesses']:
                 weakness_property = weakness[1]
                 weakness_weight = weakness[0]
-                result = ((((analized_brawler_properties[property_key] - analized_enemy_properties[weakness_property]) * (analized_brawler_properties[property_key])) / 10) - ((analized_enemy_properties[weakness_property] * analized_brawler_properties[property_key]) / 10)) * weakness_weight
+                result = (((analized_brawler_properties[property_key] - analized_enemy_properties[weakness_property]) / 10) * analized_brawler_properties[property_key]) * weakness_weight
                 analized_brawler_power_values.append(result)
                 print("weakness:", weakness_property, analized_enemy_properties[weakness_property], result)
 
             for necessity in property_relations['necessary_against']:
                 necessity_property = necessity[1]
                 necessity_weight = necessity[0]
-                result = (analized_brawler_properties[property_key] + (analized_enemy_properties[necessity_property] * -1)) * necessity_weight
-                if result < 0:
-                    analized_brawler_power_values.append(result)
-                else:
-                    analized_brawler_power_values.append(0)
+                result = ((analized_brawler_properties[property_key] + (analized_enemy_properties[necessity_property] * -1)) * necessity_weight * 2) * (analized_enemy_properties[necessity_property] != 0)
+                analized_brawler_power_values.append(result)
                 print("necessity:", necessity_property, analized_enemy_properties[necessity_property], result)
 
             result_analized_brawler = 0

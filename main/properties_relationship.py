@@ -390,6 +390,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "usual_burst_damage_in_short_range": {
         "weaknesses": [
+            [4, "retreat_button"],
             [2, "usual_burst_damage_in_medium_range"],
             [3, "usual_burst_damage_in_long_range"],
             [4, "usual_burst_damage_in_very_long_range"],
@@ -398,6 +399,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         ],
         "necessary_against": [],
         "synergies": [
+            [2, "retreat_button"],
             [2, "usual_burst_damage_in_very_long_range"],
             [2, "usual_burst_damage_in_long_range"],
             [2, "pressure"],
