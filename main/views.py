@@ -17,11 +17,11 @@ def brawler_picker(request):
         main_brawler_info_list.append({
             "name": brawler.name,
             "icon": brawler.icon_name,
-            "first_gadget": Gadget.objects.get(id=brawler.first_gadget.id).icon_name,
-            "second_gadget": Gadget.objects.get(id=brawler.second_gadget.id).icon_name,
-            "first_star_power": StarPower.objects.get(id=brawler.first_starpower.id).icon_name,
-            "second_star_power": StarPower.objects.get(id=brawler.second_starpower.id).icon_name,
-            "hipercharge": Hipercharge.objects.get(id=brawler.hipercharge.id).icon_name,
+            "first_gadget": [brawler.first_gadget.icon_name, brawler.first_gadget.additional_power_name],
+            "second_gadget": [brawler.second_gadget.icon_name, brawler.second_gadget.additional_power_name],
+            "first_star_power": [brawler.first_starpower.icon_name, brawler.first_starpower.additional_power_name],
+            "second_star_power": [brawler.second_starpower.icon_name, brawler.second_starpower.additional_power_name],
+            "hipercharge": [brawler.hipercharge.icon_name, brawler.hipercharge.additional_power_name],
         })
     context = {
         "brawlers": brawlers,

@@ -203,7 +203,13 @@ function getTypedBrawler(input) {
 function changeBrawlerOptions(gadget_select, star_power_select, hipercharge_container) {
     changeBrawlerOption(brawler.first_gadget, brawler.second_gadget, gadget_select);
     changeBrawlerOption(brawler.first_star_power, brawler.second_star_power, star_power_select);
-    hipercharge_container.querySelector('.hipercharge-image').src = BRAWLER_ICONS_STATIC_URL + 'hipercharges/' + brawler.hipercharge;
+    const hipercharge_image = hipercharge_container.querySelector('.hipercharge-image');
+    const hipercharge_tooltip = hipercharge_container.querySelector('.hipercharge-tooltip-image');
+    hipercharge_image.src = BRAWLER_ICONS_STATIC_URL + 'hipercharges/' + brawler.hipercharge[0];
+    hipercharge_image.dataset.tooltip = brawler.hipercharge[1];
+    if (hipercharge_tooltip) {
+        hipercharge_tooltip.dataset.tooltip = brawler.hipercharge[1];
+    }
 }
 
 function changeBrawlerOption(first_option_content, second_option_content, select) {
@@ -215,29 +221,63 @@ function changeBrawlerOption(first_option_content, second_option_content, select
     }
 
     select.innerHTML = '';
+    const first_option_wrapper = document.createElement('div');
+    first_option_wrapper.classList.add('tooltip-image');
     const first_option = document.createElement('img');
     first_option.dataset.id = 1;
-    first_option.src = base_option_path + first_option_content;
+    first_option.dataset.tooltip = first_option_content[1];
+    first_option.src = base_option_path + first_option_content[0];
+    first_option.classList.add('additional-power-option');
+    first_option_wrapper.dataset.tooltip = first_option_content[1];
+    first_option_wrapper.appendChild(first_option);
+
+    const second_option_wrapper = document.createElement('div');
+    second_option_wrapper.classList.add('tooltip-image');
     const second_option = document.createElement('img');
     second_option.dataset.id = 2;
-    second_option.src = base_option_path + second_option_content;
-    select.appendChild(first_option);
-    select.appendChild(second_option);
+    second_option.dataset.tooltip = second_option_content[1];
+    second_option.src = base_option_path + second_option_content[0];
+    second_option.classList.add('additional-power-option');
+    second_option_wrapper.dataset.tooltip = second_option_content[1];
+    second_option_wrapper.appendChild(second_option);
+
+    select.appendChild(first_option_wrapper);
+    select.appendChild(second_option_wrapper);
 }
 
 function resetBrawlerOptions(card) {
     const gadget_container = card.querySelector('.gadget-container');
     const star_power_container = card.querySelector('.star-power-container');
     const hipercharge_container = card.querySelector('.hipercharge-container');
+    const gadget_tooltip = gadget_container.querySelector('.tooltip-image');
+    const star_power_tooltip = star_power_container.querySelector('.tooltip-image');
+    const hipercharge_tooltip = hipercharge_container.querySelector('.hipercharge-tooltip-image');
 
     gadget_container.querySelector('.gadget-select').innerHTML = '';
     star_power_container.querySelector('.star-power-select').innerHTML = '';
 
-    gadget_container.querySelector('.image-selected').src = BRAWLER_ICONS_STATIC_URL + 'gadgets/gadget_base.png';
-    gadget_container.querySelector('.image-selected').dataset.id = '0';
-    star_power_container.querySelector('.image-selected').src = BRAWLER_ICONS_STATIC_URL + 'star-powers/starpower_base.png';
-    star_power_container.querySelector('.image-selected').dataset.id = '0';
-    hipercharge_container.querySelector('.hipercharge-image').src = BRAWLER_ICONS_STATIC_URL + 'hipercharges/hipercharge_base.png';
+    const gadget_selected = gadget_container.querySelector('.image-selected');
+    const star_power_selected = star_power_container.querySelector('.image-selected');
+    const hipercharge_image = hipercharge_container.querySelector('.hipercharge-image');
+
+    gadget_selected.src = BRAWLER_ICONS_STATIC_URL + 'gadgets/gadget_base.png';
+    gadget_selected.dataset.id = '0';
+    gadget_selected.dataset.tooltip = 'Select a Gadget';
+    if (gadget_tooltip) {
+        gadget_tooltip.dataset.tooltip = 'No Gadget';
+    }
+
+    star_power_selected.src = BRAWLER_ICONS_STATIC_URL + 'star-powers/starpower_base.png';
+    star_power_selected.dataset.id = '0';
+    star_power_selected.dataset.tooltip = 'Select a StarPower';
+    if (star_power_tooltip) {
+        star_power_tooltip.dataset.tooltip = 'No StarPower';
+    }
+
+    hipercharge_image.src = BRAWLER_ICONS_STATIC_URL + 'hipercharges/hipercharge_base.png';
+    if (hipercharge_tooltip) {
+        hipercharge_tooltip.dataset.tooltip = 'No Hipercharge';
+    }
 }
 
 function updateBrawlerSelectedComplements(card) {
@@ -247,6 +287,8 @@ function updateBrawlerSelectedComplements(card) {
     const star_power_selector = star_power_container.querySelector('.star-power-select');
     const gadget_selected = gadget_container.querySelector('.image-selected');
     const star_power_selected = star_power_container.querySelector('.image-selected');
+    const gadget_tooltip = gadget_container.querySelector('.tooltip-image');
+    const star_power_tooltip = star_power_container.querySelector('.tooltip-image');
 
     gadget_selector.querySelectorAll('img').forEach(option => {
         option.addEventListener('click', () => {
@@ -258,11 +300,23 @@ function updateBrawlerSelectedComplements(card) {
             updateBrawlerComplement(star_power_selected, option, card);
         });
     });
+
+    if (gadget_tooltip) {
+        gadget_tooltip.dataset.tooltip = gadget_selected.dataset.tooltip || gadget_selected.dataset.name || '';
+    }
+    if (star_power_tooltip) {
+        star_power_tooltip.dataset.tooltip = star_power_selected.dataset.tooltip || star_power_selected.dataset.name || '';
+    }
 }
 
 function updateBrawlerComplement(selected_image, new_image, card) {
     selected_image.src = new_image.src;
     selected_image.dataset.id = new_image.dataset.id;
+    selected_image.dataset.tooltip = new_image.dataset.tooltip;
+    const tooltip_wrapper = selected_image.closest('.tooltip-image');
+    if (tooltip_wrapper) {
+        tooltip_wrapper.dataset.tooltip = new_image.dataset.tooltip;
+    }
     updateStatusToUptateRequired(card);
 }
 

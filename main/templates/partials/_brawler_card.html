@@ -2,7 +2,9 @@
 
 <section id="{{ card_id }}" class="{{ card_class }}">
     <div class="hipercharge-container">
-        <img src="{% static 'images/hipercharges/hipercharge_base.png' %}" alt="" class="hipercharge-image">
+        <div class="hipercharge-tooltip-image" data-tooltip="No hipercharge selected">
+            <img src="{% static 'images/hipercharges/hipercharge_base.png' %}" alt="" class="hipercharge-image">
+        </div>
     </div>
     <img src="{% static 'images/brawlers/glowbert_icon.png' %}" alt="" class="brawler-image">
     <input type="text" class="brawler-select" list="brawler-suggestions" placeholder="Brawler Name:">
@@ -13,13 +15,17 @@
     </datalist>
     <div class="brawler-additional-info">
         <div class="gadget-container">
-            <img class="image-selected" data-id="0" src="{% static 'images/gadgets/gadget_base.png' %}" alt="">
+            <div class="tooltip-image" data-tooltip="No gadget selected">
+                <img class="image-selected" data-id="0" src="{% static 'images/gadgets/gadget_base.png' %}" alt="">
+            </div>
             <div class="gadget-select select-items select-hide">
 
             </div>
         </div>
         <div class="star-power-container">
-            <img class="image-selected" data-id="0" src="{% static 'images/star-powers/starpower_base.png' %}" alt="">
+            <div class="tooltip-image" data-tooltip="No star power selected">
+                <img class="image-selected" data-id="0" src="{% static 'images/star-powers/starpower_base.png' %}" alt="">
+            </div>
             <div class="star-power-select select-items select-hide">
 
             </div>
