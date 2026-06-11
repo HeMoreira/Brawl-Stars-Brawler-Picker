@@ -4,7 +4,10 @@ from django.forms.models import model_to_dict
 from .properties_relationship import PROFICIENCIES_PROPERTIES_RELATIONSHIP
 
 def analyze_all_cards(all_cards):
-    results = []
+    results = [
+        {"quality_vs_enemies":{}}, {"quality_vs_enemies":{}}, {"quality_vs_enemies":{}}, 
+        {"quality_vs_enemies":{}}, {"quality_vs_enemies":{}}, {"quality_vs_enemies":{}}
+    ]
     brawlers_proficiencies = {
         0 : {}, 1 : {}, 2 : {},
         3 : {}, 4 : {}, 5 : {},
@@ -14,26 +17,36 @@ def analyze_all_cards(all_cards):
 
     for brawler_key, _ in brawlers_proficiencies.items():
         if find_brawler(all_cards[brawler_key]['name']) == None:
-            results.append(return_invalid_brawler(brawler_key))
+            results[brawler_key] = return_invalid_brawler(brawler_key)
             continue
         convert_proficiencies(brawlers_proficiencies[brawler_key])
         brawlers_proficiencies[brawler_key] = get_final_brawler_properties(brawlers_proficiencies[brawler_key])
     
     for brawler_key, _ in brawlers_proficiencies.items():
-        if find_brawler(all_cards[brawler_key]['name']) == None:
-            results.append(return_invalid_brawler(brawler_key))
-            continue
+        if brawler_key < 3:
+            if find_brawler(all_cards[brawler_key]['name']) == None:
+                results[brawler_key] = return_invalid_brawler(brawler_key)
+                continue
 
-        quality_vs_enemies = calculate_quality_vs_enemies(all_cards[brawler_key]['index'], brawlers_proficiencies)
-        rating = calculate_card_rating(quality_vs_enemies)
-        status = calculate_card_status_from_rating(rating)
+            quality_vs_enemies = calculate_quality_vs_enemies(all_cards[brawler_key]['index'], brawlers_proficiencies)
+            rating = calculate_card_rating(quality_vs_enemies)
+            status = calculate_card_status_from_rating(rating)
 
-        results.append({
-            'index': brawler_key,
-            'status': status,
-            'rating': rating,
-            'quality_vs_enemies': quality_vs_enemies,
-        })
+            results[brawler_key] = {
+                'index': brawler_key,
+                'status': status,
+                'rating': rating,
+                'quality_vs_enemies': quality_vs_enemies,
+            }
+            enemy_indexes = get_enemy_indexes(brawler_key)
+            for enemy_index in enemy_indexes:
+                results[enemy_index]['quality_vs_enemies'][brawler_key] = quality_vs_enemies[enemy_index] * -1
+
+            print("\n\n\n", results, "\n\n\n")
+        else:
+            results[brawler_key]['index'] = brawler_key
+            results[brawler_key]['rating'] = calculate_card_rating(results[brawler_key]['quality_vs_enemies'])
+            results[brawler_key]['status'] = calculate_card_status_from_rating(results[brawler_key]['rating'])
 
     return results
 
@@ -185,16 +198,20 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
             for weakness in property_relations['weaknesses']:
                 weakness_property = weakness[1]
                 weakness_weight = weakness[0]
-                result = (((analized_brawler_properties[property_key] - analized_enemy_properties[weakness_property]) / 10) * analized_brawler_properties[property_key]) * weakness_weight
+                result1 = (((analized_brawler_properties[property_key] - analized_enemy_properties[weakness_property]) / 10) * analized_brawler_properties[property_key]) * weakness_weight
+                result2 = ((((analized_enemy_properties[property_key] - analized_brawler_properties[weakness_property]) / 10) * analized_enemy_properties[property_key]) * weakness_weight) * -1
+                result = (result1 + result2) / 2
                 analized_brawler_power_values.append(result)
                 print("weakness:", weakness_property, analized_enemy_properties[weakness_property], result)
 
-            for necessity in property_relations['necessary_against']:
-                necessity_property = necessity[1]
-                necessity_weight = necessity[0]
-                result = ((analized_brawler_properties[property_key] + (analized_enemy_properties[necessity_property] * -1)) * necessity_weight * 2) * (analized_enemy_properties[necessity_property] != 0)
+            for useful in property_relations['useful_against']:
+                useful_property = useful[1]
+                useful_weight = useful[0]
+                result1 = ((analized_brawler_properties[property_key] * analized_enemy_properties[useful_property] / 10) / (10 - analized_brawler_properties[property_key])) * useful_weight
+                result2 = (((analized_enemy_properties[property_key] * analized_brawler_properties[useful_property] / 10) / (10 - analized_enemy_properties[property_key])) * useful_weight) * -1
+                result = (result1 + result2) / 2
                 analized_brawler_power_values.append(result)
-                print("necessity:", necessity_property, analized_enemy_properties[necessity_property], result)
+                print("useful:", useful_property, analized_enemy_properties[useful_property], result)
 
             result_analized_brawler = 0
             for power in analized_brawler_power_values:
@@ -205,8 +222,6 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
                 result_analized_brawler /= 1
 
             quality[enemy_index] += result_analized_brawler
-
-            print(analized_brawler_power_values, quality[enemy_index], "\n")
     
     good_looking_quality = get_formated_quality(quality)
     return good_looking_quality

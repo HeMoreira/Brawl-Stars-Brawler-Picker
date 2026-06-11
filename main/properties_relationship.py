@@ -10,7 +10,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [1, "stun_debuffing"]
         ],
-        "necessary_against": [
+        "useful_against": [
             [2, "easy_approach"]
         ],
         "synergies": [
@@ -23,7 +23,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "balance_between_damage_and_durability_in_medium_range"],
             [1, "balance_between_damage_and_durability_in_long_range"]
         ],
-        "necessary_against": [
+        "useful_against": [
             [4, "multiple_pets_generation"],
             [2, "durable_pets_generation"],
             [1, "easy_approach"]
@@ -40,7 +40,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "usual_burst_damage_in_very_long_range"],
             [1, "easy_approach"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "enemy_position_manipulation"],
             [2, "stun_debuffing"],
@@ -53,7 +53,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [1, "retreat_button"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "area_denial"],
             [2, "wide_attack"],
@@ -68,12 +68,12 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [4, "counter_water_walking"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": []
     },
     "counter_water_walking": {
         "weaknesses": [],
-        "necessary_against": [
+        "useful_against": [
             [4, "water_walking"]
         ],
         "synergies": []
@@ -82,7 +82,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [2, "cover_creation_efficiency"]
         ],
-        "necessary_against": [
+        "useful_against": [
             [2, "indirect_damage"]
         ],
         "synergies": [
@@ -95,7 +95,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [2, "cover_creation_efficiency"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "usual_burst_damage_in_long_range"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -107,7 +107,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [4, "wall_break_efficiency"],
             [4, "grass_break_efficiency"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "indirect_damage"],
             [2, "balance_between_damage_and_durability_in_short_range"]
@@ -115,7 +115,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "grass_vision": {
         "weaknesses": [],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "usual_burst_damage_in_short_range"],
             [2, "usual_burst_damage_in_medium_range"],
@@ -124,14 +124,14 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "circumstantiality_of_overall_proficiency": {
         "weaknesses": [],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": []
     },
     "heal_buffing": {
         "weaknesses": [
             [2, "counter_heal_buffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "balance_between_damage_and_durability_in_medium_range"],
@@ -144,7 +144,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "counter_heal_buffing": {
         "weaknesses": [],
-        "necessary_against": [
+        "useful_against": [
             [4, "heal_buffing"]
         ],
         "synergies": [
@@ -158,7 +158,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [2, "damage_buffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "usual_burst_damage_in_very_long_range"],
             [2, "usual_burst_damage_in_long_range"]
@@ -169,7 +169,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "shield_buffing"],
             [1, "counter_damage_buffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "balance_between_damage_and_durability_in_medium_range"],
@@ -182,7 +182,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "retreat_button"],
             [1, "area_denial"]
         ],
-        "necessary_against": [
+        "useful_against": [
             [4, "damage_buffing"]
         ],
         "synergies": [
@@ -199,7 +199,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [1, "wide_attack"],
         ],
-        "necessary_against": [
+        "useful_against": [
             [1, "balance_between_damage_and_durability_in_short_range"]
         ],
         "synergies": [
@@ -215,7 +215,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "retreat_button"],
             [2, "balance_between_damage_and_durability_in_short_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "surprise_attack_power_in_short_range"],
             [2, "surprise_attack_power_in_medium_range"],
@@ -231,7 +231,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "object_burst_damage_in_long_range"],
             [1, "object_burst_damage_in_very_long_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "usual_burst_damage_in_short_range"],
             [2, "usual_burst_damage_in_medium_range"],
@@ -242,7 +242,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [2, "counter_poison_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "pressure"],
             [2, "surprise_attack_power_in_short_range"],
@@ -254,7 +254,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "counter_poison_debuffing": {
         "weaknesses": [],
-        "necessary_against": [
+        "useful_against": [
             [4, "poison_debuffing"]
         ],
         "synergies": []
@@ -263,7 +263,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [2, "counter_stun_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "indirect_damage"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -273,7 +273,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "counter_stun_debuffing": {
         "weaknesses": [],
-        "necessary_against": [
+        "useful_against": [
             [4, "stun_debuffing"]
         ],
         "synergies": []
@@ -282,7 +282,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [2, "counter_slowness_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "surprise_attack_power_in_short_range"],
             [2, "surprise_attack_power_in_medium_range"],
@@ -294,7 +294,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "counter_slowness_debuffing": {
         "weaknesses": [],
-        "necessary_against": [
+        "useful_against": [
             [4, "slowness_debuffing"]
         ],
         "synergies": []
@@ -303,12 +303,12 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [2, "counter_attacks_canceling"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": []
     },
     "counter_attacks_canceling": {
         "weaknesses": [],
-        "necessary_against": [
+        "useful_against": [
             [2, "attacks_canceling"]
         ],
         "synergies": []
@@ -317,7 +317,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
         "weaknesses": [
             [1, "retreat_button"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "grass_vision"]
         ]
@@ -331,7 +331,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "enemy_position_manipulation"],
             [1, "block_enemies"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "usual_burst_damage_in_very_long_range"],
             [2, "usual_burst_damage_in_long_range"],
@@ -349,7 +349,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "block_enemies"],
             [1, "enemy_position_manipulation"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -365,7 +365,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "easy_approach"],
             [1, "enemy_position_manipulation"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -380,7 +380,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "easy_approach"],
             [1, "usual_burst_damage_in_very_long_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "pressure"],
             [2, "balance_between_damage_and_durability_in_short_range"],
@@ -397,7 +397,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "pressure"],
             [2, "block_enemies"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "retreat_button"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -415,7 +415,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "pressure"],
             [2, "block_enemies"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -430,7 +430,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "usual_burst_damage_in_very_long_range"],
             [4, "easy_approach"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -445,7 +445,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [4, "easy_approach"],
             [1, "usual_burst_damage_in_very_long_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "pressure"],
             [2, "balance_between_damage_and_durability_in_short_range"],
@@ -460,7 +460,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [3, "usual_burst_damage_in_long_range"],
             [2, "pressure"]
         ],
-        "necessary_against": [
+        "useful_against": [
             [4, "surprise_attack_power_in_medium_range"],
             [4, "surprise_attack_power_in_long_range"],
             [4, "surprise_attack_power_in_very_long_range"]
@@ -477,7 +477,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [3, "usual_burst_damage_in_very_long_range"],
             [2, "usual_burst_damage_in_long_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -492,7 +492,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [4, "easy_approach"],
             [2, "usual_burst_damage_in_very_long_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "pressure"]
@@ -504,7 +504,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "surprise_attack_power_in_very_long_range"],
             [2, "surprise_attack_power_in_long_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "pressure"],
             [2, "balance_between_damage_and_durability_in_short_range"]
@@ -519,7 +519,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "block_enemies"],
             [2, "stun_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "usual_burst_damage_in_very_long_range"],
@@ -537,7 +537,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "block_enemies"],
             [2, "stun_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "slowness_debuffing"],
@@ -555,7 +555,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "block_enemies"],
             [3, "stun_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "slowness_debuffing"],
@@ -573,7 +573,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "block_enemies"],
             [3, "stun_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "retreat_button"],
@@ -587,7 +587,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "retreat_button"],
             [1, "wide_attack"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "slowness_debuffing"],
             [2, "balance_between_damage_and_durability_in_short_range"],
@@ -604,7 +604,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [1, "stun_debuffing"],
             [2, "slowness_debuffing"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "usual_burst_damage_in_very_long_range"],
             [2, "usual_burst_damage_in_long_range"],
@@ -623,7 +623,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [2, "surprise_attack_power_in_long_range"],
             [2, "surprise_attack_power_in_very_long_range"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "usual_burst_damage_in_very_long_range"],
             [2, "usual_burst_damage_in_long_range"],
@@ -639,7 +639,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [4, "wall_break_efficiency"],
             [4, "easy_approach"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "balance_between_damage_and_durability_in_short_range"],
             [2, "balance_between_damage_and_durability_in_medium_range"],
@@ -652,7 +652,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [4, "wide_attack"],
             [3, "groupment_punishment"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "surprise_attack_power_in_short_range"],
             [2, "surprise_attack_power_in_medium_range"],
@@ -666,7 +666,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
             [4, "groupment_punishment"],
             [3, "wide_attack"]
         ],
-        "necessary_against": [],
+        "useful_against": [],
         "synergies": [
             [2, "pressure"],
             [2, "usual_burst_damage_in_short_range"],
@@ -675,7 +675,7 @@ PROFICIENCIES_PROPERTIES_RELATIONSHIP = {
     },
     "groupment_punishment": {
         "weaknesses": [],
-        "necessary_against": [
+        "useful_against": [
             [3, "multiple_pets_generation"],
             [4, "durable_pets_generation"]
         ],
