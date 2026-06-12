@@ -228,10 +228,7 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
 
 def get_formated_quality(quality):
     for enemy_index in quality.keys():
-        if quality[enemy_index] < 10 and quality[enemy_index] > 0 or quality[enemy_index] > -10 and quality[enemy_index] < 0:
-            quality[enemy_index] = round(quality[enemy_index], 2)
-        else:
-            quality[enemy_index] = round(quality[enemy_index], 1)
+        quality[enemy_index] = round(quality[enemy_index], 2)
     return quality
 
 def get_formated_rating(rating):
