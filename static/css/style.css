@@ -456,17 +456,17 @@ details aside {
 }
 .hipercharge-container {
     position: absolute;
-    top: -15px;
-    right: -20px;
+    top: 0;
+    right: 0;
     z-index: 10;
 }
 .brawler-additional-info img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
 }
 .hipercharge-container img {
     width: auto;
-    height: 50px;
+    height: 40px;
 }
 
 /* --- RESPONSIVINESS --- */
@@ -502,6 +502,18 @@ details aside {
     
     .your-team-details, .brawlers-container, .enemy-team-details {
         animation: slideAndAppear 1s ease-out;
+    }
+
+    .hipercharge-container {
+        top: -15px;
+        right: -20px;
+    }
+    .hipercharge-container img {
+        height: 50px;
+    }
+    .brawler-additional-info img {
+        height: 40px;
+        width: auto;
     }
 
     @keyframes slideAndAppear {
@@ -602,11 +614,18 @@ details aside {
 
     .brawlers-container {
         grid-template-columns: repeat(3, 1fr);
-        gap: 0.8rem;
+        gap: 0.5rem;
     }
 
     .brawl-card-blue, .brawl-card-red {
-        gap: 0.6rem;
+        padding: 3vw 1vw;
+        gap: 0.4rem;
+    }
+
+    .brawler-select, .complement-select {
+        width: 80%;
+        padding: 0.6rem 0;
+        font-size: 0.8rem;
     }
 
     .brawler-image {
@@ -615,9 +634,42 @@ details aside {
         font-size: 2rem;
     }
 
+    .brawler-additional-info {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: space-between;
+    }
+
     .brawler-status {
-        font-size: 0.8rem;
-        padding: 0.6rem;
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        width: 80%;
+    }
+
+    .brawler-status::before {
+        left: -12px;
+        right: -12px;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.65rem;
+    }
+
+    .brawler-status:hover::before,
+    .brawler-status:active::before {
+        opacity: 1;
+        bottom: -10px;
+    }
+
+    .select-items .tooltip-image {
+        margin: 5px 3px 0;
+    }
+
+    .tooltip-image:hover::before,
+    .tooltip-image:active::before {
+        opacity: 0;
+    }
+    .hipercharge-tooltip-image:hover::before,
+    .hipercharge-tooltip-image:active::before {
+        opacity: 0;
     }
 
     .link-button {
