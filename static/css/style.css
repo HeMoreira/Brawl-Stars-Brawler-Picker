@@ -347,9 +347,9 @@ details aside {
 }
 
 .hipercharge-tooltip-image::before {
-    left: -140px;
     right: 40px;
     top: 10px;
+    width: 10vh;
 }
 
 .tooltip-image::before, .hipercharge-tooltip-image::before {
@@ -477,15 +477,16 @@ details aside {
         grid-template-columns: 1fr 2fr 1fr;
         gap: 2rem;
         grid-template-areas:
+        "map-select-wrapper map-select-wrapper map-select-wrapper"
         "left center right";
     }
 
     .map-select-wrapper {
-        grid-column: 1 / -1;
-        margin: -2rem -1rem 1.5rem -1rem;
-        padding: 1.5rem;
+        grid-area: map-select-wrapper;
         background: var(--bg-black);
-        border-bottom: 2px solid var(--primary-color);
+    }
+    .your-team-details, .enemy-team-details {
+        margin: -50px 0 0;
     }
     
     .your-team-details {
@@ -552,6 +553,11 @@ details aside {
     .your-team-details,
     .enemy-team-details {
         width: 100%;
+    }
+
+    .hipercharge-tooltip-image::before {
+        right: 30px;
+        top: 2px;
     }
 }
 @media (max-width: 768px) {
