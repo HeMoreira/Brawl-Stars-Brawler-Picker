@@ -5,40 +5,18 @@ from additional_power.models import Gadget, Hipercharge, StarPower
 from brawler.models import Brawler
 from proficiency.models import Proficiency
 
+from core.tests_utils import _create_brawler
 
 class BrawlerModelTest(TestCase):
-    @staticmethod
-    def _create_power(model, additional_power_name, icon_name):
-        return model.objects.create(
-            additional_power_name=additional_power_name,
-            icon_name=icon_name,
-            base_proficiency=Proficiency.objects.create(),
-        )
-
-    @classmethod
-    def _create_brawler(cls, *, name, icon_name, primary_class, secondary_class):
-        return Brawler.objects.create(
-            name=name,
-            icon_name=icon_name,
-            primary_class=primary_class,
-            secondary_class=secondary_class,
-            base_proficiency=Proficiency.objects.create(),
-            first_gadget=cls._create_power(Gadget, "Randim Gadget", "randimgadget_icon.png"),
-            second_gadget=cls._create_power(Gadget, "Random Gadget", "randomgadget_icon.png"),
-            first_starpower=cls._create_power(StarPower, "Randim Star Power", "randimstarpower_icon.png"),
-            second_starpower=cls._create_power(StarPower, "Random Star Power", "randomstarpower_icon.png"),
-            hipercharge=cls._create_power(Hipercharge, "Randim Hipercharge", "randimhipercharge_icon.png"),
-        )
-
     @classmethod
     def setUpTestData(cls):
-        cls.brawler1 = cls._create_brawler(
+        cls.brawler1 = _create_brawler(
             name="Incredible Brawler test",
             icon_name="incrediblebrawlertest_icon.png",
             primary_class="T",
             secondary_class="AS",
         )
-        cls.brawler2 = cls._create_brawler(
+        cls.brawler2 = _create_brawler(
             name="AweSome Br@wler test",
             icon_name="awesomebr@wlertest_icon.png",
             primary_class="AT",
