@@ -63,6 +63,7 @@ def get_brawler_total_proficiency(brawler, card):
 
     selected_gadget = find_gadget(brawler.name, card['gadget_id'])
     selected_starpower = find_starpower(brawler.name, card['starpower_id'])
+    print(selected_gadget, card, "eweewewew")
 
     if selected_gadget:
         dictionary_gadget_proficiencies = model_to_dict(selected_gadget.base_proficiency)
