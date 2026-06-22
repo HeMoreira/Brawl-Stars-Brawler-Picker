@@ -1,3 +1,19 @@
+"""
+COMO USAR:
+
+Execute a função `import_excel_to_db` passando o caminho do arquivo Excel como argumento no terminal Python do projeto.
+
+Exemplo:
+python manage.py shell
+from brawler.utils import import_excel_to_db
+import_excel_to_db('brawler_picker_v0.xlsx')
+
+Se a execução falhar, verifique as mensagens de erro e os corrija.
+Erros comuns:
+- Remoção/Alteração acidental do "-" ao final de uma coluna de nome (ponto de parada na lógica da busca por brawlers classificados)
+- Alteração acidental do nome de uma propriedade de Proficiency (Comumente, a automação será cancelada, apontando o nome da coluna não encontrada)
+"""
+
 import pandas as pd
 from .models import Brawler
 from proficiency.models import Proficiency
@@ -62,7 +78,7 @@ def validate_all_sheets(all_sheets, proficiency_fields):
             print(f"Aba '{sheet}' não encontrada no arquivo. Pulando.")
             continue
         
-        # Remove a primeira coluna se for um índice automático criado pelo pandas, e remova linhas completamente vazias
+        # Remove a primeira coluna da aba (vazia em todas as planilhas)
         df = df.iloc[:, 1:].dropna(how='all')
         
         if df.empty:
