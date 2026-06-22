@@ -54,7 +54,8 @@ class Proficiency(models.Model):
     _increased_damage_when_grouped = models.SmallIntegerField(verbose_name="Groupment-Punishment", help_text="Capacity of punishing enemies with other hitboxes around", default=0)
     grass_vision = models.SmallIntegerField(verbose_name="Grass-Vision", help_text="Capacity of seeing enemies hiding in the grass", default=0)
     circumstantiality_of_overall_proficiency = models.SmallIntegerField(verbose_name="Circumstantiality of Overall Proficiency", help_text="Defines in what level this proficiency is dependent of external factors that need humam avaliation/observation", default=0)
-    
+    explanation_for_circumstantiality = models.CharField(verbose_name="Explanation for Circumstantiality", help_text="Explanation for the circumstantiality above (will be shown directly to the user)", default="none")
+
     # Buffs: Suporte e seus counters
     heal_buffing = models.SmallIntegerField(verbose_name="Heal-Buffing", help_text="Capacity of heal allies (frequency, power)", default=0)
     counter_heal_buffing = models.SmallIntegerField(verbose_name="Counter Heal-Buffing", help_text="(duration, power)", default=0)
@@ -74,3 +75,21 @@ class Proficiency(models.Model):
     attacks_canceling = models.SmallIntegerField(verbose_name="Forced-Stopped-Time", help_text="Capacity of cancel delayed attacks", default=0)
     counter_attacks_canceling = models.SmallIntegerField(verbose_name="Counter Forced-Stopped-Time", help_text="Capacity of not being affected by attacks canceling", default=0)
 
+    # Espefíficos: Principal fraqueza e Principal força
+    proficiencies_choices = [
+        'super_damage_in_short_range', 'super_damage_in_medium_range', 
+        'super_damage_in_long_range', 'super_damage_in_very_long_range',
+        'average_super_damage', 'ocasional_damage', 'retreat_button',
+        'wide_attack', 'area_denial', 'enemy_position_manipulation',
+        'water_walking', 'counter_water_walking', 'wall_break_efficiency',
+        'grass_break_efficiency', 'cover_creation_efficiency', 'grass_vision',
+        'circumstantiality_of_overall_proficiency', 'heal_buffing',
+        'counter_heal_buffing', 'shield_buffing', 'damage_buffing',
+        'counter_damage_buffing', 'speed_buffing', 'invisibility_buffing',
+        'positioning_buffing', 'poison_debuffing', 'counter_poison_debuffing',
+        'stun_debuffing', 'counter_stun_debuffing', 'slowness_debuffing',
+        'counter_slowness_debuffing', 'block_enemies', 'attacks_canceling',
+        'counter_attacks_canceling', 'none'
+    ]
+    main_specific_weakness = models.CharField(verbose_name="Main Specific Weakness", choices=[(choice, choice) for choice in proficiencies_choices], help_text="Striking incapacity that could not be described until now", default='none')
+    specific_weakness = models.CharField(verbose_name="Specific Weakness", choices=[(choice, choice) for choice in proficiencies_choices], help_text="Simple incapacity that could not be described until now", default='none')

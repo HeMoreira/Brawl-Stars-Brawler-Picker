@@ -55,6 +55,7 @@ class ProficiencyAdmin(admin.ModelAdmin):
                 '_increased_damage_when_grouped',
                 'grass_vision',
                 'circumstantiality_of_overall_proficiency',
+                'explanation_for_circumstantiality',
             )
         }),
         ('Buffs and Debuffs', {
@@ -76,6 +77,12 @@ class ProficiencyAdmin(admin.ModelAdmin):
                 'block_enemies',
                 'attacks_canceling',
                 'counter_attacks_canceling',
+            )
+        }),
+        ('Specific Weaknesses', {
+            'fields':(
+                'main_specific_weakness',
+                'specific_weakness',
             )
         }),
     )
