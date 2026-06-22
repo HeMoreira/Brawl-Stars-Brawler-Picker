@@ -105,6 +105,8 @@ def find_starpower(brawler_name, index):
 
 def convert_proficiencies(brawler_proficiencies):
     for key, value in brawler_proficiencies.items():
+        if type(brawler_proficiencies[key]) == str:
+            continue
         brawler_proficiencies[key] = value/10
     return brawler_proficiencies
 
@@ -187,6 +189,8 @@ def calculate_quality_vs_enemies(brawler_index, brawlers_proficiencies):
         quality[enemy_index] = 0
         for property_key in brawlers_proficiencies[enemy_index].keys():
             if property_key in ['id', '_necessary_projectiles_to_charge_super', '_necessary_supers_to_charge_hipercharge', '_projectile_damage', '_shots_per_five_seconds', '_average_projectiles_per_shot', '_projectiles_per_shot_in_short_range', '_projectiles_per_shot_in_medium_range', '_projectiles_per_shot_in_long_range', '_projectiles_per_shot_in_very_long_range', '_auto_charge_super', 'super_damage_in_short_range', 'super_damage_in_medium_range', 'super_damage_in_long_range', 'super_damage_in_very_long_range', 'average_super_damage', 'ocasional_damage']:
+                continue
+            if type(brawlers_proficiencies[brawler_index][property_key]) == str:
                 continue
             analized_brawler_power_values = []
             property_relations = PROFICIENCIES_PROPERTIES_RELATIONSHIP[property_key]
