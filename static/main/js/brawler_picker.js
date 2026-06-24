@@ -183,19 +183,55 @@ brawler_card_list.forEach((card, index) => {
 
 function defineCircunstantialEventListener(card) {
     const circunstantial_icon_tooltip = card.querySelector('.circunstantial-icon-tooltip');
+    if (!circunstantial_icon_tooltip) return;
+
     const rawData = circunstantial_icon_tooltip.getAttribute('data-tooltips');
     if (rawData) {
         const textList = rawData.split('|').map(text => text.trim());
         const textBox = circunstantial_icon_tooltip.querySelector('.clickable-tooltip-text');
         let currentIndex = 0;
+        card.scrollInterval = null;
+        card.timeoutId = null;
 
         textBox.textContent = textList[currentIndex];
+        startAutoScroll(card);
 
-        circunstantial_icon_tooltip.addEventListener('click', () => {
+        circunstantial_icon_tooltip.addEventListener('click', (e) => {
+            e.stopPropagation();
+
             currentIndex = (currentIndex + 1) % textList.length;
             textBox.textContent = textList[currentIndex];
+            
+            startAutoScroll(card);
         });
     }
+}
+
+function startAutoScroll(card) {
+    const circunstantial_icon_tooltip = card.querySelector('.circunstantial-icon-tooltip');
+    const textBox = circunstantial_icon_tooltip.querySelector('.clickable-tooltip-text');
+    
+    if (card.scrollInterval) clearInterval(card.scrollInterval);
+    if (card.timeoutId) clearTimeout(card.timeoutId);
+
+    textBox.scrollTop = 0;
+
+    const maxScroll = textBox.scrollHeight - textBox.clientHeight;
+    if (maxScroll <= 0) return;
+    
+    card.timeoutId = setTimeout(() => {
+        card.scrollInterval = setInterval(() => {
+            textBox.scrollTop += 1;
+            console.log(card.timeoutId);
+
+            if (textBox.scrollTop >= maxScroll) {
+                clearInterval(card.scrollInterval);
+                card.timeoutId = setTimeout(() => {
+                    startAutoScroll(card);
+                }, 2000);
+            }
+        }, 80);
+    }, 2000);
 }
 
 function changeBrawlerSelected(card) {
