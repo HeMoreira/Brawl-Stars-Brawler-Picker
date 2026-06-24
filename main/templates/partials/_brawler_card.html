@@ -1,6 +1,15 @@
 {% load static %}
 
 <section id="{{ card_id }}" class="{{ card_class }}">
+    <div class="circunstantial-icon-container">
+        <div class="circunstantial-icon-tooltip" data-tooltips="Texto da Página 1 com bastante conteúdo... | Texto da Página 2 explicando mais coisas... | Terceira parte do texto grande com uma quantia realmente absurda de texto, o que necessariamente obrigará que o texto vaze para fora da caixa padrão e, por consequência, só possa ser acessada por meio de uma barra de rolagem... | Quarta e última parte do texto informativo.">
+            <span>0.0</span>
+            <span class="circunstantial-icon-pages">1/1</span>
+            <div class="clickable-tooltip-box">
+                <span class="clickable-tooltip-text"></span>
+            </div>
+        </div>
+    </div>
     <div class="hipercharge-container">
         <div class="hipercharge-tooltip-image" data-tooltip="No hipercharge selected">
             <img src="{% static 'images/hipercharges/hipercharge_base.png' %}" alt="" class="hipercharge-image">

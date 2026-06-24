@@ -157,6 +157,8 @@ brawler_card_list.forEach((card, index) => {
     const star_power_selector = star_power_container.querySelector('.star-power-select');
     const statusElement = card.querySelector('.brawler-status');
 
+    defineCircunstantialEventListener(card);
+
     input.addEventListener('input', () => {
         changeBrawlerSelected(card);
         updateStatusToUptateRequired(card);
@@ -178,6 +180,23 @@ brawler_card_list.forEach((card, index) => {
         }
     });
 });
+
+function defineCircunstantialEventListener(card) {
+    const circunstantial_icon_tooltip = card.querySelector('.circunstantial-icon-tooltip');
+    const rawData = circunstantial_icon_tooltip.getAttribute('data-tooltips');
+    if (rawData) {
+        const textList = rawData.split('|').map(text => text.trim());
+        const textBox = circunstantial_icon_tooltip.querySelector('.clickable-tooltip-text');
+        let currentIndex = 0;
+
+        textBox.textContent = textList[currentIndex];
+
+        circunstantial_icon_tooltip.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % textList.length;
+            textBox.textContent = textList[currentIndex];
+        });
+    }
+}
 
 function changeBrawlerSelected(card) {
     const base_brawlers_path = BRAWLER_ICONS_STATIC_URL + 'brawlers/';
