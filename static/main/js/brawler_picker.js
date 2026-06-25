@@ -252,11 +252,13 @@ function defineCircunstantialEventListener(card) {
             currentIndex = 0;
             textBox.textContent = textList[currentIndex];
             circunstantial_icon_pages.textContent = `${currentIndex + 1}/${textList.length}`;
+            circunstantial_icon_tooltip.style.display = 'flex';
             startAutoScroll(card);
         }
         else {
             textList = ["The description of the selected Brawler's circumstantial characteristics will be displayed here."];
-            circunstantial_icon_pages.textContent = "0/0";   
+            circunstantial_icon_pages.textContent = "0/0";  
+            circunstantial_icon_tooltip.style.display = 'none';
         }
     }
 
