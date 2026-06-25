@@ -27,6 +27,7 @@ async function sendUpdateRequest() {
                 if (card) {
                     console.log(card, result);
                     changeStatusCard(card, result);
+                    changeCircunstantialityCard(card, data.cards_circumstantialities[result.index]);
                 }
             });
         }
@@ -107,6 +108,58 @@ function getFormatedQuality(quality) {
     }
 }
 
+function changeCircunstantialityCard(card, circunstantiality_data) {
+    const circunstantialityIconTooltipElement = card.querySelector('.circunstantial-icon-tooltip');
+    const circunstantialityLevelElement = circunstantialityIconTooltipElement.querySelector('.circunstantial-icon-level');
+
+    description = getCircunstantialDescriptionFrom(circunstantiality_data);
+    level = getCircunstantialLevelFrom(circunstantiality_data);
+
+    circunstantialityIconTooltipElement.setAttribute('data-tooltips', description);
+    circunstantialityLevelElement.textContent = level;
+    if (typeof card.updateTooltips === 'function') {
+        card.updateTooltips();
+    }
+}
+
+function getCircunstantialDescriptionFrom(circunstantiality_data) {
+    let description = "";
+    if (circunstantiality_data["base"]["description"] != "none") {
+        description += " | " + "CIRCUMSTANTIAL BASE: " + circunstantiality_data["base"]["description"];
+    }
+    if (circunstantiality_data["gadget"]["description"] != "none") {
+        description += " | " + "CIRCUMSTANTIAL GADGET: " + circunstantiality_data["gadget"]["description"];
+    }
+    if (circunstantiality_data["starpower"]["description"] != "none") {
+        description += " | " + "CIRCUMSTANTIAL STARPOWER: " + circunstantiality_data["starpower"]["description"];
+    }
+    if (circunstantiality_data["hipercharge"]["description"] != "none") {
+        description += " | " + "CIRCUMSTANTIAL HIPERCHARGE: " + circunstantiality_data["hipercharge"]["description"];
+    }
+    if (description[1] == "|") {
+        description = description.slice(3);
+    }
+    return description;
+}
+
+function getCircunstantialLevelFrom(circunstantiality_data) {
+    let level = 0;
+    if (circunstantiality_data["base"]["level"] != "0") {
+        level = parseFloat(circunstantiality_data["base"]["level"]);
+    }
+    if (circunstantiality_data["gadget"]["level"] != "0") {
+        level += parseFloat(circunstantiality_data["gadget"]["level"]);
+    }
+    if (circunstantiality_data["starpower"]["level"] != "0") {
+        level += parseFloat(circunstantiality_data["starpower"]["level"]);
+    }
+    if (circunstantiality_data["hipercharge"]["level"] != "0") {
+        level += parseFloat(circunstantiality_data["hipercharge"]["level"]);
+    }
+    level = (level / 10).toFixed(1);
+    return level;
+}
+
 function updateTeamSummary(data) {
     const yourTeamDetails = document.querySelector('.your-team-details .scroll-box');
     const enemyTeamDetails = document.querySelector('.enemy-team-details .scroll-box');
@@ -183,28 +236,44 @@ brawler_card_list.forEach((card, index) => {
 
 function defineCircunstantialEventListener(card) {
     const circunstantial_icon_tooltip = card.querySelector('.circunstantial-icon-tooltip');
+    const circunstantial_icon_pages = circunstantial_icon_tooltip.querySelector('.circunstantial-icon-pages');
     if (!circunstantial_icon_tooltip) return;
 
-    const rawData = circunstantial_icon_tooltip.getAttribute('data-tooltips');
-    if (rawData) {
-        const textList = rawData.split('|').map(text => text.trim());
-        const textBox = circunstantial_icon_tooltip.querySelector('.clickable-tooltip-text');
-        let currentIndex = 0;
-        card.scrollInterval = null;
-        card.timeoutId = null;
+    let textList = [];
+    const textBox = circunstantial_icon_tooltip.querySelector('.clickable-tooltip-text');
+    let currentIndex = 0;
+    card.scrollInterval = null;
+    card.timeoutId = null;
 
-        textBox.textContent = textList[currentIndex];
-        startAutoScroll(card);
-
-        circunstantial_icon_tooltip.addEventListener('click', (e) => {
-            e.stopPropagation();
-
-            currentIndex = (currentIndex + 1) % textList.length;
+    card.updateTooltips = function () {
+        const rawData = circunstantial_icon_tooltip.getAttribute('data-tooltips');
+        if (rawData) {
+            textList = rawData.split('|').map(text => text.trim());
+            currentIndex = 0;
             textBox.textContent = textList[currentIndex];
-            
+            circunstantial_icon_pages.textContent = `${currentIndex + 1}/${textList.length}`;
             startAutoScroll(card);
-        });
+        }
+        else {
+            textList = ["The description of the selected Brawler's circumstantial characteristics will be displayed here."];
+            circunstantial_icon_pages.textContent = "0/0";   
+        }
     }
+
+    card.updateTooltips();
+
+    textBox.textContent = textList[currentIndex];
+    startAutoScroll(card);
+
+    circunstantial_icon_tooltip.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        currentIndex = (currentIndex + 1) % textList.length;
+        circunstantial_icon_pages.textContent = `${currentIndex + 1}/${textList.length}`;
+        textBox.textContent = textList[currentIndex];
+        
+        startAutoScroll(card);
+    });
 }
 
 function startAutoScroll(card) {
@@ -222,7 +291,6 @@ function startAutoScroll(card) {
     card.timeoutId = setTimeout(() => {
         card.scrollInterval = setInterval(() => {
             textBox.scrollTop += 1;
-            console.log(card.timeoutId);
 
             if (textBox.scrollTop >= maxScroll) {
                 clearInterval(card.scrollInterval);

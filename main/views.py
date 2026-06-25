@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .utils import aggregate_team_proficiencies, analyze_all_cards
+from .utils import aggregate_team_proficiencies, analyze_all_cards, get_circumtantiality_for_each_card
 import json
 
 from brawler.models import Brawler, Gadget, StarPower, Hipercharge
@@ -65,9 +65,12 @@ def update_cards(request):
         }
         for result in all_cards_results
     ]
+    cards_circumstantialities = get_circumtantiality_for_each_card(normalized_cards)
+    print("AAAAAAAAAAAAAAAAAAAAAAA", cards_circumstantialities)
 
     return JsonResponse({
         'card_results': all_cards_results,
+        'cards_circumstantialities': cards_circumstantialities,
         'team_proficiencies': team_proficiencies,
         'relative_quality': relative_quality,
     })

@@ -58,24 +58,44 @@ def get_brawler_proficiency(card):
     return brawler_total_proficiency
 
 def get_brawler_total_proficiency(brawler, card):
-    dictionary_base_proficiencies = model_to_dict(brawler.base_proficiency)
-    total_proficiency = dictionary_base_proficiencies
+    total_proficiency, dictionary_gadget_proficiencies, dictionary_starpower_proficiencies, dictionary_hipercharge_proficiencies = get_brawler_all_proficiencies(brawler, card)
 
-    selected_gadget = find_gadget(brawler.name, card['gadget_id'])
-    selected_starpower = find_starpower(brawler.name, card['starpower_id'])
-    print(selected_gadget, card, "eweewewew")
-
-    if selected_gadget:
-        dictionary_gadget_proficiencies = model_to_dict(selected_gadget.base_proficiency)
+    if dictionary_gadget_proficiencies:
         for key, value in dictionary_gadget_proficiencies.items():
             total_proficiency[key] += value
 
-    if selected_starpower:
-        dictionary_starpower_proficiencies = model_to_dict(selected_starpower.base_proficiency)
+    if dictionary_starpower_proficiencies:
         for key, value in dictionary_starpower_proficiencies.items():
+            total_proficiency[key] += value
+        
+    if dictionary_hipercharge_proficiencies:
+        for key, value in dictionary_hipercharge_proficiencies.items():
             total_proficiency[key] += value
 
     return total_proficiency
+
+def get_brawler_all_proficiencies(brawler, card):
+    dictionary_base_proficiencies = model_to_dict(brawler.base_proficiency)
+
+    selected_gadget = find_gadget(brawler.name, card['gadget_id'])
+    if selected_gadget:
+        dictionary_gadget_proficiencies = model_to_dict(selected_gadget.base_proficiency)
+    else:
+        dictionary_gadget_proficiencies = {}
+
+    selected_starpower = find_starpower(brawler.name, card['starpower_id'])
+    if selected_starpower:
+        dictionary_starpower_proficiencies = model_to_dict(selected_starpower.base_proficiency)
+    else:
+        dictionary_starpower_proficiencies = {}
+
+    hipercharge = find_hipercharge(brawler.name)
+    if hipercharge:
+        dictionary_hipercharge_proficiencies = model_to_dict(hipercharge.base_proficiency)
+    else:
+        dictionary_hipercharge_proficiencies = {}
+
+    return dictionary_base_proficiencies, dictionary_gadget_proficiencies, dictionary_starpower_proficiencies, dictionary_hipercharge_proficiencies
 
 def find_brawler(name):
     if not name:
@@ -99,6 +119,12 @@ def find_starpower(brawler_name, index):
         return brawler.first_starpower
     else:
         return brawler.second_starpower
+    
+def find_hipercharge(brawler_name):
+    brawler = find_brawler(brawler_name)
+    if not brawler_name:
+        return None
+    return brawler.hipercharge
 
 
 
@@ -307,3 +333,39 @@ def merge_proficiency_dicts(target, source):
     for key, value in source.items():
         target[key] = target.get(key, 0) + value
     return target
+
+
+def get_circumtantiality_for_each_card(all_cards):
+    all_circumstantialities = {
+        index: {
+            'base': {},
+            'gadget': {},
+            'starpower': {},
+            'hipercharge': {}
+        } for index in range(6)
+    }
+    for card in all_cards:
+        brawler = find_brawler(card['name'])
+        if not brawler:
+            return {}
+        proficiency_base, proficiency_gadget, proficiency_starpower, proficiency_hipercharge = get_brawler_all_proficiencies(brawler, card)
+
+        base_circumstantiality, base_explanation = get_circumstantiality_from_proficiency(proficiency_base)
+        gadget_circumstantiality, gadget_explanation = get_circumstantiality_from_proficiency(proficiency_gadget)
+        starpower_circumstantiality, starpower_explanation = get_circumstantiality_from_proficiency(proficiency_starpower)
+        hipercharge_circumstantiality, hipercharge_explanation = get_circumstantiality_from_proficiency(proficiency_hipercharge)
+
+        card_index = card['index']
+        all_circumstantialities[card_index]['base']['level'] = base_circumstantiality
+        all_circumstantialities[card_index]['base']['description'] = base_explanation
+        all_circumstantialities[card_index]['gadget']['level'] = gadget_circumstantiality
+        all_circumstantialities[card_index]['gadget']['description'] = gadget_explanation
+        all_circumstantialities[card_index]['starpower']['level'] = starpower_circumstantiality
+        all_circumstantialities[card_index]['starpower']['description'] = starpower_explanation
+        all_circumstantialities[card_index]['hipercharge']['level'] = hipercharge_circumstantiality
+        all_circumstantialities[card_index]['hipercharge']['description'] = hipercharge_explanation
+
+    return all_circumstantialities
+
+def get_circumstantiality_from_proficiency(proficiency):
+    return proficiency.get('circumstantiality_of_overall_proficiency', 0), proficiency.get('explanation_for_circumstantiality', 'none')
