@@ -22,6 +22,7 @@ def brawler_picker(request):
             "first_star_power": [brawler.first_starpower.icon_name, brawler.first_starpower.additional_power_name],
             "second_star_power": [brawler.second_starpower.icon_name, brawler.second_starpower.additional_power_name],
             "hipercharge": [brawler.hipercharge.icon_name, brawler.hipercharge.additional_power_name],
+            "most_common_build": [int(brawler.most_common_build[0]), int(brawler.most_common_build[1])]
         })
     context = {
         "brawlers": brawlers,

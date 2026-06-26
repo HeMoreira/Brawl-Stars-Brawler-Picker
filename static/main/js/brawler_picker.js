@@ -311,8 +311,6 @@ function changeBrawlerSelected(card) {
     const base_brawlers_path = BRAWLER_ICONS_STATIC_URL + 'brawlers/';
     const image = card.querySelector('.brawler-image');
     const input = card.querySelector('.brawler-select');
-    const gadget_select = card.querySelector('.gadget-select');
-    const star_power_select = card.querySelector('.star-power-select');
     const hipercharge_container = card.querySelector('.hipercharge-container');
     brawler = getTypedBrawler(input);
 
@@ -321,10 +319,10 @@ function changeBrawlerSelected(card) {
         resetBrawlerOptions(card);
         return;
     }
-
     image.src = base_brawlers_path + brawler.icon;
-    changeBrawlerOptions(gadget_select, star_power_select, hipercharge_container);
+    changeBrawlerOptions(card, hipercharge_container);
     updateBrawlerSelectedComplements(card);
+    updateBrawlerComplementsBasedOnMostCommonBuild(card, brawler);
 }
 
 function getTypedBrawler(input) {
@@ -337,7 +335,9 @@ function getTypedBrawler(input) {
     return typed_brawler;
 }
 
-function changeBrawlerOptions(gadget_select, star_power_select, hipercharge_container) {
+function changeBrawlerOptions(card, hipercharge_container) {
+    const gadget_select = card.querySelector('.gadget-select');
+    const star_power_select = card.querySelector('.star-power-select');
     changeBrawlerOption(brawler.first_gadget, brawler.second_gadget, gadget_select);
     changeBrawlerOption(brawler.first_star_power, brawler.second_star_power, star_power_select);
     const hipercharge_image = hipercharge_container.querySelector('.hipercharge-image');
@@ -455,6 +455,23 @@ function updateBrawlerComplement(selected_image, new_image, card) {
         tooltip_wrapper.dataset.tooltip = new_image.dataset.tooltip;
     }
     updateStatusToUptateRequired(card);
+}
+
+function updateBrawlerComplementsBasedOnMostCommonBuild(card, brawler) {
+    const gadget_select = card.querySelector('.gadget-select');
+    const gadget_selected = card.querySelector('.gadget-container').querySelector('.image-selected');
+    const star_power_select = card.querySelector('.star-power-select');
+    const star_power_selected = card.querySelector('.star-power-container').querySelector('.image-selected');
+    gadget_select.querySelectorAll('img').forEach(option => {
+        if (option.dataset.id == brawler.most_common_build[0]) {
+            updateBrawlerComplement(gadget_selected, option, card);
+        }
+    })
+    star_power_select.querySelectorAll('img').forEach(option => {
+        if (option.dataset.id == brawler.most_common_build[1]) {
+            updateBrawlerComplement(star_power_selected, option, card);
+        }
+    })
 }
 
 function updateStatusToUptateRequired(card) {

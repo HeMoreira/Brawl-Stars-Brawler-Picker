@@ -12,7 +12,7 @@ class BrawlerAdmin(admin.ModelAdmin):
             'fields': ('name', 'icon_name', 'primary_class', 'secondary_class')
         }),
         ('Gadgets, Star Powers and Hipercharges', {
-            'fields':('first_gadget', 'second_gadget', 'first_starpower', 'second_starpower', 'hipercharge')
+            'fields':('first_gadget', 'second_gadget', 'first_starpower', 'second_starpower', 'hipercharge', 'most_common_build')
         }),
         ('Base Proficiency', {
             'fields':('base_proficiency',)

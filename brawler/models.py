@@ -17,6 +17,7 @@ class Brawler(models.Model):
     hipercharge = models.OneToOneField(Hipercharge, on_delete=models.CASCADE, verbose_name="Hipercharge")
     gadgets = [first_gadget, second_gadget]
     starpowers = [first_starpower, second_starpower]
+    most_common_build = models.CharField(max_length=2, choices=[('00', 'Undefined Gadget, Undefined StarPower'), ('11', 'First Gadget, First StarPower'), ('12', 'First Gadget, Second StarPower'), ('21', 'Second Gadget, First StarPower'), ('22', 'Second Gadget, Second StarPower')], verbose_name="Most Common Build", default="00")
 
     class Meta:
         verbose_name = "Brawler"
