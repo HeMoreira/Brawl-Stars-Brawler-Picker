@@ -100,6 +100,9 @@ function changeStatusCard(card, updated_status_information) {
 }
 
 function getFormatedQuality(quality) {
+    if (!quality) {
+        return 0.0.toFixed(1);
+    }
     const qualityValue = parseFloat(quality);
     if (qualityValue < 10 && qualityValue > 0 || qualityValue > -10 && qualityValue < 0) {
         return qualityValue.toFixed(2);
@@ -112,8 +115,8 @@ function changeCircunstantialityCard(card, circunstantiality_data) {
     const circunstantialityIconTooltipElement = card.querySelector('.circunstantial-icon-tooltip');
     const circunstantialityLevelElement = circunstantialityIconTooltipElement.querySelector('.circunstantial-icon-level');
 
-    description = getCircunstantialDescriptionFrom(circunstantiality_data);
-    level = getCircunstantialLevelFrom(circunstantiality_data);
+    let description = getCircunstantialDescriptionFrom(circunstantiality_data);
+    let level = getCircunstantialLevelFrom(circunstantiality_data);
 
     circunstantialityIconTooltipElement.setAttribute('data-tooltips', description);
     circunstantialityLevelElement.textContent = level;

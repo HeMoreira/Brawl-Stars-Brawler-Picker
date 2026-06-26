@@ -23,11 +23,10 @@ def analyze_all_cards(all_cards):
         brawlers_proficiencies[brawler_key] = get_final_brawler_properties(brawlers_proficiencies[brawler_key])
     
     for brawler_key, _ in brawlers_proficiencies.items():
+        if find_brawler(all_cards[brawler_key]['name']) == None:
+            results[brawler_key] = return_invalid_brawler(brawler_key)
+            continue
         if brawler_key < 3:
-            if find_brawler(all_cards[brawler_key]['name']) == None:
-                results[brawler_key] = return_invalid_brawler(brawler_key)
-                continue
-
             quality_vs_enemies = calculate_quality_vs_enemies(all_cards[brawler_key]['index'], brawlers_proficiencies)
             rating = calculate_card_rating(quality_vs_enemies)
             status = calculate_card_status_from_rating(rating)
@@ -345,9 +344,13 @@ def get_circumtantiality_for_each_card(all_cards):
         } for index in range(6)
     }
     for card in all_cards:
+        card_index = card['index']
         brawler = find_brawler(card['name'])
         if not brawler:
-            return {}
+            for all_circumstantiality in all_circumstantialities[card_index].keys():
+                all_circumstantialities[card_index][all_circumstantiality]['level'] = 0
+                all_circumstantialities[card_index][all_circumstantiality]['description'] = "none"
+            continue
         proficiency_base, proficiency_gadget, proficiency_starpower, proficiency_hipercharge = get_brawler_all_proficiencies(brawler, card)
 
         base_circumstantiality, base_explanation = get_circumstantiality_from_proficiency(proficiency_base)
@@ -355,7 +358,6 @@ def get_circumtantiality_for_each_card(all_cards):
         starpower_circumstantiality, starpower_explanation = get_circumstantiality_from_proficiency(proficiency_starpower)
         hipercharge_circumstantiality, hipercharge_explanation = get_circumstantiality_from_proficiency(proficiency_hipercharge)
 
-        card_index = card['index']
         all_circumstantialities[card_index]['base']['level'] = base_circumstantiality
         all_circumstantialities[card_index]['base']['description'] = base_explanation
         all_circumstantialities[card_index]['gadget']['level'] = gadget_circumstantiality
