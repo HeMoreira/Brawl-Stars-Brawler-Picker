@@ -1,4 +1,4 @@
-# BrawlStars - Brawler Picker
+# Brawler Picker - BrawlStars
 
 Análise de Matches da Ranked de Brawl Stars. Compare brawlers aliados e inimigos para formar as melhores equipes em tempo real!
 > Projeto feito por fãs sem qualquer ligação com a equipe do jogo Brawl Stars da empresa Supercell.
@@ -7,10 +7,10 @@ Análise de Matches da Ranked de Brawl Stars. Compare brawlers aliados e inimigo
 
 - Montagem rápida de equipes para Ranked, com foco em comparação entre brawlers aliados e inimigos.
 - Análise profunda com base nas estatísticas de cada brawler, gadget, starpower e hipercharge.
-<!-- - Suporte a diferentes mapas e modos, considerando multiplicadores específicos de cenário. -->
 - Cadastro detalhado de gadgets, Star Powers e Hipercharges para cada brawler.
-<!-- - Organização de builds mais comuns, facilitando a tomada de decisão durante o jogo. -->
 - Painel administrativo para gerenciar brawlers, mapas, proficiências e poderes adicionais.
+<!-- - Organização de builds mais comuns, facilitando a tomada de decisão durante o jogo. -->
+<!-- - Suporte a diferentes mapas e modos, considerando multiplicadores específicos de cenário. -->
 
 ## Configuração
 
@@ -76,10 +76,9 @@ Acesse: http://127.0.0.1:8000 ou https://localhost:8000
 
 ## Segurança
 
-- Todas as rotas protegidas por `@login_required`
-- Validação de propriedade `obj.user == request.user` em toda operação (proteção IDOR)
-- CSRF token em todos os formulários
 - Credenciais em variáveis de ambiente via `.env` (nunca no código)
-<!-- - Escape automático de HTML pelo template engine do Django (proteção XSS)
-- Acesso ao banco exclusivamente via Django ORM (proteção SQL Injection)
--->
+- CSRF token em todos os formulários
+<!-- - Todas as rotas protegidas por `@login_required` -->
+<!-- - Validação de propriedade `obj.user == request.user` em toda operação (proteção IDOR) -->
+<!-- - Escape automático de HTML pelo template engine do Django (proteção XSS) -->
+<!-- - Acesso ao banco exclusivamente via Django ORM (proteção SQL Injection) -->
